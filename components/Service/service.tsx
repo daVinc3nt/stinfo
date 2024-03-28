@@ -15,7 +15,7 @@ import {
     AccountBox,
   } from "@mui/icons-material";
 import { Service_box } from "../Common/box";
-  
+
 const ItemData = [
     {
       id: 0,
@@ -26,7 +26,7 @@ const ItemData = [
     {
         id: 1,
         title: "Thông tin sinh viên",
-        url: "/",
+        url: "/StuInfo",
         icon: <AccountBox style={{ fontSize: 60 }}/>,
       },
     {
