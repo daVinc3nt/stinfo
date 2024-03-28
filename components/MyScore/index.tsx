@@ -122,10 +122,11 @@ export default function MyScore() {
                     </select>
                 </label>
                 <div className="mt-10 flex flex-col">
-                    {semester.map((item) => {
+                    {semester.map((item, index) => {
+                        const key={index};
                         if (item.name == semes || semes == "Tất cả")
                             return (
-                                <>
+                                <div key={index}>
                                     <h1 className="">{item.name}</h1>
                                     <table className="flex-1 mt-4 table-fixed mb-20">
                                         <thead>
@@ -154,7 +155,7 @@ export default function MyScore() {
                                             }
                                         </tbody>
                                     </table>
-                                </>
+                                </div>
                             )
                     })
                     }

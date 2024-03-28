@@ -45,13 +45,17 @@ const ItemData = [
 export default function Service() {
   return (
     <>
+    <div className="flex flex-col sm:flex-row">
       {
-        ItemData.map((item) => {
+        ItemData.map((item, index) => {
           return (
+            <div key={index}>
             <Service_box icon={item.icon} title={item.title} url={item.url} />
+            </div>
           )
         })
       }
+      </div>
     </>
   );
 }

@@ -6,15 +6,9 @@ import { IntlProvider } from "react-intl";
 import * as en from "@/lang/en.json";
 import * as vi from "@/lang/vi.json";
 import { useState, useEffect, createContext } from "react";
-import { Libraries, LoadScript, LoadScriptProps } from "@react-google-maps/api";
 import { Spinner } from "@material-tailwind/react";
-import { Socket, io } from "socket.io-client";
-
-export const SocketContext = createContext<Socket | null>(null);
-const googleMapsLibraries: Libraries = ["places"];
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const socket = io('https://api.tdlogistics.net.vn', { transports: ['websocket'] });
   function Loading() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
@@ -59,13 +53,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <SocketContext.Provider value={socket}>
         <IntlProvider locale={locale} messages={messages[locale]}>
           <Wrapper><Loading />
             <Component {...pageProps} />
           </Wrapper>
         </IntlProvider>
-      </SocketContext.Provider>
     </>
   );
 }
