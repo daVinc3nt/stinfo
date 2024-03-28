@@ -61,9 +61,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <SocketContext.Provider value={socket}>
         <IntlProvider locale={locale} messages={messages[locale]}>
-            <Wrapper><Loading />
-              <Component {...pageProps} />
-            </Wrapper>
+          <Wrapper><Loading />
+            <Component {...pageProps} />
+          </Wrapper>
         </IntlProvider>
       </SocketContext.Provider>
     </>
