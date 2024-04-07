@@ -27,7 +27,7 @@ const ItemData = [
   {
     id: 1,
     title: "Thông tin sinh viên",
-    url: "/",
+    url: "/dashboard/info",
     icon: <AccountBox style={{ fontSize: 60 }} />,
   },
   {
