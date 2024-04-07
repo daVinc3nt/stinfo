@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import * as calendarProps from '@/components/Calendar/Features/interfaceProps';
 import * as utils from '@/components/Calendar/Features/utils_calendar';
-import Container from 'react-bootstrap/Container';
 import CalendarGrid from "@/components/Calendar/CalendarGrid";
 import HourGrid from "@/components/Calendar/HourGrid";
 import WeekDayGrid from "@/components/Calendar/WeekDayGrid";
