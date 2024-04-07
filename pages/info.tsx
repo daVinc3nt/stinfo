@@ -1,50 +1,20 @@
-import NavItem from "@/components/Common/NavItem"
+import NavItemsContainer from "@/components/Common/NavItemsContainer"
 import React from "react"
-import { useState } from "react" 
-import ContactInfo from "@/context/ContactInfo"
-import MedicaltInfo from "@/context/MedicalInfo"
 
 
 
 
-const StuInfo = () => {
-    const [page,setPage] = useState(<ContactInfo />)
+
+const info = () => {
     return (
-        <div>
-            <div className="flex w-full h-14 rounded-lg p-8 bg-blue-400 justify-between items-center text-3xl">
-                <img 
-                    src="https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"
-                    className="flex w-20 h-20  rounded-full items-start justify-between " 
-                    alt="" />
-                <p className="flex p-2 space-x-2">
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" viewBox="0 0 24 24" 
-                    strokeWidth="1.5" stroke="currentColor" 
-                    className="w-6 h-6 ">
-                    <path strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
-                </svg>
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" viewBox="0 0 24 24" 
-                    strokeWidth="1.5" stroke="currentColor" 
-                    className="w-6 h-6 ">
-                    <path strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                    </svg>
-                </p>
-            </div>
-            <div className="grid grid-cols-5 ">
-                <div className="w-full h-screen bg-red-200 col-span-2 space-y-4">
+            <div className='grid md:grid-cols-5 sm:justify-center sm:items-center'>
+                <div className="md:first-letter:w-full h-full bg-red-200 md:col-span-2  space-y-3">
                     <img 
                     src="https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"
-                    className="w-40 h-40 py-1 rounded-full flex items-end justify-center mx-auto my-6" 
+                    className="w-40 h-40 py-1 rounded-full flex items-end justify-center mx-auto my-3" 
                     alt="" />
                    
-                    <main className="space-y-14">
+                    <main className="space-y-8">
                         <div>
                             <div className="flex items-center justify-center p-1 ">Nguyen Van A</div>
                             <div className="flex items-center justify-center space-x-2">
@@ -52,7 +22,7 @@ const StuInfo = () => {
                                 <p>23100000</p>
                             </div>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             <div>
                                 <div className="flex space-x-2 " >
                                     <p> Ngày tháng năm sinh: </p>
@@ -108,14 +78,12 @@ const StuInfo = () => {
                             
                     </main>
                 </div>
-               
-                <div className="w-full h-screen bg-orange-300 col-span-3">
-                    <NavItem/>
+                <div className=" bg-orange-300 md:col-span-3 flex-none overflow-y-scroll h-full ">
                     
+                        <NavItemsContainer/>
                 </div>
 
             </div>
-        </div>
     )
 }
 
@@ -123,4 +91,4 @@ const StuInfo = () => {
 
 
 
-export default StuInfo
+export default info
