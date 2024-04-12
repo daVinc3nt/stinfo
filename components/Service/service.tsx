@@ -21,7 +21,7 @@ const ItemData = [
   {
     id: 0,
     title: "E-learning",
-    url: "/",
+    url: "/dashboard/elearning",
     icon: <AccountBox style={{ fontSize: 60 }} />,
   },
   {
