@@ -20,7 +20,7 @@ interface academic {
 const student: { personal: information, study: academic } = {
     personal: {
         Name: "Nguyen Van A",
-        Email: "nguyenvana@example.com",
+        Email: "nguyenvana@hcmut.edu.vn",
         StudentID: "S1234567",
         BirthDay: "1998-05-15",
         Sex: true,   // true là nam, false là nữ
@@ -39,110 +39,104 @@ const student: { personal: information, study: academic } = {
 };
   
 const MainInfo = () => {
-    return ( /*
-        <div className=" w-full min-h-screen col-span-2 bg-light-primary-500 text-white">
-            
-            <div className="flex flex-col items-center justify-center">
-                <div  className=" pt-4" >{student.personal.Avatar }</div>
-                <div className="mt-2 items-center justify-center rounded-xl w-34 h-30 bg-blue-200 text-black">
-                    
-                    <div className="space-x-2 text-2xl"> 
-                        
-                    </div>
-                </div>
-            </div>
-            
-            <div className="space-y-4 p-2 mt-4 md:text-xl">
-                <div className="space-y-3">
-                   
-                </div>
-               
-            </div>
-        </div> */
-        <div className=" w-full min-h-screen border shadow-gray-200 shadow-xl rounded-lg p-10">
-              <div className="flex justify-center items-center  ">
+    return ( 
+        <div className="w-full min-h-screen p-10
+                        border shadow-gray-200 shadow-sm rounded-lg">
+              <div className="flex justify-center items-center p-2 ">
                 <img 
                 src={student.personal.Avatar}
                 alt="Avatar" 
-                className=" h-[178px] w-[240px] md:h-[62%] md:w-[42%] rounded-xl shadow-xl shadow-gray-100  mx-4"
+                className=" h-[72%] w-[65%] md:h-[62%] md:w-[42%] rounded-xl shadow-xl shadow-gray-100  mx-auto mb-2"
                 />
               </div>
 
-            <div className=" ">
-                <div className="p-4 space-y-6">
-                    <div className="flex mt-2 items-center justify-center h-[42px] w-full text-white text-2xl bg-sky-500 rounded-xl">Thông tin chung</div>
-                    <div className="md:flex md:space-x-[18rem] justify-start items-center px-2  text-xl">
-                        <div className="flex space-x-5">
-                            <div className="font-bold">Họ và tên:</div>
-                            <div> {student.personal.Name}</div>
-                        </div> 
-                        <div className="flex space-x-3">
-                            <div className="shadow-md">MSSV:</div>
-                            <div>{student.personal.StudentID}</div>
-                        </div> 
+            <div className=" w-[98%] h-[42%] px-2 py-6 md:p-10 
+                                    border rounded-lg shadow-sm shadow-teal-200">
+                <div className="space-y-6">
+                    <div className="flex items-center justify-center w-full h-[42px]
+                                     text-white text-2xl font-bold bg-sky-500 rounded-xl">Thông tin chung</div>
+                    <div className="border border-gray-200 p-4 rounded-xl mb-4">
+                        <div className="space-y-3 pl-10 text-lg">
+                            <div className="sm:flex justify-between">
+                                <div className="flex justify-start">
+                                    <div className="font-bold  items-start">Họ và tên:</div>
+                                    <div className="items-center md:mx-px sm:px-4 px-10">{student.personal.Name}</div>
+                                </div>
+                                <div className="flex justify-start">
+                                    <div className="font-bold  items-start">MSSV:</div>
+                                    <div className="items-center md:mx-px sm:px-4 px-10">{student.personal.StudentID}</div>
+                                </div>
+                            </div>
+
+                            <div className="md:flex justify-start">
+                                    <div className="font-bold  items-start">Ngày tháng năm sinh:</div>
+                                    <div className="items-center md:mx-px sm:px-4 px-10">{student.personal.BirthDay}</div>
+                            </div>
+                            <div className="flex justify-start">
+                                    <div className="font-bold  items-start">Giới tính:</div>
+                                    <div className="items-center md:mx-px sm:px-4 px-10">{student.personal.Sex ? "Nam" : "Nữ"}</div>
+                            </div>
+                            <div className="flex justify-start">
+                                    <div className="font-bold  items-start">Email:</div>
+                                    <div className="items-center md:mx-px sm:px-4 px-10">{student.personal.Email}</div>
+                            </div>
+                        </div>    
                     </div>
-                    <div className="flex space-x-[18rem] justify-start items-center px-2  text-xl">
-                        <div className="flex space-x-3">
-                            <div className="shadow-md">Ngày tháng năm sinh:</div>
-                            <div>{student.personal.BirthDay}</div>
-                        </div>
-                        
-                    </div>
-                        <div className="flex justify-start items-center px-2  text-xl space-x-3" >
-                            <div className="shadow-md">Giới tính:</div>
-                            <div>{student.personal.Sex ? "Nam" : "Nữ"}</div>
-                        </div>
-                        <div className="flex justify-start items-center px-2  text-xl">
-                            <div className="flex space-x-3">
-                            <div className="shadow-md">Email:</div>
-                            <div>{student.personal.Email}</div>
-                        </div>
-                    </div>
+                    
                 </div>
-                
-                <div className="p-4 space-y-6">
-                    <div className="flex mt-2 items-center justify-center h-[42px] w-full text-white text-2xl bg-sky-500 rounded-xl">Thông tin học vụ</div>
-                    <div className="flex justify-between items-center px-2  text-xl" >
-                        <div className="flex space-x-3">
-                            <div className="shadow-md">Khoa quản lý:</div>
-                            <div>{student.study.Faculty}</div>
-                        </div> 
-                        <div className="flex space-x-2">
-                            <div className="shadow-md">Tình trạng :</div>
-                            <div> {student.study.Condition}</div>
-                        </div> 
-                    </div>
-                    <div className="flex justify-start items-center px-2  text-xl">
-                        <div className="flex space-x-1 items-start">
-                                <div className="shadow-md">Ngành:</div>
-                                <div>{student.study.Major}</div> 
+            </div>
+
+            <div className=" w-[98%] h-[42%] px-2 py-6 md:p-10 
+                                    border rounded-lg shadow-sm shadow-teal-200">
+                <div className="space-y-6">
+                    <div className="flex items-center justify-center w-full h-[42px]
+                                     text-white text-2xl font-bold bg-sky-500 rounded-xl">Thông tin học vụ</div>
+                    <div className="border border-gray-200 p-4 rounded-xl mb-4">
+                        <div className="space-y-3 pl-10 text-lg">
+                            <div className="xl:flex justify-between">
+                                <div className="md:flex justify-start">
+                                    <div className="font-bold  items-start">Khoa quản lý:</div>
+                                    <div className="items-center md:mx-px sm:px-4 px-10">{student.study.Faculty}</div>
+                                </div>
+                                <div className="flex justify-start">
+                                    <div className="font-bold  items-start">Tình trạng:</div>
+                                    <div className="items-center md:mx-px sm:px-4 px-10">{student.study.Condition}</div>
+                                </div>
                             </div>
-                            <div className="flex space-x-1 items-end">
-                                <div className="shadow-md">Chương trình đạo tạo:</div>
-                                <div>{student.study.Program}</div>
+
+                    
+                            <div className="xl:flex justify-between">
+                                <div className="flex justify-start">
+                                    <div className="font-bold  items-start">Ngành đào tạo:</div>
+                                    <div className="items-center md:mx-px sm:px-4 px-10">{student.study.Major}</div>
+                                </div>
+                                <div className="flex justify-start">
+                                    <div className="font-bold  items-start">Chương trình đào tạo:</div>
+                                    <div className="items-center md:mx-px sm:px-4 px-10">{student.study.Program}</div>
+                                </div>
                             </div>
+
+                            <div className="xl:flex justify-between">
+                                <div className="flex justify-start">
+                                    <div className="font-bold  items-start">Lớp:</div>
+                                    <div className="items-center md:mx-px sm:px-4 px-10">{student.study.Class}</div>
+                                </div>
+                                <div className="flex justify-start">
+                                    <div className="font-bold  items-start">GVCN:</div>
+                                    <div className="items-center md:mx-px sm:px-4 px-10">{student.study.Teacher}</div>
+                                </div>
+                            </div>
+
+                            <div className="md:flex justify-start">
+                                    <div className="font-bold  items-start">Thời gian đào tạo tối đa:</div>
+                                    <div className="items-center md:mx-px sm:px-4 px-10">{student.study.Timeline}</div>
+                            </div>
+                        </div>    
                     </div>
-                    <div className="flex justify-start items-center px-2 space-x-[12rem] text-xl" >
-                        <div className="flex space-x-3">
-                            <div className="shadow-md">Lớp:</div>
-                            <div>{student.study.Class}</div>
-                        </div> 
-                        <div className="flex space-x-2">
-                            <div className="shadow-md">GVCN : </div>
-                            <div>{student.study.Teacher}</div>
-                        </div> 
-                    </div>
-                    <div className="flex justify-start items-center px-2  text-xl">
-                        <div className="flex space-x-2">
-                            <div className="shadow-md">Thời gian đào tạo tối đa: </div>
-                            <div>{student.study.Timeline}</div>
-                        </div>
-                       
-                    </div>
+                    
                 </div>
 
             </div>
-
         </div>
     );
 }

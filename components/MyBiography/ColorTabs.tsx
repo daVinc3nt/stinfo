@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import MainInfo from './MainInfo';
 import FamilyInfo from './content/FamilyInfo';
-import PersonalInfo from './content/PersonalInfo';
+import { ContactInfo } from './content/ContactInfo';
 import MedicalInfo from './content/MedicalInfo';
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -63,11 +63,12 @@ export default function ColorTabs() {
           <Tab label="Gia đình" {...a11yProps(3)} />
         </Tabs>
       </Box>
+      
       <CustomTabPanel value={value} index={0}>
          <MainInfo></MainInfo>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <PersonalInfo></PersonalInfo>
+        <ContactInfo></ContactInfo>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <MedicalInfo></MedicalInfo>

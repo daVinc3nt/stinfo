@@ -2,7 +2,7 @@
 
 
 
-const index = () => {
+const CoursesItem = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
             <div className="bg-blue-200 p-4">Cột 1</div>
@@ -12,4 +12,4 @@ const index = () => {
     )
 }
 
-export default index
+export default CoursesItem

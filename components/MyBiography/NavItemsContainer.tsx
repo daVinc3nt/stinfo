@@ -1,21 +1,22 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import { PersonalInfo } from "@/components/MyBiography/content/PersonalInfo";
+import { ContactInfo } from "@/components/MyBiography/content/ContactInfo";
 import { MedicalInfo } from "@/components/MyBiography/content/MedicalInfo";
-import { FamilyInfo } from "@/components/MyBiography/content/FamilyInfo";
+
 
 import { FaBars, FaTimes } from "react-icons/fa";
 import MedicalInformationIcon from '@mui/icons-material/MedicalInformation';
 import PersonIcon from '@mui/icons-material/Person';
 import CallEndIcon from '@mui/icons-material/CallEnd';
 import AddLocationIcon from '@mui/icons-material/AddLocation';
+import FamilyInfo from "./content/FamilyInfo";
 
 const NavItemsContainer = () => { 
   const [nav, setNav] = useState(false);
-  const [currentPage, setCurrentPage] = useState(<PersonalInfo />);
+  const [currentPage, setCurrentPage] = useState(<ContactInfo />);
   
   const links = [
-    { id: 1, component: <PersonalInfo />, headline: "Thông tin cá nhân",    icon : <PersonIcon />, },
+    { id: 1, component: <ContactInfo />, headline: "Thông tin cá nhân",    icon : <PersonIcon />, },
     { id: 2, component: <MedicalInfo />,  headline: "Thông tin y tế",       icon : <MedicalInformationIcon />, },
     { id: 3, component: <FamilyInfo />,   headline: "Thông tin liên lạc" ,  icon : <CallEndIcon />,},
     
