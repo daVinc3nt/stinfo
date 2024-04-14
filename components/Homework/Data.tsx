@@ -197,8 +197,8 @@ class HomeworkSubmission extends HomeWork
 let HomeworkSubmissionData = new HomeworkSubmission();
 let HomeworkMultipleChoiceData = new HomeworMultipleChoice();
 
-let HomeworkGeneralData: HomeWork = HomeworkMultipleChoiceData;
-// let HomeworkGeneralData: HomeWork = HomeworkSubmissionData;
+// let HomeworkGeneralData: HomeWork = HomeworkMultipleChoiceData;
+let HomeworkGeneralData: HomeWork = HomeworkSubmissionData;
 
 // console.log(HomeworkGeneralData.whichHomeworkType);
 

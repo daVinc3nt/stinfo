@@ -47,12 +47,18 @@ const ItemData = [
     title: "Submission or Quiz",
     url: "/dashboard/homework",
     icon: <AccountBox style={{ fontSize: 60 }} />,
+  },
+  {
+    id: 5,
+    title: "Đăng ký môn",
+    url: "/dashboard/course_registration",
+    icon: <AccountBox style={{ fontSize: 60 }} />,
   }
 ];
 export default function Service() {
   return (
     <>
-      <div className="flex flex-col sm:flex-row overflow-x-hidden">
+      <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 overflow-x-hidden">
         {
           ItemData.map((item, index) => {
             return (

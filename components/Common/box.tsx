@@ -15,7 +15,7 @@ export function Service_box(menuItems: MenuItem) {
                     <i className="h-48">
                         {menuItems.icon}
                     </i>
-                    <div className="text-white text-2xl font-bold uppercase group-hover:text-yellow-300">
+                    <div className="text-white text-xl font-bold uppercase group-hover:text-yellow-300">
                         <h1 className="service__text">{menuItems.title}</h1>
                     </div>
                 </div>
