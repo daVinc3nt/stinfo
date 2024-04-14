@@ -3,10 +3,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import MainInfo from './content/MainInfo';
-import ContactInfo from './content/ContactInfo';
-import MedicalInfo from './content/MedicalInfo';
-import FamilyInfo from './content/FamilyInfo';
+import MainCourses from './MainCourses';
+import MyPoint from './MyPoint';
 
 
 interface TabPanelProps {
@@ -42,7 +40,7 @@ function a11yProps(index: number) {
   };
 }
 
-export default function ColorTabs() {
+export default function TabItem() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -58,24 +56,24 @@ export default function ColorTabs() {
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" TabIndicatorProps={{
       style: { backgroundColor: 'secondary.main' } 
     }}>
-          <Tab label="Trang chủ" {...a11yProps(0)} />
-          <Tab label="Liên lạc" {...a11yProps(1)} />
-          <Tab label="Y tế" {...a11yProps(2)} />
-          <Tab label="Gia đình" {...a11yProps(3)} />
+          <Tab label="Khóa học" {...a11yProps(0)} />
+          <Tab label="Điểm số" {...a11yProps(1)} />
+          <Tab label="Năng lực" {...a11yProps(2)} />
+          <Tab label="Lớp học" {...a11yProps(3)} />
         </Tabs>
       </Box>
       
       <CustomTabPanel value={value} index={0}>
-          <ContactInfo/>
+          <MainCourses/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-         <ContactInfo/>
+            <MyPoint/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-          <MedicalInfo/>
+        
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
-            <FamilyInfo/>
+            
       </CustomTabPanel>
     </Box>
     
