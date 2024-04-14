@@ -1,10 +1,11 @@
-import { Course } from "./data1"
+import { Course } from "./data"
 import { useState } from "react"
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 import ReportOutlinedIcon from '@mui/icons-material/ReportOutlined';
 import { ReportOutlined } from "@mui/icons-material";
+import { toNonAccentVietnamese } from "./nonAccentVietnamese";
 export default function Registration() {
     const [dropdown, setDropdown] = useState(1);
     const [course, setCourse] = useState([]);
@@ -13,15 +14,12 @@ export default function Registration() {
     const [anounce, setAnounce] = useState(1);
     const [check, setCheck] = useState(1);
     const [delt, setDelt] = useState([]);
-    console.log(delt);
-    console.log(choose);
-    console.log(check);
+
     const handleDelt = (idx) => {
         if (idx < 0) {
             const temp = [...delt];
             temp.map((item, index) => { if (!temp[index]) temp[index] = 1; })
             setDelt(temp);
-            console.log("H");
             setCheck(1);
             return;
         }
@@ -65,8 +63,8 @@ export default function Registration() {
     const searchCourse = (name: String) => {
         const temp: { courseID: String, name: String, numofCredit: Number, numofStudent: Number }[] = [];
         function checksubStr(child: String, parent: String) {
-            child = child.toLowerCase();
-            parent = parent.toLowerCase();
+            child = toNonAccentVietnamese(child);
+            parent = toNonAccentVietnamese(parent);
             let cLen = child.length;
             let pLen = parent.length - cLen;
             for (let i = 0; i <= pLen; i++) {
@@ -83,11 +81,36 @@ export default function Registration() {
         setCourse(temp);
     }
     return (
-        <div className="flex flex-col lg:flex-row p-2 bg-slate-200">
-            <div className=" flex flex-col">
-                <div className="border-t-2 flex flex-col  p-2 bg-orange-200 rounded-lg h-20">
-                    Lịch đăng ký
-                    <div>Trạng thái: Chưa mở đăng ký</div>
+        <div className="flex flex-col md:flex-row p-2 bg-slate-200">
+            <div className="mb-4 md:mb-0 flex flex-col mr-2">
+                <div className="border-t-2 flex flex-col  p-2 bg-orange-300 rounded-lg ">
+                    <div className="text-center mb-2">Lịch đăng ký</div>
+                    <div className="mb-2">Trạng thái: Chưa đến đợt đăng ký</div>
+                    <div className="w-full">
+                        <div className="flex flex-row">
+                            <div className="flex-1 text-center p-2 bg-slate-300  rounded-tl-lg">Từ ngày</div>
+                            <div className="w-[2px] bg-white"></div>
+                            <div className="flex-1 text-center p-2 bg-slate-300 rounded-tr-lg">Đến ngày</div>
+                        </div>
+                        <div className="flex flex-row bg-white">
+                            <div className="flex-1 text-center p-2">Đang cập nhật</div>
+                            <div className="w-[2px] bg-white"></div>
+                            <div className="flex-1 text-center p-2">Đang cập nhật</div>
+                        </div>
+                    </div>
+                    <div className="mt-4 mb-2">Đợt đăng ký gần nhất:</div>
+                    <div className="w-full">
+                        <div className="flex flex-row">
+                            <div className="flex-1 text-center p-2 bg-slate-300  rounded-tl-lg">Từ ngày</div>
+                            <div className="w-[2px] bg-white"></div>
+                            <div className="flex-1 text-center p-2 bg-slate-300 rounded-tr-lg">Đến ngày</div>
+                        </div>
+                        <div className="flex flex-row bg-white">
+                            <div className="flex-1 text-center p-2">Đang cập nhật</div>
+                            <div className="w-[2px] bg-white"></div>
+                            <div className="flex-1 text-center p-2">Đang cập nhật</div>
+                        </div>
+                    </div>
                 </div>
                 <div className="flex-1"></div>
             </div>

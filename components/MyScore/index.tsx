@@ -89,7 +89,9 @@ const PieChart = ({ percentages, animation }) => {
     );
 };
 
+const chartMouse = (x, y) => {
 
+}
 
 export default function MyScore() {
     const [semes, setSemes] = useState("Tất cả");
