@@ -39,9 +39,15 @@ const ItemData = [
   {
     id: 3,
     title: "Thời khoá biểu",
-    url: "/",
+    url: "/dashboard/calendar",
     icon: <AccountBox style={{ fontSize: 60 }} />,
   },
+  {
+    id: 4,
+    title: "Submission or Quiz",
+    url: "/dashboard/homework",
+    icon: <AccountBox style={{ fontSize: 60 }} />,
+  }
 ];
 export default function Service() {
   return (
