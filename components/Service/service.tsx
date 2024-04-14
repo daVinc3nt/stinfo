@@ -46,7 +46,7 @@ const ItemData = [
 export default function Service() {
   return (
     <>
-      <div className="flex flex-col sm:flex-row">
+      <div className="flex flex-col sm:flex-row overflow-x-hidden">
         {
           ItemData.map((item, index) => {
             return (

@@ -3,7 +3,7 @@ import { Course } from "./coursesData"
 
 const CoursesCard = ({course}: {course : Course}) => {
     const {src, Faculty, SubjectLink, SubjectName} = course
-    return ( <div className='bg-gray-200 rounded-md shadow-md shadow-gray-300 relative overflow-hidden '>
+    return ( <div className='bg-gray-200 rounded-md shadow-md hover:scale-105 duration-100 ease-in-out shadow-gray-300 relative overflow-hidden '>
         <img src={src} alt="/" className="w-full" />
         <div className="p-4 text-black">
             <div>{SubjectName}</div>
