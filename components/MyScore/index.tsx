@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button, button } from "@material-tailwind/react"
+
+
+const DATE = new Date();
 interface course {
     ID: number,
     Name: string,
@@ -86,7 +89,9 @@ const PieChart = ({ percentages, animation }) => {
     );
 };
 
+const chartMouse = (x, y) => {
 
+}
 
 export default function MyScore() {
     const [semes, setSemes] = useState("Tất cả");
@@ -102,7 +107,7 @@ export default function MyScore() {
                     <div className={`flex flex-col bg-blue-200 p-2 border border-spacing-1 rounded-lg shadow-lg h-144 `}>
                         <div className="flex justify-between ">
                             <div>Họ và Tên: {student.name} ({student.ID})</div>
-                            <div className="hidden xl:block">{date}</div>
+                            <div className="hidden xl:block">{DATE.getDate() + '/' + DATE.getMonth() + '/' + DATE.getFullYear()}</div>
                         </div>
                         <div>Điểm trung bình tích luỹ</div>
                         <div>Số tín chỉ tích luỹ</div>
