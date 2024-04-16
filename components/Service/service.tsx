@@ -27,7 +27,7 @@ const ItemData = [
   {
     id: 1,
     title: "Thông tin sinh viên",
-    url: "/",
+    url: "/dashboard/info",
     icon: <AccountBox style={{ fontSize: 60 }} />,
   },
   {
@@ -39,7 +39,7 @@ const ItemData = [
   {
     id: 3,
     title: "Thời khoá biểu",
-    url: "/",
+    url: "/dashboard/calendar",
     icon: <AccountBox style={{ fontSize: 60 }} />,
   },
 ];

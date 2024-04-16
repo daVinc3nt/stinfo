@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { Button, button } from "@material-tailwind/react"
 
@@ -92,7 +92,9 @@ const PieChart = ({ percentages, animation }) => {
 const chartMouse = (x, y) => {
 
 }
+const getPosition = () => {
 
+}
 export default function MyScore() {
     const [semes, setSemes] = useState("Tất cả");
     const [show, setShow] = useState(0);
@@ -244,7 +246,8 @@ export default function MyScore() {
 
                                         return (
                                             <div className="relative flex-1 flex justify-center px-2">
-                                                <div className="absolute bottom-0 w-4  rounded-t-xl bg-red-300 hover:bg-red-500" style={{ height: (item / 4) * 320 }}></div>
+                                                <div className="absolute bottom-0 w-4  rounded-t-xl bg-red-300 hover:bg-red-500" style={{ height: (item / 4) * 320 }}>
+                                                </div>
                                             </div>
                                         )
                                     })
