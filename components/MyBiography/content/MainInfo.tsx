@@ -1,4 +1,3 @@
-
 interface information {
     Name:               string,
     Email:              string,

@@ -1,6 +1,9 @@
 
 
-const MainCourses = () => {
+
+
+
+const MyCompetencies = () => {
     return (
         <div className="">
             what do you want?
@@ -8,4 +11,4 @@ const MainCourses = () => {
     )
 }
 
-export default MainCourses
+export default MyCompetencies
