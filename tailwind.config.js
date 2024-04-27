@@ -71,15 +71,15 @@ module.exports = {
 
       },
       backgroundImage: {
-        RedGradient:
-          'linear-gradient(to top, #890010, #990012)',
-        LightRedGradient:
-          'linear-gradient(to left, #E65758, #771D32)',
+        BlueGradient:
+            'linear-gradient(-45deg, #061072, #6dbeef)',
+        DarkRedGradient:
+            'linear-gradient(to left, #E65758, #771D32)', 
         LitghRedGradient:
-          'linear-gradient(-45deg, #ff5959, #ff4040, #ff0d6e, #ff8033,#d74177)',
-        confeti: 'url("/confetti.png")',
+            'linear-gradient(-45deg, #ff5959, #ff4040, #ff0d6e, #ff8033,#d74177)',
+        bk_library: 'url("/bk_library.png")',
         whiteRedGradient:
-          'linear-gradient(45deg, #FF0000, #FF7878)'
+            'linear-gradient(45deg, #FF0000, #FF7878)'
 
       },
       height: {
