@@ -30,14 +30,10 @@ const Wrapper = ({ children }: LayoutProps) => {
                   <LangSelector />
                   <NotifyIcon />
                 </div>
-                <MobileMenu toggle={handleSidebarToggleMobile} />
               </div>
             </div>
           </header>
         </div>
-        {!toggleCollapseMobile &&
-          <div className="lg:hidden flex-1 flex z-40 fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm">
-          </div>}
 
         <div className="">
           {children}

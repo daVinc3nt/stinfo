@@ -21,7 +21,7 @@ const ItemData = [
   {
     id: 0,
     title: "E-learning",
-    url: "/",
+    url: "/dashboard/elearning",
     icon: <AccountBox style={{ fontSize: 60 }} />,
   },
   {
@@ -42,11 +42,23 @@ const ItemData = [
     url: "/dashboard/calendar",
     icon: <AccountBox style={{ fontSize: 60 }} />,
   },
+  {
+    id: 4,
+    title: "Submission or Quiz",
+    url: "/dashboard/homework",
+    icon: <AccountBox style={{ fontSize: 60 }} />,
+  },
+  {
+    id: 5,
+    title: "Đăng ký môn",
+    url: "/dashboard/course_registration",
+    icon: <AccountBox style={{ fontSize: 60 }} />,
+  }
 ];
 export default function Service() {
   return (
     <>
-      <div className="flex flex-col sm:flex-row">
+      <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 overflow-x-hidden">
         {
           ItemData.map((item, index) => {
             return (

@@ -5,7 +5,7 @@ const score: NextPage = () => {
   return (
     <>
       <MyScore/>
-    </>
+    </> 
   );
 };
 
