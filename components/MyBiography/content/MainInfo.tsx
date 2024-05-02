@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 interface information {
     Name:               string,
     Email:              string,
@@ -37,6 +39,18 @@ const student: { personal: information, study: academic } = {
 };
   
 const MainInfo = () => {
+    
+    const [info,setInfo] = useState([])
+
+    const getStudentInfoAPI = async () => {
+        
+    } 
+
+    useEffect(()=>{
+
+    },[])
+
+
     return ( 
         <div className="w-full min-h-screen p-10
                         border shadow-gray-200 shadow-sm rounded-lg">

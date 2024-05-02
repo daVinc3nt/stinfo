@@ -1,8 +1,4 @@
 
-
-
-
-
 const MyCompetencies = () => {
     return (
         <div className="">

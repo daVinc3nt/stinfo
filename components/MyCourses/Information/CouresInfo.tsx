@@ -3,10 +3,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import MainCourses from './MainCourses';
-import MyPoint from './MyPoint';
-import MyClass from './MyClass';
-import MyCompetencies from './MyCompetencies';
+import MainCourses from './content/MainCourses';
+import MyPoint from './content/MyPoint';
+import MyClass from './content/MyClass';
+import MyCompetencies from './content/MyCompetencies';
 
 
 

@@ -1,32 +1,37 @@
-export interface Person {
-    ID:             string,
-    Name:           string,
-    poisition:      string,
-}
-// ID the only one
+// import { CourseOperation, CourseID, token } from "@/ambLib/amb";
+// import { useState } from "react";
 
-export const classData : Person [] = [
-    {
-        ID: "2122002",
-        Name: "Le Van dsadasdsaF",
-        poisition: "Giang Vien",
-    },
-    {
-        ID: "1321132313",
-        Name: "Tran Van dsadsadA",
-        poisition: "sinh vien",
-    },
-    {
-        ID: "1321132143",
-        Name: "Nguyen Van C",
-        poisition: "sinh vien",
-    },
-    {
-        ID: "1321421413",
-        Name: "Nguyen Van D",
-        poisition: "sinh vien",
-    },
-   
-]
+// interface FormKey {
+//     CourseID?: CourseID;
+//     token?: token;
+// }
+
+// export interface Person {
+//     ID: string,
+// }
+
+// const getStudentList = async (): Promise<Person[]> => {
+//     const initialValues: FormKey = { CourseID: null, token: null};
+//     const { CourseID, token } = initialValues; 
+//   
+
+//     try {
+//         const result = await fetchStudentListID.findClasses(CourseID, token);
+//         if (result.error) {
+//             throw new Error(result.error);
+//         }
+//         const studentsData: any[] = result.data; 
+//         const students: Person[] = studentsData.map((student: any) => ({
+//             ID: student.ID,
+//         }));
+
+//         return students;
+//     } catch (error) {
+//         console.error("Error fetching student list:", error);
+//         return [];
+//     }
+// }
+
+// export default getStudentList;
 
 

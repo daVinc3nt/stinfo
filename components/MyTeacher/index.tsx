@@ -1,9 +1,9 @@
-import { teacher } from "./information/teacherData";
+import { teacherData } from "./information/teacherData";
 
 
 
 export default function MyTeacher() {
-    const {src,Name,TeacherID,BirthDay,Sex,Position,Duty,Phone,Email,Faculty,GroupID,Education,Achievement} = teacher
+    const {src,Name,TeacherID,BirthDay,Sex,Phone,Email,Faculty,Degree} = teacherData 
     return (
         <div className="space-y-8">
             <div className=" 
@@ -61,21 +61,21 @@ export default function MyTeacher() {
                         </div>
                         <div className="md:flex justify-start border-solid">
                                 <div className="font-bold items-start mx-5">Mã tổ:</div>
-                                <div className="items-center md:mx-auto px-8"> {GroupID}</div>
+                                <div className="items-center md:mx-auto px-8"> {/*GroupID*/}</div>
                         </div>
                         <div className="md:flex justify-start border-solid">
                                 <div className="font-bold items-start mx-5">Chức danh:</div>
-                                <div className="items-center md:mx-auto px-4"> {Position}</div> 
+                                <div className="items-center md:mx-auto px-4"> {/*Position*/}</div> 
                                 <div className="font-bold items-start mx-5">Chức vụ:</div>
-                                <div className="items-center md:mx-auto px-8">{Duty} </div>        
+                                <div className="items-center md:mx-auto px-8">{/*Duty*/} </div>        
                         </div>
                         <div className="md:flex justify-start border-solid">
                                 <div className="font-bold items-start mx-5">Học vị:</div>
-                                <div className="items-center md:mx-auto px-8"> {Education}</div>
+                                <div className="items-center md:mx-auto px-8"> {/*Education*/}</div>
                         </div>
                         <div className="md:flex justify-start border-solid">
                                 <div className="font-bold items-start mx-5">Thành tựu:</div>
-                                <div className="items-center md:mx-auto px-8"> {Achievement}</div>
+                                <div className="items-center md:mx-auto px-8"> {Degree}</div>
                         </div>
                     </div>
             </div> 
@@ -87,44 +87,3 @@ export default function MyTeacher() {
     );
 };
 
-
-
-/* 
-  <div className="w-full  p-10 
-                        border shadow-gray-200 shadow-sm rounded-lg">
-                
-                </div>
-
-                <div className="">
-
-                </div>
-
-              <div  className="space-y-3 text-lg">
-              <div className="md:flex justify-start border-solid">
-                                    <div className="font-bold  items-start">Mã tổ:</div>
-                                    <div className="items-center md:mx-auto px-8"> {GroupID} </div>
-                                </div>
-                                <div className="md:flex justify-start border-solid">
-                                    <div className="font-bold  items-start">Chức danh:</div>
-                                    <div className="items-center md:mx-auto px-8"> {Position} </div>
-                                </div>
-                                <div className="md:flex justify-start border-solid">
-                                    <div className="font-bold  items-start">Chức vụ:</div>
-                                    <div className="items-center md:mx-auto px-8"> {Duty} </div>
-                                </div>
-                                <div className="md:flex justify-start border-solid">
-                                    <div className="font-bold  items-start">Học vị:</div>
-                                    <div className="items-center md:mx-auto px-8"> {Education} </div>
-                                </div>
-                                <div className="md:flex justify-start border-solid">
-                                    <div className="font-bold  items-start">Thành tựu:</div>
-                                    <div className="items-center md:mx-auto px-8"> {Achievement} </div>
-                                </div>
-              </div>
-
-           
-               
-        </div>  
-
-
-        */
