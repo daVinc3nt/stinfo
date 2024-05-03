@@ -43,6 +43,7 @@ var StudentOperation = /** @class */ (function () {
     function StudentOperation() {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/students";
     }
+    //ROLE: STUDENT
     StudentOperation.prototype.login = function (username, password) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -71,6 +72,7 @@ var StudentOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMIN
     StudentOperation.prototype.create = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -99,6 +101,7 @@ var StudentOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMIN
     StudentOperation.prototype.createByFile = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -130,6 +133,7 @@ var StudentOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: STUDENT
     StudentOperation.prototype.updateByStudent = function (info, condition, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -158,6 +162,7 @@ var StudentOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMIN
     StudentOperation.prototype.updateByAdmin = function (info, condition, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -186,6 +191,7 @@ var StudentOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: DO NOT NEED ROLE AND TOKEN
     StudentOperation.prototype.updatePassword = function (info) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -211,6 +217,7 @@ var StudentOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMIN
     StudentOperation.prototype.delete = function (condition, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -239,6 +246,7 @@ var StudentOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: STUDENT
     StudentOperation.prototype.findByStudent = function (token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -267,6 +275,7 @@ var StudentOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMIN
     StudentOperation.prototype.findByAdmin = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -295,6 +304,7 @@ var StudentOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: STUDENT
     StudentOperation.prototype.findStudentRegisteredClass = function (token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -323,6 +333,7 @@ var StudentOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: STUDENT
     StudentOperation.prototype.getScore = function (token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -358,6 +369,7 @@ var TeacherOperation = /** @class */ (function () {
     function TeacherOperation() {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/teachers";
     }
+    //ROLE: TEACHER
     TeacherOperation.prototype.login = function (username, password) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -386,6 +398,7 @@ var TeacherOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMIN
     TeacherOperation.prototype.create = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -414,6 +427,7 @@ var TeacherOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: TEACHER
     TeacherOperation.prototype.updateByTeacher = function (info, condition, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -442,6 +456,7 @@ var TeacherOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMIN
     TeacherOperation.prototype.updateByAdmin = function (info, condition, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -470,6 +485,7 @@ var TeacherOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: TEACHER
     TeacherOperation.prototype.updatePassword = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -498,6 +514,7 @@ var TeacherOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: TEACHER
     TeacherOperation.prototype.delete = function (condition, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -526,6 +543,7 @@ var TeacherOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: TEACHER
     TeacherOperation.prototype.findByTeacher = function (token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -554,6 +572,7 @@ var TeacherOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMNIN
     TeacherOperation.prototype.findByAdmin = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -582,6 +601,7 @@ var TeacherOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: TEACHER
     TeacherOperation.prototype.findTeacherRegisteredClass = function (token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -617,6 +637,7 @@ var AdminOperation = /** @class */ (function () {
     function AdminOperation() {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/admins";
     }
+    //ROLE: ADMIN
     AdminOperation.prototype.login = function (username, password) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -645,6 +666,7 @@ var AdminOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMIN
     AdminOperation.prototype.create = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -680,6 +702,7 @@ var CourseOperation = /** @class */ (function () {
     function CourseOperation() {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/courses";
     }
+    //ROLE: ADMIN
     CourseOperation.prototype.create = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -708,6 +731,7 @@ var CourseOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMIN
     CourseOperation.prototype.update = function (info, condition, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -736,6 +760,7 @@ var CourseOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMIN
     CourseOperation.prototype.delete = function (condition, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -764,6 +789,7 @@ var CourseOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMIN, TEACHER, STUDENT
     CourseOperation.prototype.findAllCourses = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -792,6 +818,7 @@ var CourseOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: ADMIN, TEACHER, STUDENT
     CourseOperation.prototype.findClasses = function (condition, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -827,6 +854,7 @@ var ClassOperation = /** @class */ (function () {
     function ClassOperation() {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/classes";
     }
+    //ROLE: ADMIN
     ClassOperation.prototype.create = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -855,6 +883,7 @@ var ClassOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: TEACHER, STUDENT
     ClassOperation.prototype.register = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -883,6 +912,7 @@ var ClassOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: TEACHER
     ClassOperation.prototype.updateScore = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -911,6 +941,7 @@ var ClassOperation = /** @class */ (function () {
             });
         });
     };
+    //ROLE: TEACHER, STUDENT
     ClassOperation.prototype.cancelRegister = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
@@ -934,6 +965,128 @@ var ClassOperation = /** @class */ (function () {
                         console.log("Error create new user: ", (_a = error_31 === null || error_31 === void 0 ? void 0 : error_31.response) === null || _a === void 0 ? void 0 : _a.data);
                         console.error("Request that caused the error: ", error_31 === null || error_31 === void 0 ? void 0 : error_31.request);
                         return [2 /*return*/, { error: (_b = error_31 === null || error_31 === void 0 ? void 0 : error_31.response) === null || _b === void 0 ? void 0 : _b.data, request: error_31 === null || error_31 === void 0 ? void 0 : error_31.request, status: error_31.response ? error_31.response.status : null }];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //ROLE: STUDENT
+    ClassOperation.prototype.submitFile = function (info, token) {
+        var _a;
+        return __awaiter(this, void 0, void 0, function () {
+            var formData, response, data, error_32;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _b.trys.push([0, 2, , 3]);
+                        formData = new FormData();
+                        formData.append('submitFile', info.submitFile);
+                        return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/submit_file"), formData, {
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
+                    case 1:
+                        response = _b.sent();
+                        data = response.data;
+                        return [2 /*return*/, { error: data.error, data: data.data, message: data.message }];
+                    case 2:
+                        error_32 = _b.sent();
+                        console.error("Request that caused the error: ", error_32 === null || error_32 === void 0 ? void 0 : error_32.request);
+                        return [2 /*return*/, { error: (_a = error_32 === null || error_32 === void 0 ? void 0 : error_32.response) === null || _a === void 0 ? void 0 : _a.data, request: error_32 === null || error_32 === void 0 ? void 0 : error_32.request, status: error_32.response ? error_32.response.status : null }];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //ROLE: STUDENT
+    ClassOperation.prototype.deleteSubmitFile = function (info, token) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function () {
+            var response, data, error_33;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        _c.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, axios_1.default.delete("".concat(this.baseUrl, "/delete_file?filename=").concat(info.filename), {
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
+                    case 1:
+                        response = _c.sent();
+                        data = response.data;
+                        return [2 /*return*/, { error: data.error, data: data.data, message: data.message }];
+                    case 2:
+                        error_33 = _c.sent();
+                        console.log("Error delete file submit: ", (_a = error_33 === null || error_33 === void 0 ? void 0 : error_33.response) === null || _a === void 0 ? void 0 : _a.data);
+                        console.error("Request that caused the error: ", error_33 === null || error_33 === void 0 ? void 0 : error_33.request);
+                        return [2 /*return*/, { error: (_b = error_33 === null || error_33 === void 0 ? void 0 : error_33.response) === null || _b === void 0 ? void 0 : _b.data, request: error_33 === null || error_33 === void 0 ? void 0 : error_33.request, status: error_33.response ? error_33.response.status : null }];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //ROLE: TEACHER, STUDENT
+    ClassOperation.prototype.showSubmitFile = function (info, token) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function () {
+            var response, data, error_34;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        _c.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/show_files?class_id=").concat(info.class_id), {
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
+                    case 1:
+                        response = _c.sent();
+                        data = response.data;
+                        return [2 /*return*/, { error: data.error, data: data.data, message: data.message }];
+                    case 2:
+                        error_34 = _c.sent();
+                        console.log("Error create new user: ", (_a = error_34 === null || error_34 === void 0 ? void 0 : error_34.response) === null || _a === void 0 ? void 0 : _a.data);
+                        console.error("Request that caused the error: ", error_34 === null || error_34 === void 0 ? void 0 : error_34.request);
+                        return [2 /*return*/, { error: (_b = error_34 === null || error_34 === void 0 ? void 0 : error_34.response) === null || _b === void 0 ? void 0 : _b.data, request: error_34 === null || error_34 === void 0 ? void 0 : error_34.request, status: error_34.response ? error_34.response.status : null }];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //ROLE: TEACHER, STUDENT
+    ClassOperation.prototype.getSubmitFile = function (info, token) {
+        return __awaiter(this, void 0, void 0, function () {
+            var response, url, link, error_35;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_files?class_id=").concat(info.class_id), {
+                                responseType: 'blob', // Set response type to blob for binary data (ZIP file)
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
+                    case 1:
+                        response = _a.sent();
+                        url = window.URL.createObjectURL(new Blob([response.data]));
+                        link = document.createElement('a');
+                        link.href = url;
+                        link.setAttribute('download', "".concat(info.class_id, "_files.zip"));
+                        document.body.appendChild(link);
+                        link.click();
+                        link.remove();
+                        return [2 /*return*/, { success: true }];
+                    case 2:
+                        error_35 = _a.sent();
+                        console.error('Error downloading files:', error_35);
+                        return [2 /*return*/, { success: false, error: 'Error downloading files' }];
                     case 3: return [2 /*return*/];
                 }
             });

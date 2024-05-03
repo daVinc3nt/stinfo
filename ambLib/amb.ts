@@ -47,9 +47,9 @@ export interface UpdatingStudentInfoByAdmin {
     program?: string                                                        
 }
 
-export interface FindingStudentInfoByAdmin {
+export interface FindingTeacherInfoByAdmin {
     fullname?: string,                 
-    student_id?: string,                              
+    teacher_id?: string,                              
     credential_id?: string,                                                           
     class?: string,                           
     faculty?: string,    
@@ -78,6 +78,7 @@ class StudentOperation {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/students";
     }
 
+    //ROLE: STUDENT
     async login(username: string, password: string): Promise<any> {
         try {
             const response = await axios.post(`${this.baseUrl}/login`, {
@@ -96,6 +97,7 @@ class StudentOperation {
         }
     }
 
+    //ROLE: ADMIN
     async create(info: CreatingStudentInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info, {
@@ -114,6 +116,7 @@ class StudentOperation {
         }
     }
 
+    //ROLE: ADMIN
     async createByFile(info: CreatingStudentByFile, token: token) {
         try {
             const formData = new FormData();
@@ -137,6 +140,7 @@ class StudentOperation {
         }
     }
 
+    //ROLE: STUDENT
     async updateByStudent(info: UpdatingStudentInfoByStudent, condition: StudentID, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update?student_id=${condition.student_id}`, info, {
@@ -155,6 +159,7 @@ class StudentOperation {
         }
     }
 
+    //ROLE: ADMIN
     async updateByAdmin(info: UpdatingStudentInfoByAdmin, condition: StudentID, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update?student_id=${condition.student_id}`, info, {
@@ -173,6 +178,7 @@ class StudentOperation {
         }
     }
 
+    //ROLE: DO NOT NEED ROLE AND TOKEN
     async updatePassword(info: UpdatingPassword) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update_password`, info, {
@@ -188,6 +194,7 @@ class StudentOperation {
         }
     }
 
+    //ROLE: ADMIN
     async delete(condition: StudentID, token: token) {
         try {
             const response: AxiosResponse = await axios.delete(`${this.baseUrl}/delete?student_id=${condition.student_id}`, {
@@ -206,6 +213,7 @@ class StudentOperation {
         }
     }
 
+    //ROLE: STUDENT
     async findByStudent(token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/get`, {
@@ -224,6 +232,7 @@ class StudentOperation {
         }
     }
 
+    //ROLE: ADMIN
     async findByAdmin(info: FindingStudentInfoByAdmin, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/get`, info, {
@@ -242,6 +251,7 @@ class StudentOperation {
         }
     }
 
+    //ROLE: STUDENT
     async findStudentRegisteredClass(token: token) {
         try {
             const response: AxiosResponse = await axios.get(`${this.baseUrl}/get_classes`, {
@@ -260,6 +270,7 @@ class StudentOperation {
         }
     }
 
+    //ROLE: STUDENT
     async getScore(token: token) {
         try {
             const response: AxiosResponse = await axios.get(`${this.baseUrl}/get_score`, {
@@ -325,6 +336,7 @@ class TeacherOperation {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/teachers";
     }
 
+    //ROLE: TEACHER
     async login(username: string, password: string): Promise<any> {
         try {
             const response = await axios.post(`${this.baseUrl}/login`, {
@@ -343,6 +355,7 @@ class TeacherOperation {
         }
     }
 
+    //ROLE: ADMIN
     async create(info: CreatingTeacherInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info, {
@@ -361,6 +374,7 @@ class TeacherOperation {
         }
     }
 
+    //ROLE: TEACHER
     async updateByTeacher(info: UpdatingTeacherByTeacherInfo, condition: TeacherID, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update?teacher_id=${condition.teacher_id}`, info, {
@@ -379,6 +393,7 @@ class TeacherOperation {
         }
     }
 
+    //ROLE: ADMIN
     async updateByAdmin(info: UpdateTeacherByAdminInfo, condition: TeacherID, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update?teacher_id=${condition.teacher_id}`, info, {
@@ -397,6 +412,7 @@ class TeacherOperation {
         }
     }
 
+    //ROLE: TEACHER
     async updatePassword(info: UpdatingPassword, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update_password`, info, {
@@ -414,6 +430,8 @@ class TeacherOperation {
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
+
+    //ROLE: TEACHER
     async delete(condition: TeacherID, token: token) {
         try {
             const response: AxiosResponse = await axios.delete(`${this.baseUrl}/delete?teacher_id=${condition.teacher_id}`, {
@@ -432,6 +450,7 @@ class TeacherOperation {
         }
     }
 
+    //ROLE: TEACHER
     async findByTeacher(token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/get`, {
@@ -450,7 +469,8 @@ class TeacherOperation {
         }
     }
 
-    async findByAdmin(info: FindingStudentInfoByAdmin, token: token) {
+    //ROLE: ADMNIN
+    async findByAdmin(info: FindingTeacherInfoByAdmin, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/get`, info, {
                 withCredentials: true,
@@ -468,6 +488,7 @@ class TeacherOperation {
         }
     }
 
+    //ROLE: TEACHER
     async findTeacherRegisteredClass(token: token) {
         try {
             const response: AxiosResponse = await axios.get(`${this.baseUrl}/get_classes`, {
@@ -502,6 +523,7 @@ class AdminOperation {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/admins";
     }
 
+    //ROLE: ADMIN
     async login(username: string, password: string): Promise<any> {
         try {
             const response = await axios.post(`${this.baseUrl}/login`, {
@@ -520,6 +542,7 @@ class AdminOperation {
         }
     }
 
+    //ROLE: ADMIN
     async create(info: CreatingAdminInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info, {
@@ -569,6 +592,7 @@ class CourseOperation {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/courses";
     }
 
+    //ROLE: ADMIN
     async create(info: CreatingCourseInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info, {
@@ -587,6 +611,7 @@ class CourseOperation {
         }
     }
 
+    //ROLE: ADMIN
     async update(info: UpdatingCourseInfo, condition: CourseID, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update?course_id=${condition.course_id}`, info, {
@@ -605,6 +630,7 @@ class CourseOperation {
         }
     }
 
+    //ROLE: ADMIN
     async delete(condition: CourseID, token: token) {
         try {
             const response: AxiosResponse = await axios.delete(`${this.baseUrl}/delete?course_id=${condition.course_id}`, {
@@ -623,6 +649,7 @@ class CourseOperation {
         }
     }
 
+    //ROLE: ADMIN, TEACHER, STUDENT
     async findAllCourses(info: UpdatingCourseInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/get`, info, {
@@ -641,6 +668,7 @@ class CourseOperation {
         }
     }
 
+    //ROLE: ADMIN, TEACHER, STUDENT
     async findClasses(condition: CourseID, token: token) {
         try {
             const response: AxiosResponse = await axios.get(`${this.baseUrl}/get_classes?course_id=${condition.course_id}`, {
@@ -677,6 +705,14 @@ export interface RegisterClassInfo {
     class_id: string;
 }
 
+export interface SubmitFile {
+    submitFile: File
+}
+
+export interface FileName {
+    filename: string
+}
+
 export interface ClassID {
     class_id: string;
 }
@@ -696,6 +732,7 @@ class ClassOperation {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/classes";
     }
 
+    //ROLE: ADMIN
     async create(info: CreateClassInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info, {
@@ -714,6 +751,7 @@ class ClassOperation {
         }
     }
 
+    //ROLE: TEACHER, STUDENT
     async register(info: RegisterClassInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/register`, info, {
@@ -732,6 +770,7 @@ class ClassOperation {
         }
     }
     
+    //ROLE: TEACHER
     async updateScore(info: UpdateScoreInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/update_score`, info, {
@@ -750,6 +789,7 @@ class ClassOperation {
         }
     }
 
+    //ROLE: TEACHER, STUDENT
     async cancelRegister(info: RegisterClassInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/cancel_register`, info, {
@@ -765,6 +805,91 @@ class ClassOperation {
             console.log("Error create new user: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
+        }
+    }
+
+    //ROLE: STUDENT
+    async submitFile(info: SubmitFile, token: token) {
+        try {
+            const formData = new FormData();
+			formData.append('submitFile', info.submitFile);
+            const response: AxiosResponse = await axios.post(`${this.baseUrl}/submit_file`, formData, {
+                withCredentials: true,
+                headers: {
+                    Authorization: token.token
+                }
+            });
+            
+            const data = response.data;
+            return { error: data.error, data: data.data, message: data.message };
+        } catch (error: any) {
+            console.error("Request that caused the error: ", error?.request);
+            return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
+        }
+    }
+
+    //ROLE: STUDENT
+    async deleteSubmitFile(info: FileName, token: token) {
+        try {
+            const response: AxiosResponse = await axios.delete(`${this.baseUrl}/delete_file?filename=${info.filename}`, {
+                withCredentials: true,
+                headers: {
+                    Authorization: token.token
+                }
+            });
+            
+            const data = response.data;
+            return { error: data.error, data: data.data, message: data.message };
+        } catch (error: any) {
+            console.log("Error delete file submit: ", error?.response?.data);
+            console.error("Request that caused the error: ", error?.request);
+            return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
+        }
+    }
+
+    //ROLE: TEACHER, STUDENT
+    async showSubmitFile(info: ClassID, token: token) {
+        try {
+            const response: AxiosResponse = await axios.get(`${this.baseUrl}/show_files?class_id=${info.class_id}`, {
+                withCredentials: true,
+                headers: {
+                    Authorization: token.token
+                }
+            });
+            
+            const data = response.data;
+            return { error: data.error, data: data.data, message: data.message };
+        } catch (error: any) {
+            console.log("Error create new user: ", error?.response?.data);
+            console.error("Request that caused the error: ", error?.request);
+            return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
+        }
+    }
+
+    //ROLE: TEACHER, STUDENT
+    async getSubmitFile(info: ClassID, token: token) {
+        try {
+            const response = await axios.get(`${this.baseUrl}/get_files?class_id=${info.class_id}`, {
+                responseType: 'blob', // Set response type to blob for binary data (ZIP file)
+                withCredentials: true,
+                headers: {
+                    Authorization: token.token
+                }
+            });
+
+            // Trigger file download using the received blob (ZIP file)
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${info.class_id}_files.zip`);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            return { success: true };
+        } catch (error) {
+            console.error('Error downloading files:', error);
+            return { success: false, error: 'Error downloading files' };
         }
     }
 
