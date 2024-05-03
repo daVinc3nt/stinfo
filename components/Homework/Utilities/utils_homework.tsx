@@ -21,4 +21,14 @@ export class SubmissionFieldUtils {
     static setIsSubmitted = (isSubmitted: boolean): string => {
         return isSubmitted ? 'Đã nộp' : 'Chưa nộp';
     }
+
+    static checkFileName(fileName: string): boolean {
+        // check if the file extension is pdf or not
+        const extension = fileName.split('.').pop();
+        if (extension == 'pdf') {
+            return true;
+        }
+        return false;
+    }
+
 }

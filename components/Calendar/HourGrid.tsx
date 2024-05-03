@@ -13,7 +13,7 @@ const hours: string[] = [
 const HourItem = (props: { hour: string }) => {
 
     return (
-        <div className=" bg-white border border-black text-black box-border
+        <div className=" bg-white border border-gray text-black box-border
         relative h-24">
             {
                 <div className="text-[10px] items-center px-1 py-1">
