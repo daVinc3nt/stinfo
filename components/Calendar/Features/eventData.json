@@ -1,0 +1,31 @@
+{
+    "calendar": [
+    {
+        "course_name": "Xác suất thống kê",
+        "course_id": "MT2013",
+        "day": "Thứ 4",
+        "credits": 4,
+        "period": [7, 9],
+        "room": "H3-401",
+        "semester": "HK_232"
+    },
+    {
+        "course_name": "Hệ điều hành",
+        "course_id": "CO2017",
+        "day": "Thứ 2",
+        "credits": 3,
+        "period": [2, 3],
+        "room": "H6-414",
+        "semester": "HK_232"
+    },
+    {
+        "course_name": "Hóa đại cương",
+        "course_id": "CH1003",
+        "day": "Thứ 5",
+        "credits": 3,
+        "period": [4, 5],
+        "room": "H1-213",
+        "semester": "HK_232"
+    }
+    ]
+}
