@@ -1,4 +1,4 @@
-import CouresInfo from "@/components/MyCourses/Information/CouresInfo"
+import CouresInfo from "@/components/MyCourses/MyClass/CouresInfo"
 
 
 

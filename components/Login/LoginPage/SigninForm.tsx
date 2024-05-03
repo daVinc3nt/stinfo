@@ -5,7 +5,7 @@ import classNames from "classnames";
 import LoginLangSelector from "@/components/LangSelector/LoginLangSelector"
 import { FormattedMessage} from "react-intl";
 import { useContext } from "react";
-import { AdminOperation, StudentOperation } from "@/ambLib/amb";
+import { AdminOperation, StudentOperation, TeacherOperation } from "@/ambLib/amb";
 interface FormValues {
   email?: string;
   phoneNumber?: string;

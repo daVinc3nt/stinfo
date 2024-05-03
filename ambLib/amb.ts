@@ -59,7 +59,7 @@ export interface FindingStudentInfoByAdmin {
 }
 
 export interface StudentID {
-    student_id: string
+    student_id?: string
 }
 
 export interface UpdatingPassword {
