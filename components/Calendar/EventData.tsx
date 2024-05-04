@@ -123,17 +123,17 @@ function fillMissingData(subjectData) : SubjectProps[]
 			period: subjectData[i].period,
 			room: subjectData[i].room,
 			semester: subjectData[i].semester,
-			weeks: [],
+			weeks: subjectData[i].weeks,
 			color: subjectData[i].color
 		};
 		fillListOfSubjects.push(subject);
 	}
-	fillListOfSubjects[0].weeks = [2, 3, 4, 5, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18];
-	fillListOfSubjects[1].weeks = [2, 3, 4, 5, 8, 9, 10, 12, 13, 14, 15, 16, 17];
-	fillListOfSubjects[2].weeks = [2, 3, 4, 5, 8, 9, 10, 17, 18, 19, 20, 21, 22];
+	// fillListOfSubjects[0].weeks = [2, 3, 4, 5, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18];
+	// fillListOfSubjects[1].weeks = [2, 3, 4, 5, 8, 9, 10, 12, 13, 14, 15, 16, 17];
+	// fillListOfSubjects[2].weeks = [2, 3, 4, 5, 8, 9, 10, 17, 18, 19, 20, 21, 22];
 	fillListOfSubjects[0].color = "bg-blue-200";
 	fillListOfSubjects[1].color = "bg-green-200";
-	fillListOfSubjects[2].color = "bg-red-200";
+	// fillListOfSubjects[2].color = "bg-red-200";
 
 	return fillListOfSubjects;
 }
@@ -169,7 +169,8 @@ function generateWeekCalendar(subjectData: SubjectProps[], currentWeek: number):
 					endTime: endTimeSubject,
 					startWeek: subjectData[i].weeks[0],
 					endWeek: subjectData[i].weeks[subjectData[i].weeks.length - 1],
-					color: subjectData[i].color
+					color: subjectData[i].color,
+					weeks: subjectData[i].weeks,
 				});
 			}
 		}

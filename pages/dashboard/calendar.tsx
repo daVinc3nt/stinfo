@@ -38,7 +38,7 @@ const WeekCalendar = () => {
 			<CalendarGrid 
 				offset={diffWeekNum} 
 				showWeek={showWeek}
-				role={"teacher"}
+				role={"student"}
 			></CalendarGrid>
 		</div>
 	);

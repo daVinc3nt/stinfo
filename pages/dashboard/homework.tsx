@@ -8,60 +8,29 @@ import { HomeworkGeneralData, storeUserAPIAHomeworkArgs } from "@/components/Hom
 import {
 	ClassOperation, StudentOperation, TeacherOperation, token,
 	ClassID, FileName, SubmitFile,
-	CourseID
+	CourseID, TeacherID
 } from '@/ambLib/amb';
+import { Subject } from "@/components/Homework/Utilities/interfaceProps";
+import { SubmissionFieldUtils } from "@/components/Homework/Utilities/utils_homework";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-const TeacherDownloadButton = (props: { classID: ClassID, userToken: token }) => {
 
-	const operation = new ClassOperation();
-
-	return (
-		<div>
-			<button
-				className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-				onClick={() => {
-					const operation = new ClassOperation();
-					if (props.userToken) {
-						operation.getSubmitFile({ class_id: String(props.classID) }, props.userToken)
-							.then(data => {
-								console.log("downloading file......................");
-								const getData = data;
-								if (getData) {
-									console.log("downloadFile: ", getData);
-								}
-							}
-							)
-							.catch(error => {
-								console.log("ERROR DOWNLOADING FILE!!: ", error);
-							});
-					}
-				}
-				}
-			>
-				Tải file bài làm về máy
-			</button>
-		</div>
-	);
-}
-
-const Quiz = () => {
+const ListOfSubmittedSubject = () => {
 	const [role, setRole] = useState<string>("student");
 	const [userToken, setUserToken] = useState<token>({ token: "" });
 	const [getUserData, setUserData] = useState<any>(null);
 	const [classID, setClassID] = useState<ClassID>(null);
 	const [courseName, setCourseName] = useState<string>("");
 	const [loadingState, setLoadingState] = useState<boolean>(true);
-	const [file, setFile] = useState<File | null>(null);
-	const [multipleFile, setMultipleFile] = useState<File[]>([]);
-
-	// first useEffect to get token
+	const [listSubject, setListSubject] = useState<Subject[]>([]);
 
 	let student = new StudentOperation();
 	let teacher = new TeacherOperation();
-	// to get student token
 	useEffect(() => {
 		if (role == "student") {
 			student.login("long.nguyen24243004", "Student@24243004")
+				// student.login("viet.nguyen24156661", "089204006677")
 				.then(data => {
 					console.log("Data: ", data);
 					const newToken = { token: data.token };
@@ -73,6 +42,7 @@ const Quiz = () => {
 		}
 		else if (role == "teacher") {
 			teacher.login("huy.bui53587", "huy.bui53587")
+
 				.then(data => {
 					console.log("Data: ", data);
 					const newToken = { token: data.token };
@@ -94,10 +64,12 @@ const Quiz = () => {
 						if (getData) {
 							console.log("newData: ", getData);
 							setUserData(getData);
-							let newClassID: ClassID = getData[0].class_id;
-							setClassID(newClassID);
+							setListSubject(SubmissionFieldUtils.createArrayOfSubject(getData));
+							console.log("listSubject: ", listSubject);
+							// let newClassID: ClassID = getData[0].class_id;
+							// setClassID(newClassID);
 							// console.log("currentClassID: ", newClassID);
-							setCourseName(getData[0].course_name);
+							// setCourseName(getData[0].course_name);
 						}
 					}
 					)
@@ -114,43 +86,57 @@ const Quiz = () => {
 							setCourseName(getData[2].course_name);
 						}
 					}
-				)
+					)
 			}
 		}
+		storeUserAPIAHomeworkArgs.setToken(userToken);
 
 	}, [userToken]);
 
-	if (classID && userToken && getUserData)
+	const router = useRouter();
+	const routeToShowQuiz = (subject: Subject, index: number) => {
+		storeUserAPIAHomeworkArgs.setClassID({ class_id: subject.class_id });
+		console.log("Show Subject: ", subject);
+		router.push({
+			pathname: "/dashboard/ShowQuiz",
+			query: {
+				class_id: subject.class_id, 
+				course_id: subject.course_id,
+				course_name: subject.course_name,
+				teacher: subject.teacher,
+				token: userToken.token,
+			}
+		});
+	}
+
+	if (listSubject)
 	{
-		storeUserAPIAHomeworkArgs.setToken(userToken);
-		// console.log("userToken: ", userToken);
-		storeUserAPIAHomeworkArgs.setClassID(classID);
-		// console.log("classID: ", classID);
-	}
-
-	if (getUserData == null) {
-
 		return (
-			<div className="block">
-				<p>Loading...</p>
-			</div>
-		);
-	}
-	else {
-		return (
-			<div className=" block m-10">
-				<Header header={`${courseName} - ${classID}`} />
-				<Info />
-				<HomeworkContent
-					typeOfHomework={HomeworkGeneralData.whichHomeworkType}
-					role={role}
-				/>
-				{role == "teacher" ? <TeacherDownloadButton classID={classID} userToken={userToken} /> : null}
+			<div>
+				<div className="flex justify-between items-center bg-gray-200 p-4">
+					<h1 className="text-2xl font-bold">
+						Danh sách các môn nộp bài
+					</h1>
+				</div>
+				<div>
+					{listSubject.map((subject, index) => (
+						<div key={index} className=" shadow-md p-6 my-4 mx-4 rounded-md bg-blue-200">
+							<h2 className="text-xl font-semibold mb-2">{subject.course_name}</h2>
+							<p className="text-gray-600 mb-2">Course ID: {subject.course_id}</p>
+							<p className="text-gray-600 mb-2">Class ID: {subject.class_id}</p>
+							<p className="text-gray-600 mb-2">Teacher: {subject.teacher}</p>
+							<button onClick={() => routeToShowQuiz(subject, index)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+								Show Submission
+							</button>
+						</div>
+					))}
+				</div>
 			</div>
 		);
 	}
 
+}
 
-};
 
-export default Quiz;
+
+export default ListOfSubmittedSubject;
