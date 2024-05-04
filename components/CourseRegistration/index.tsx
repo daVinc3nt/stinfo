@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import Registration from "./registration";
 import Result from "./result";
+import { StudentOperation, token } from "@/ambLib/amb";
+import { CourseOperation } from "@/ambLib/amb";
+import { error } from "console";
 
 
 export default function CourseRegistration() {
-    const [current, setCurrent] = useState(0);
+    const [current, setCurrent] = useState(0)
+    const token: token = {
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0ODQzNTQ5LCJleHAiOjE3MTQ4Nzk1NDl9.NHZ7tTEREwCvMVibrrKTIvL7cSh7sQStQl5CimhsNhY"
+    }
+
+
     return (
         <>
             <div className="">
@@ -20,17 +28,18 @@ export default function CourseRegistration() {
                             </div>
                             <div className="relative flex items-center justify-center " >
                                 <div className={`flex items-center justify-center m-1 w-32 h-[50px] ${current == 1 ? '' : 'hover:bg-slate-400 hover:rounded-lg'} cursor-pointer `} onClick={() => { setCurrent(1) }}>Kết quả môn học</div>
-                                {current == 1 && <div className="absolute bottom-[2px]  h-[4px] w-full bg-slate-400 rounded-lg"></div>}
+                                {current == 1 && <div className="absolute bottom-[2px]  h-[4px] w-full bg-slate-400 rounded-t-lg"></div>}
                             </div>
                         </div>
                         <button className="pr-4"><NotificationsOutlinedIcon /></button>
                     </div>
 
 
-                    {current == 0 && <Registration />}
+                    {current == 0 && <Registration token={token} />}
 
                     {/*Result */}
-                    {current == 1 && <Result />}
+                    {current == 1 && <div className="p-2"><Result token={token} />
+                    </div>}
                 </div>
             </div>
         </>
