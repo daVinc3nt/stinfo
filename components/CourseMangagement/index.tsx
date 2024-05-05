@@ -188,9 +188,9 @@ export default function Course() {
 
     return (
         <>
-            <div className="flex flex-row  text-sm md:text-base w-full  h-screen ">
+            <div className="flex flex-row  text-sm md:text-base ">
 
-                <div className=" w-80 bg-slate-200 p-2 hidden sm:block  h-full">
+                <div className=" w-80 bg-slate-200 p-2 hidden sm:block  h-full fixed">
                     <div className="mt-10 flex flex-row items-center justify-center gap-1 text-indigo-600 text-xl mb-10">
                         <AutoStoriesOutlinedIcon ></AutoStoriesOutlinedIcon>
                         Quản lý môn học
@@ -214,7 +214,7 @@ export default function Course() {
                         </div>
                     </div>
                 </div>
-
+                <div className=" w-80 bg-slate-200 p-2 hidden sm:block "></div>
                 <div className="flex-1 p-2">
 
                     {showClass == 0 && cur != 2 && cur != 5 && <div className="p-2 bg-slate-200 rounded-xl flex flex-row">
