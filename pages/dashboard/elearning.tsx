@@ -1,27 +1,15 @@
-import React from "react";
-import SearchItem from "@/components/MyCourses/SearchItem";
-import CoursesItem from "@/components/MyCourses/CoursesItem";
-import Index from "@/components/MyCourses/Information/index";
+import React from 'react';
+import CoursesList from '@/components/MyCourses/feature/CoursesList';
+import { coursesData } from '@/components/MyCourses/content/coursesData';
+
 const elearning = () => {
-    return (  
-        <>   
-            <div>
-           
-            <div><SearchItem/></div>
-            <div className="bg-wwhite rounded-md shadow-sm shadow-gray-400 p-10 mx-12 overflow-hidden border-b mb-4">
-                <CoursesItem/>
-                <div>
-                    Mở
-                    <button className="rounded-sm rounded-black bg-slate-200 min-w-[12%] h-[10%]">where </button>
-                </div>
-            </div>
-            
-            
-            </div>
-           
-        </> 
-        
-  
-    )
+    return (
+        <div className="flex-row mx-auto p-4">
+          <h1 className="text-3xl font-bold mb-4">Danh sách các môn học</h1>
+          <div className="bg-wwhite rounded-md shadow-sm shadow-gray-400  overflow-hidden border-b ">
+            <CoursesList />
+        </div>
+        </div>
+      );
 }
 export default elearning

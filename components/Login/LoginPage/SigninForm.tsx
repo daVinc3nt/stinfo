@@ -70,7 +70,7 @@ const SigninForm = () => {
     if (!name || !pass)
       return null;
     console.log(name, pass)
-    const cai_gi_cung_duoc = new StudentOperation()
+    const cai_gi_cung_duoc = new TeacherOperation()
     await cai_gi_cung_duoc.login(name, pass)
       .then(result => console.log(result))
       .catch(error => console.log(error))

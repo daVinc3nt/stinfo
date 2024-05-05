@@ -15,6 +15,7 @@ import { ClassOperation, CourseOperation, TeacherOperation } from "@/ambLib/amb"
 import { token } from "@/ambLib/amb";
 import { RegisterClassInfo } from "@/ambLib/amb";
 import CourseRegistration from "./courseRes";
+import Teacher from "./teacherInfo";
 
 const WEEKDAY: { [key: string]: string } = {
     "Thứ Hai": "Thứ 2",
@@ -106,7 +107,7 @@ export default function Course() {
     const [today, setToday] = useState<TimeTable>({ time: [] })
     const [course, Setcourse] = useState<Course[]>([])
     const token: token = {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTE3NTIxLCJleHAiOjE3MTQ5NTM1MjF9.J1-1cNIM7BWYJhWh9hTTYjdkRsSY6ugAQe_jgMssiRU"
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVyX2lkIjoiR1Y1MzU4NyIsInJvbGUiOiJHaeG6o25nIHZpw6puIiwiYWN0aXZlIjoxLCJpYXQiOjE3MTQ5MjI1MTAsImV4cCI6MTcxNDk1ODUxMH0.w43xyP55fcXuk8g4Nu37IUeKTPljOOXGiEivacgbq_o"
     }
     console.log(techerInfo)
 
@@ -208,12 +209,15 @@ export default function Course() {
                         <div className={`mt-10 flex flex-row items-center ${cur == 4 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(4)}>
                             <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 4 ? 'bg-blue-600 ' : ''}`}><NotificationsActiveOutlinedIcon className={`${cur == 4 ? 'text-white' : ''}`} /></div>Xem bài nộp
                         </div>
+                        <div className={`mt-10 flex flex-row items-center ${cur == 4 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(5)}>
+                            <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 4 ? 'bg-blue-600 ' : ''}`}><NotificationsActiveOutlinedIcon className={`${cur == 5 ? 'text-white' : ''}`} /></div>Thông tin cá nhân
+                        </div>
                     </div>
                 </div>
 
                 <div className="flex-1 p-2">
 
-                    {showClass == 0 && cur != 2 && <div className="p-2 bg-slate-200 rounded-xl flex flex-row">
+                    {showClass == 0 && cur != 2 && cur != 5 && <div className="p-2 bg-slate-200 rounded-xl flex flex-row">
                         <div className="flex-1 flex flex-row items-center justify-center">
                             {techerInfo.gender == "Nam" && <div className=" items-center justify-center"><Image src="/male.png" height={150} width={150} alt="Male"></Image></div>}
                             {techerInfo.gender == "Nữ" && <div className=" items-center justify-center"><Image src="/female.png" height={150} width={150} alt="Female"></Image></div>}
@@ -242,7 +246,7 @@ export default function Course() {
                         </div>
                     </div>}
                     {/*LIST OF COURSE*/}
-                    {cur != 2 && <div className="  text-md font-medium mt-2">
+                    {cur != 2 && cur != 5 && <div className="  text-md font-medium mt-2">
                         <div className="bg-slate-200 border  rounded-xl p-2">
                             <div className="pt-1 text-center text-xl text pb-3">Môn giảng dạy</div>
                             {showClass != 0 && <div onClick={() => { handleClick() }} className="cursor-pointer"><KeyboardReturnIcon /></div>}
@@ -316,6 +320,8 @@ export default function Course() {
                     {/*SUBMISSION*/}
                     {cur == 4 && showClass == 2 && <Submiss ref={upData} class_id={curClass.class_name} course_id={course[curcourse].course_id} token={token} />}
                     {cur == 4 && showClass != 2 && <div className="inline-flex flex-row m-4 gap-2 p-2 rounded-lg bg-slate-300 animate-bounce "><ErrorOutlineIcon />Vui lòng chọn lớp học !</div>}
+
+                    {cur == 5 && <Teacher />}
 
 
                 </div>

@@ -3,8 +3,11 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import MainCourses from './MainCourses';
-import MyPoint from './MyPoint';
+import MainCourses from './content/MainCourses';
+import MyPoint from './content/MyPoint';
+import MyClass from './content/MyClass';
+import MyCompetencies from './content/MyCompetencies';
+
 
 
 interface TabPanelProps {
@@ -26,7 +29,7 @@ function CustomTabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 4 }}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>
@@ -40,7 +43,7 @@ function a11yProps(index: number) {
   };
 }
 
-export default function TabItem() {
+export default function CouresInfo({ class_id }: { class_id: string }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -70,10 +73,10 @@ export default function TabItem() {
             <MyPoint/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        
+            <MyCompetencies/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
-            
+            <MyClass ClassID={class_id}/>
       </CustomTabPanel>
     </Box>
     
