@@ -59,7 +59,7 @@ export interface FindingStudentInfoByAdmin {
 }
 
 export interface StudentID {
-    student_id?: string
+    student_id: string
 }
 
 export interface UpdatingPassword {
@@ -78,6 +78,7 @@ class StudentOperation {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/students";
     }
 
+    //ROLE: STUDENT
     async login(username: string, password: string): Promise<any> {
         try {
             const response = await axios.post(`${this.baseUrl}/login`, {
@@ -90,12 +91,13 @@ class StudentOperation {
             const data = response.data;
             return { error: data.error, valid: data.valid, message: data.message, token: data.token };
         } catch (error: any) {
-            console.log("Error logging in: ", error?.response?.data);
+            console.log("StudentOperation Error login: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN
     async create(info: CreatingStudentInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info, {
@@ -108,12 +110,13 @@ class StudentOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error create new user: ", error?.response?.data);
+            console.log("StudentOperation Error create new user: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN
     async createByFile(info: CreatingStudentByFile, token: token) {
         try {
             const formData = new FormData();
@@ -131,12 +134,13 @@ class StudentOperation {
             const data = response.data;
 			return { error: data.error, message: data.message };
         } catch (error: any) {
-            console.error('Error creating orders by file:', error?.response?.data);
+            console.error('StudentOperation Error creating orders by file:', error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: STUDENT
     async updateByStudent(info: UpdatingStudentInfoByStudent, condition: StudentID, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update?student_id=${condition.student_id}`, info, {
@@ -149,12 +153,13 @@ class StudentOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("StudentOperation Error updateByStudent: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN
     async updateByAdmin(info: UpdatingStudentInfoByAdmin, condition: StudentID, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update?student_id=${condition.student_id}`, info, {
@@ -167,12 +172,13 @@ class StudentOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("StudentOperation Error updateByAdmin: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: DO NOT NEED ROLE AND TOKEN
     async updatePassword(info: UpdatingPassword) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update_password`, info, {
@@ -182,12 +188,13 @@ class StudentOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("StudentOperation Error updatePassword: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN
     async delete(condition: StudentID, token: token) {
         try {
             const response: AxiosResponse = await axios.delete(`${this.baseUrl}/delete?student_id=${condition.student_id}`, {
@@ -200,15 +207,16 @@ class StudentOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("StudentOperation Error delete: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: STUDENT
     async findByStudent(token: token) {
         try {
-            const response: AxiosResponse = await axios.post(`${this.baseUrl}/get`, {
+            const response: AxiosResponse = await axios.post(`${this.baseUrl}/get`, {}, {
                 withCredentials: true,
                 headers: {
                     Authorization: token.token
@@ -218,12 +226,13 @@ class StudentOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("StudentOperation Error findByStudent: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN
     async findByAdmin(info: FindingStudentInfoByAdmin, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/get`, info, {
@@ -236,12 +245,13 @@ class StudentOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("StudentOperation Error findByAdmin: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: STUDENT
     async findStudentRegisteredClass(token: token) {
         try {
             const response: AxiosResponse = await axios.get(`${this.baseUrl}/get_classes`, {
@@ -254,12 +264,13 @@ class StudentOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("StudentOperation Error findStudentRegisteredClass: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: STUDENT
     async getScore(token: token) {
         try {
             const response: AxiosResponse = await axios.get(`${this.baseUrl}/get_score`, {
@@ -272,13 +283,12 @@ class StudentOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("StudentOperation Error getScore: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 }
-
 
 export interface CreatingTeacherInfo {
     fullname: string;
@@ -320,12 +330,26 @@ export interface UpdateTeacherByAdminInfo {
     subject?: string[];
 }
 
+export interface FindingTeacherInfoByAdmin {
+    fullname?: string,                 
+    teacher_id?: string,                              
+    credential_id?: string,                                                           
+    class?: string,                           
+    faculty?: string,    
+    major?: string,                  
+    level?: string,                            
+    program?: string,
+    homeroom_class?: string,
+    phone_number?: string                                                       
+}
+
 class TeacherOperation {
     private baseUrl: string;
     constructor() {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/teachers";
     }
 
+    //ROLE: TEACHER
     async login(username: string, password: string): Promise<any> {
         try {
             const response = await axios.post(`${this.baseUrl}/login`, {
@@ -338,12 +362,13 @@ class TeacherOperation {
             const data = response.data;
             return { error: data.error, valid: data.valid, message: data.message, token: data.token };
         } catch (error: any) {
-            console.log("Error logging in: ", error?.response?.data);
+            console.log("TeacherOperation Error logging in: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN
     async create(info: CreatingTeacherInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info, {
@@ -356,12 +381,13 @@ class TeacherOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error create new user: ", error?.response?.data);
+            console.log("TeacherOperation Error create new user: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: TEACHER
     async updateByTeacher(info: UpdatingTeacherByTeacherInfo, condition: TeacherID, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update?teacher_id=${condition.teacher_id}`, info, {
@@ -374,12 +400,13 @@ class TeacherOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("TeacherOperation Error updateByTeacher: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN
     async updateByAdmin(info: UpdateTeacherByAdminInfo, condition: TeacherID, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update?teacher_id=${condition.teacher_id}`, info, {
@@ -392,12 +419,13 @@ class TeacherOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("TeacherOperation Error updateByAdmin: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: TEACHER
     async updatePassword(info: UpdatingPassword, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update_password`, info, {
@@ -410,11 +438,13 @@ class TeacherOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("TeacherOperation Error updatePassword: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
+
+    //ROLE: TEACHER
     async delete(condition: TeacherID, token: token) {
         try {
             const response: AxiosResponse = await axios.delete(`${this.baseUrl}/delete?teacher_id=${condition.teacher_id}`, {
@@ -427,15 +457,16 @@ class TeacherOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("TeacherOperation Error delete: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: TEACHER
     async findByTeacher(token: token) {
         try {
-            const response: AxiosResponse = await axios.post(`${this.baseUrl}/get`, {
+            const response: AxiosResponse = await axios.post(`${this.baseUrl}/get`, {}, {
                 withCredentials: true,
                 headers: {
                     Authorization: token.token
@@ -445,13 +476,14 @@ class TeacherOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("TeacherOperation Error findByTeacher: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
-    async findByAdmin(info: FindingStudentInfoByAdmin, token: token) {
+    //ROLE: ADMNIN
+    async findByAdmin(info: FindingTeacherInfoByAdmin, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/get`, info, {
                 withCredentials: true,
@@ -463,12 +495,13 @@ class TeacherOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("TeacherOperation Error findByAdmin: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: TEACHER
     async findTeacherRegisteredClass(token: token) {
         try {
             const response: AxiosResponse = await axios.get(`${this.baseUrl}/get_classes`, {
@@ -481,7 +514,7 @@ class TeacherOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("TeacherOperation Error findTeacherRegisteredClass: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
@@ -503,6 +536,7 @@ class AdminOperation {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/admins";
     }
 
+    //ROLE: ADMIN
     async login(username: string, password: string): Promise<any> {
         try {
             const response = await axios.post(`${this.baseUrl}/login`, {
@@ -515,12 +549,13 @@ class AdminOperation {
             const data = response.data;
             return { error: data.error, valid: data.valid, message: data.message, token: data.token };
         } catch (error: any) {
-            console.log("Error logging in: ", error?.response?.data);
+            console.log("AdminOperation Error logging in: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN
     async create(info: CreatingAdminInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info, {
@@ -533,7 +568,7 @@ class AdminOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error create new user: ", error?.response?.data);
+            console.log("AdminOperation Error create new user: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
@@ -570,6 +605,7 @@ class CourseOperation {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/courses";
     }
 
+    //ROLE: ADMIN
     async create(info: CreatingCourseInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info, {
@@ -582,12 +618,13 @@ class CourseOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error create new user: ", error?.response?.data);
+            console.log("CourseOperation Error create: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN
     async update(info: UpdatingCourseInfo, condition: CourseID, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update?course_id=${condition.course_id}`, info, {
@@ -600,12 +637,13 @@ class CourseOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("CourseOperation Error update: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN
     async delete(condition: CourseID, token: token) {
         try {
             const response: AxiosResponse = await axios.delete(`${this.baseUrl}/delete?course_id=${condition.course_id}`, {
@@ -618,12 +656,13 @@ class CourseOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("CourseOperation Error delete: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN, TEACHER, STUDENT
     async findAllCourses(info: UpdatingCourseInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/get`, info, {
@@ -636,12 +675,13 @@ class CourseOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("CourseOperation Error findAllCourses: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN, TEACHER, STUDENT
     async findClasses(condition: CourseID, token: token) {
         try {
             const response: AxiosResponse = await axios.get(`${this.baseUrl}/get_classes?course_id=${condition.course_id}`, {
@@ -654,7 +694,7 @@ class CourseOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error update new user: ", error?.response?.data);
+            console.log("CourseOperation Error findClasses: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
@@ -678,6 +718,19 @@ export interface RegisterClassInfo {
     class_id: string;
 }
 
+export interface SubmitFile {
+    submitFile: File
+}
+
+export interface FileName {
+    filename: string
+}
+
+export interface DeleteSubmitFileInfo {
+    class_id: string,
+    filename: string
+}
+
 export interface ClassID {
     class_id: string;
 }
@@ -697,6 +750,7 @@ class ClassOperation {
         this.baseUrl = "https://academic-management-backend.onrender.com/api/v1/classes";
     }
 
+    //ROLE: ADMIN
     async create(info: CreateClassInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/create`, info, {
@@ -709,12 +763,33 @@ class ClassOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error create new user: ", error?.response?.data);
+            console.log("ClassOperation Error create: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: ADMIN, TEACHER, STUDENT
+    async getClassInfo(info: ClassID, token: token) {
+        try {
+            const response: AxiosResponse = await axios.get(`${this.baseUrl}/get?class_id=${info.class_id}`, {
+                withCredentials: true,
+                headers: {
+                    Authorization: token.token
+                }
+            });
+            
+            const data = response.data;
+            return { error: data.error, data: data.data, message: data.message };
+        } catch (error: any) {
+            console.log("ClassOperation Error create: ", error?.response?.data);
+            console.error("Request that caused the error: ", error?.request);
+            return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
+        }
+    }
+
+
+    //ROLE: TEACHER, STUDENT
     async register(info: RegisterClassInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/register`, info, {
@@ -727,12 +802,13 @@ class ClassOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error create new user: ", error?.response?.data);
+            console.log("ClassOperation Error register: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
     
+    //ROLE: TEACHER
     async updateScore(info: UpdateScoreInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/update_score`, info, {
@@ -745,12 +821,13 @@ class ClassOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error create new user: ", error?.response?.data);
+            console.log("ClassOperation Error updateScore: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
 
+    //ROLE: TEACHER, STUDENT
     async cancelRegister(info: RegisterClassInfo, token: token) {
         try {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/cancel_register`, info, {
@@ -763,7 +840,111 @@ class ClassOperation {
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
-            console.log("Error create new user: ", error?.response?.data);
+            console.log("ClassOperation Error cancelRegister: ", error?.response?.data);
+            console.error("Request that caused the error: ", error?.request);
+            return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
+        }
+    }
+
+    //ROLE: STUDENT
+    async submitFile(info: SubmitFile, condition: ClassID, token: token) {
+        try {
+            const formData = new FormData();
+			formData.append('submitFile', info.submitFile);
+            const response: AxiosResponse = await axios.post(`${this.baseUrl}/submit_file?class_id=${condition.class_id}`, formData, {
+                withCredentials: true,
+                headers: {
+                    Authorization: token.token
+                }
+            });
+            
+            const data = response.data;
+            return { error: data.error, data: data.data, message: data.message };
+        } catch (error: any) {
+            console.log("ClassOperation Error submitFile: ", error?.response?.data);
+            console.error("Request that caused the error: ", error?.request);
+            return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
+        }
+    }
+
+    //ROLE: STUDENT
+    async deleteSubmitFile(info: DeleteSubmitFileInfo, token: token) {
+        try {
+            const response: AxiosResponse = await axios.delete(`${this.baseUrl}/delete_file?class_id=${info.class_id}&filename=${info.filename}`, {
+                withCredentials: true,
+                headers: {
+                    Authorization: token.token
+                }
+            });
+            
+            const data = response.data;
+            return { error: data.error, data: data.data, message: data.message };
+        } catch (error: any) {
+            console.log("ClassOperation Error deleteSubmitFile: ", error?.response?.data);
+            console.error("Request that caused the error: ", error?.request);
+            return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
+        }
+    }
+
+    //ROLE: TEACHER, STUDENT
+    async showSubmitFile(info: ClassID, token: token) {
+        try {
+            const response: AxiosResponse = await axios.get(`${this.baseUrl}/show_files?class_id=${info.class_id}`, {
+                withCredentials: true,
+                headers: {
+                    Authorization: token.token
+                }
+            });
+            
+            const data = response.data;
+            return { error: data.error, data: data.data, message: data.message };
+        } catch (error: any) {
+            console.log("ClassOperation Error showSubmitFile: ", error?.response?.data);
+            console.error("Request that caused the error: ", error?.request);
+            return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
+        }
+    }
+
+    //ROLE: TEACHER, STUDENT
+    async getSubmitFile(info: ClassID, token: token) {
+        try {
+            const response = await axios.get(`${this.baseUrl}/get_files?class_id=${info.class_id}`, {
+                responseType: 'blob', // Set response type to blob for binary data (ZIP file)
+                withCredentials: true,
+                headers: {
+                    Authorization: token.token
+                }
+            });
+
+            // Trigger file download using the received blob (ZIP file)
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${info.class_id}_files.zip`);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            return { success: true };
+        } catch (error) {
+            console.error('Error downloading files:', error);
+            return { success: false, error: 'Error downloading files' };
+        }
+    }
+
+    async getScoreForTeacher(info: ClassID, token: token) {
+        try {
+            const response: AxiosResponse = await axios.get(`${this.baseUrl}/get_score?class_id=${info.class_id}`, {
+                withCredentials: true,
+                headers: {
+                    Authorization: token.token
+                }
+            });
+            
+            const data = response.data;
+            return { error: data.error, data: data.data, message: data.message };
+        } catch (error: any) {
+            console.log("ClassOperation Error showSubmitFile: ", error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }

@@ -16,8 +16,8 @@ const DisplayModeSelector: React.FC<DisplayModeSelectorProps> = ({ onChangeMode 
         Display Mode:
       </label>
       <select id="displayMode" onChange={handleModeChange} className="px-3 py-2 border rounded-md">
-        <option value="list">List</option>
         <option value="card">Card</option>
+        <option value="list">List</option>
       </select>
     </div>
   );

@@ -27,8 +27,9 @@ const DataTableControls: React.FC<DataTableControlsProps> = ({ onSearch, onFilte
       />
       <select name="status" onChange={handleFilterChange} className="px-3 py-2 border rounded-md">
         <option value="">All</option>
-        <option value="active">Active</option>
-        <option value="inactive">Inactive</option>
+        <option value="Cơ sở">Cơ sở</option>
+        <option value="Chuyên ngành">Chuyên ngành</option>
+        <option value="Tự do">Tự do</option>
       </select>
       {/* Add more filter options as needed */}
     </div>

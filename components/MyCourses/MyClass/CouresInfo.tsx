@@ -43,7 +43,7 @@ function a11yProps(index: number) {
   };
 }
 
-export default function CouresInfo() {
+export default function CouresInfo({ class_id }: { class_id: string }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -76,7 +76,7 @@ export default function CouresInfo() {
             <MyCompetencies/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
-            <MyClass/>
+            <MyClass ClassID={class_id}/>
       </CustomTabPanel>
     </Box>
     
