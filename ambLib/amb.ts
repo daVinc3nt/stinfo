@@ -47,9 +47,9 @@ export interface UpdatingStudentInfoByAdmin {
     program?: string                                                        
 }
 
-export interface FindingTeacherInfoByAdmin {
+export interface FindingStudentInfoByAdmin {
     fullname?: string,                 
-    teacher_id?: string,                              
+    student_id?: string,                              
     credential_id?: string,                                                           
     class?: string,                           
     faculty?: string,    
