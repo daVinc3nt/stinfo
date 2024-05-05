@@ -85,7 +85,7 @@ export default function Registration(props: { token: token }) {
     }, [])
 
     const handleRegister = (id: number, classState: string) => {
-        const temp: Course[] = choose
+        const temp = [...choose]
         temp[id].classState = classState
         setChoose(temp)
     }
@@ -225,17 +225,19 @@ export default function Registration(props: { token: token }) {
                                 </table>
                             </div>
                             {buttonClass &&
-                                <div className="relative ml-2 w-24 text-center rounded-t-lg">
-                                    <div className="absolute top-0 right-0 cursor-pointer" onClick={() => setButtonclass(false)}><CloseIcon /></div>
-                                    <div className="py-2 items-center bg-slate-200 rounded-t-lg">Lớp</div>
-                                    <div className="flex flex-col bg-white">
-                                        {course[curcourse].class_id.length != 0 &&
-                                            course[curcourse].class_id.map((item) => {
-                                                return (
-                                                    <button className="p-1 focus:bg-blue-500 hover:bg-blue-500 text-sm" onClick={() => handleRegister(choose.indexOf(course[curcourse]), item)}>{item}</button>
-                                                )
-                                            })
-                                        }
+                                <div className=" ">
+                                    <div className="relative ml-2 w-24 text-center rounded-t-lg">
+                                        <div className="absolute top-0 right-0 cursor-pointer" onClick={() => setButtonclass(false)}><CloseIcon /></div>
+                                        <div className="py-2 items-center bg-slate-200 rounded-t-lg">Lớp</div>
+                                        <div className="flex flex-col bg-white">
+                                            {course[curcourse].class_id.length != 0 &&
+                                                course[curcourse].class_id.map((item) => {
+                                                    return (
+                                                        <button className="p-1 focus:bg-blue-500 hover:bg-blue-500 text-sm" onClick={() => handleRegister(choose.indexOf(course[curcourse]), item)}>{item}</button>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             }

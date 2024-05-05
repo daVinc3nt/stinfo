@@ -42,9 +42,9 @@ export default function Result(props: { token: token }) {
                                 <div className="p-2 bg-white flex-1 flex flex-col rounded-b-lg truncate">
                                     <div>Mã môn học: {item.course_id}</div>
                                     <div>Số tín chỉ: {item.credits}</div>
-                                    <div>Giảng viên: {item.teacher}</div>
+                                    <div>Giảng viên: {item.teacher == null ? "..." : item.teacher}</div>
                                     <div>Phòng học: {item.room}</div>
-                                    <div>Thời gian học: {" " + item.day + " "} Tiết {item.period[0].toString() + " - " + item.period[item.period.length - 1].toString()}</div>
+                                    <div>Thời gian học: {" " + item.day + " "} Tiết {item.period.length == 0 ? "..." : item.period[0].toString() + " - " + item.period[item.period.length - 1].toString()}</div>
                                 </div>
                             </div>
                         )

@@ -11,7 +11,7 @@ import { error } from "console";
 export default function CourseRegistration() {
     const [current, setCurrent] = useState(0)
     const token: token = {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0ODc5OTU2LCJleHAiOjE3MTQ5MTU5NTZ9._p7ags7ZiSH5yONP9BNnXJDqxVJ5G_tS_7_kMukwuKA"
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTE3NTIxLCJleHAiOjE3MTQ5NTM1MjF9.J1-1cNIM7BWYJhWh9hTTYjdkRsSY6ugAQe_jgMssiRU"
     }
 
 

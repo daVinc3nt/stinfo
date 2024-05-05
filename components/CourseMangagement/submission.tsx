@@ -29,7 +29,7 @@ const Submiss = forwardRef((props: { class_id: string, course_id: string, token:
         if (listFileName) {
             if (listFileName.length > 0)
                 return (
-                    <div className='bg-green-200'>
+                    <div className='bg-green-200 mt-2 rounded-lg p-2'>
                         {
                             // show all the File Name based on listFileName
                             listFileName.map((fileName, index) => {

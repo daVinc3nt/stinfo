@@ -35,7 +35,7 @@ const Wrapper = ({ children }: LayoutProps) => {
           </header>
         </div>
 
-        <div className="">
+        <div className="w-full">
           {children}
         </div>
       </div>

@@ -3,7 +3,7 @@ import React from "react";
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import Image from "next/image";
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import OndemandVideoOutlinedIcon from '@mui/icons-material/OndemandVideoOutlined';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import Score from "./score";
@@ -50,6 +50,8 @@ interface Course {
     course_id: string
     classes: Class[]
 }
+
+
 
 const Grid: React.FC<TimeTable> = ({ time }) => {
     const numbers = Array.from({ length: 15 }, (_, i) => i + 1);
@@ -104,8 +106,7 @@ export default function Course() {
     const [today, setToday] = useState<TimeTable>({ time: [] })
     const [course, Setcourse] = useState<Course[]>([])
     const token: token = {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVyX2lkIjoiR1Y1MzU4NyIsInJvbGUiOiJHaeG6o25nIHZpw6puIiwiYWN0aXZlIjoxLCJpYXQiOjE3MTQ4ODA5NzcsImV4cCI6MTcxNDkxNjk3N30.d9RQuF1vopKOHU9qBaLkdONsbS2Nhtam7M1gqVe9ABg"
-
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTE3NTIxLCJleHAiOjE3MTQ5NTM1MjF9.J1-1cNIM7BWYJhWh9hTTYjdkRsSY6ugAQe_jgMssiRU"
     }
     console.log(techerInfo)
 
@@ -186,9 +187,9 @@ export default function Course() {
 
     return (
         <>
-            <div className="flex flex-row text-sm md:text-base ">
+            <div className="flex flex-row  text-sm md:text-base w-full  h-screen ">
 
-                <div className=" w-80 bg-slate-200 p-2 hidden sm:block ">
+                <div className=" w-80 bg-slate-200 p-2 hidden sm:block  h-full">
                     <div className="mt-10 flex flex-row items-center justify-center gap-1 text-indigo-600 text-xl mb-10">
                         <AutoStoriesOutlinedIcon ></AutoStoriesOutlinedIcon>
                         Quản lý môn học
@@ -199,7 +200,7 @@ export default function Course() {
                             <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 1 ? 'bg-blue-600' : ''}`}><DescriptionOutlinedIcon className={`${cur == 1 ? 'text-white' : ''}`} /></div> Tổng quan
                         </div>
                         <div className={`mt-10 flex flex-row items-center ${cur == 2 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(2)}>
-                            <div className={`p-1 rounded-lg  bg-slate-200S ${cur == 2 ? 'bg-blue-600 ' : ''}`}><OndemandVideoOutlinedIcon className={`${cur == 2 ? 'text-white' : ''}`} /></div>Cập nhật bài giảng
+                            <div className={`p-1 rounded-lg  bg-slate-200S ${cur == 2 ? 'bg-blue-600 ' : ''}`}><AppRegistrationIcon className={`${cur == 2 ? 'text-white' : ''}`} /></div>Đăng ký giảng dạy
                         </div>
                         <div className={`mt-10 flex flex-row items-center ${cur == 3 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(3)}>
                             <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 3 ? 'bg-blue-600' : ''}`}><SchoolOutlinedIcon className={`${cur == 3 ? 'text-white' : ''}`} /></div>Nhập điểm
@@ -241,11 +242,11 @@ export default function Course() {
                         </div>
                     </div>}
                     {/*LIST OF COURSE*/}
-                    {cur != 2 && <div className="p-2">
+                    {cur != 2 && <div className="  text-md font-medium mt-2">
                         <div className="bg-slate-200 border  rounded-xl p-2">
                             <div className="pt-1 text-center text-xl text pb-3">Môn giảng dạy</div>
                             {showClass != 0 && <div onClick={() => { handleClick() }} className="cursor-pointer"><KeyboardReturnIcon /></div>}
-                            {course.length != 0 && <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-2 place-items-center gap-4">
+                            {course.length != 0 && <div className="uppercase text-white grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-2 place-items-center gap-4">
                                 {course.map((item, index) => {
                                     if (showClass == 0 || (showClass == 1 && index == curcourse) || (showClass == 2 && index == curcourse))
                                         return (

@@ -85,7 +85,7 @@ export default function Registration(props: { token: token }) {
     }, [])
 
     const handleRegister = (id: number, classState: string) => {
-        const temp: Course[] = choose
+        const temp = [...choose]
         temp[id].classState = classState
         setChoose(temp)
     }
@@ -132,10 +132,12 @@ export default function Registration(props: { token: token }) {
             }
         }
     }
+
     const handleChoose = (e) => {
         setChoose([...choose, e]);
         setDelt([...delt, 1]);
     }
+
     const handleSearch = (e) => {
         setSearch(e.target.value);
     }
