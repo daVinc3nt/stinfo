@@ -14,6 +14,7 @@ import Submiss from "./submission";
 import { ClassOperation, CourseOperation, TeacherOperation } from "@/ambLib/amb";
 import { token } from "@/ambLib/amb";
 import { RegisterClassInfo } from "@/ambLib/amb";
+import CourseRegistration from "./courseRes";
 
 const WEEKDAY: { [key: string]: string } = {
     "Thứ Hai": "Thứ 2",
@@ -92,9 +93,7 @@ const Grid: React.FC<TimeTable> = ({ time }) => {
 };
 
 export default function Course() {
-    const [add, setAdd] = useState(0);
-    const [finishAdd, setFinish] = useState(false);
-    const [techerName, setTeachername] = useState("");
+    const [techerInfo, setTeacherInfo] = useState<{ name: string, gender: string }>({ name: "", gender: "" });
     const [numLessons, setNumlessons] = useState(0);
     const [cur, setCur] = useState(1);
     const [curcourse, setCurcourse] = useState(0);
@@ -105,9 +104,10 @@ export default function Course() {
     const [today, setToday] = useState<TimeTable>({ time: [] })
     const [course, Setcourse] = useState<Course[]>([])
     const token: token = {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVyX2lkIjoiR1Y1MzU4NyIsInJvbGUiOiJHaeG6o25nIHZpw6puIiwiYWN0aXZlIjoxLCJpYXQiOjE3MTQ4NDQwMzIsImV4cCI6MTcxNDg4MDAzMn0.6ceMf_7gQT2XU8m76puu7kRJfYWIyhF9e1tUrIq7BVE"
-    }
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVyX2lkIjoiR1Y1MzU4NyIsInJvbGUiOiJHaeG6o25nIHZpw6puIiwiYWN0aXZlIjoxLCJpYXQiOjE3MTQ4ODA5NzcsImV4cCI6MTcxNDkxNjk3N30.d9RQuF1vopKOHU9qBaLkdONsbS2Nhtam7M1gqVe9ABg"
 
+    }
+    console.log(techerInfo)
 
     useEffect(() => {
         const wDay = new Date().toLocaleString('vi-VN', { weekday: 'long', timeZone: 'Asia/Ho_Chi_Minh' });
@@ -154,7 +154,7 @@ export default function Course() {
         }
         const fetchData2 = async () => {
             await teacher.findByTeacher(token)
-                .then(data => setTeachername(data.data.fullname))
+                .then(data => setTeacherInfo({ name: data.data.fullname, gender: data.data.gender }))
                 .catch(error => console.log(error))
         }
         const fetchData3 = async () => {
@@ -183,11 +183,7 @@ export default function Course() {
         }
 
     }
-    const handleUpdata = () => {
-        const childState = upData.current.getChangescore();
-        console.log(childState);
-        if (!childState) setShowclass(1);
-    }
+
     return (
         <>
             <div className="flex flex-row text-sm md:text-base ">
@@ -199,7 +195,7 @@ export default function Course() {
 
                     </div>
                     <div className="pl-12">
-                        <div className={`mt-10 flex flex-row items-center ${cur == 1 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10 `} onClick={() => { handleUpdata() }}>
+                        <div className={`mt-10 flex flex-row items-center ${cur == 1 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10 `} onClick={() => { setCur(1) }}>
                             <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 1 ? 'bg-blue-600' : ''}`}><DescriptionOutlinedIcon className={`${cur == 1 ? 'text-white' : ''}`} /></div> Tổng quan
                         </div>
                         <div className={`mt-10 flex flex-row items-center ${cur == 2 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(2)}>
@@ -216,13 +212,15 @@ export default function Course() {
 
                 <div className="flex-1 p-2">
 
-                    {showClass == 0 && <div className="p-2 bg-slate-200 rounded-xl flex flex-row">
+                    {showClass == 0 && cur != 2 && <div className="p-2 bg-slate-200 rounded-xl flex flex-row">
                         <div className="flex-1 flex flex-row items-center justify-center">
-                            <div className=" items-center justify-center"><Image src="/male.png" height={150} width={150} alt="Male"></Image></div>
-                            {numLessons != 0 && techerName.length != 0 && <div className="flex-1 p-2 h-full">
+                            {techerInfo.gender == "Nam" && <div className=" items-center justify-center"><Image src="/male.png" height={150} width={150} alt="Male"></Image></div>}
+                            {techerInfo.gender == "Nữ" && <div className=" items-center justify-center"><Image src="/female.png" height={150} width={150} alt="Female"></Image></div>}
+
+                            {numLessons != 0 && techerInfo.name.length != 0 && <div className="flex-1 p-2 h-full">
                                 <div className="flex justify-end"><div className=" truncate shadow-lg inline bg-blue-500 rounded-md text-white py-1 px-2">{dateInfo}</div></div>
                                 <div className="p-2 bg-slate-300 mt-1 rounded-lg shadow-lg">
-                                    <div className="">Chào, {techerName} !</div>
+                                    <div className="">Chào, {techerInfo.name} !</div>
                                     <div className="">Số tiết trong tuần: {numLessons}</div>
                                 </div>
                             </div>}
@@ -243,7 +241,7 @@ export default function Course() {
                         </div>
                     </div>}
                     {/*LIST OF COURSE*/}
-                    <div className="p-2">
+                    {cur != 2 && <div className="p-2">
                         <div className="bg-slate-200 border  rounded-xl p-2">
                             <div className="pt-1 text-center text-xl text pb-3">Môn giảng dạy</div>
                             {showClass != 0 && <div onClick={() => { handleClick() }} className="cursor-pointer"><KeyboardReturnIcon /></div>}
@@ -303,11 +301,12 @@ export default function Course() {
                             </div>}
                         </div>
                     </div>
+                    }
 
 
                     {/*LECTURE*/}
-                    {cur == 2 && (showClass == 1 || showClass == 2) && <Lecture />}
-                    {cur == 2 && showClass == 0 && <div className="inline-flex flex-row m-4 gap-2 p-2 rounded-lg bg-slate-300 animate-bounce "><ErrorOutlineIcon />Vui lòng chọn môn học !</div>}
+                    {cur == 2 && <CourseRegistration token={token} />}
+                    {/* {cur == 2 && showClass == 0 && <div className="inline-flex flex-row m-4 gap-2 p-2 rounded-lg bg-slate-300 animate-bounce "><ErrorOutlineIcon />Vui lòng chọn môn học !</div>} */}
 
                     {/*SCORE*/}
                     {cur == 3 && showClass == 2 && <Score ref={upData} class_id={curClass.class_name} course_id={course[curcourse].course_id} token={token} />}

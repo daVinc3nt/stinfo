@@ -6,7 +6,7 @@ interface registerdCourse {
     class_id: string
     course_id: string
     course_name: string
-    credit: number
+    credits: number
     day: string
     teacher: string
     semester: string
@@ -22,7 +22,7 @@ export default function Result(props: { token: token }) {
             const studOp = new StudentOperation()
             let result: registerdCourse[]
             await studOp.findStudentRegisteredClass(props.token)
-                .then(data => setResult(data.data))
+                .then(data => { setResult(data.data), console.log(data.data) })
                 .catch(error => console.log(error))
         }
         fetchClass()
@@ -41,7 +41,7 @@ export default function Result(props: { token: token }) {
                                 </div>
                                 <div className="p-2 bg-white flex-1 flex flex-col rounded-b-lg truncate">
                                     <div>Mã môn học: {item.course_id}</div>
-                                    <div>Số tín chỉ: {item.credit}</div>
+                                    <div>Số tín chỉ: {item.credits}</div>
                                     <div>Giảng viên: {item.teacher}</div>
                                     <div>Phòng học: {item.room}</div>
                                     <div>Thời gian học: {" " + item.day + " "} Tiết {item.period[0].toString() + " - " + item.period[item.period.length - 1].toString()}</div>

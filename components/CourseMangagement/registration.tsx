@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 import ReportOutlinedIcon from '@mui/icons-material/ReportOutlined';
-import { toNonAccentVietnamese } from "./nonAccentVietnamese";
+import { toNonAccentVietnamese } from "../CourseRegistration/nonAccentVietnamese";
 import { ClassOperation, token, CourseOperation, UpdatingCourseInfo, RegisterClassInfo, StudentOperation } from "@/ambLib/amb";
 import CloseIcon from '@mui/icons-material/Close';
 

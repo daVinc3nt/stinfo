@@ -7,10 +7,11 @@ import { CourseOperation } from "@/ambLib/amb";
 import { error } from "console";
 
 
+
 export default function CourseRegistration() {
     const [current, setCurrent] = useState(0)
     const token: token = {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0ODQzNTQ5LCJleHAiOjE3MTQ4Nzk1NDl9.NHZ7tTEREwCvMVibrrKTIvL7cSh7sQStQl5CimhsNhY"
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0ODc5OTU2LCJleHAiOjE3MTQ5MTU5NTZ9._p7ags7ZiSH5yONP9BNnXJDqxVJ5G_tS_7_kMukwuKA"
     }
 
 
@@ -27,7 +28,7 @@ export default function CourseRegistration() {
                                 {current == 0 && <div className="absolute bottom-[2px]  h-[4px] w-full bg-slate-400 rounded-t-2xl"></div>}
                             </div>
                             <div className="relative flex items-center justify-center " >
-                                <div className={`flex items-center justify-center m-1 w-32 h-[50px] ${current == 1 ? '' : 'hover:bg-slate-400 hover:rounded-lg'} cursor-pointer `} onClick={() => { setCurrent(1) }}>Kết quả môn học</div>
+                                <div className={`flex items-center justify-center m-1 w-32 h-[50px] ${current == 1 ? '' : 'hover:bg-slate-400 hover:rounded-lg'} cursor-pointer `} onClick={() => { setCurrent(1) }}>Kết quả ĐKMH</div>
                                 {current == 1 && <div className="absolute bottom-[2px]  h-[4px] w-full bg-slate-400 rounded-t-lg"></div>}
                             </div>
                         </div>

@@ -91,7 +91,7 @@ const PieChart = ({ percentages, animation }) => {
 
 export default function MyScore() {
     const token: token = {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0ODE5MjE4LCJleHAiOjE3MTQ4NTUyMTh9.tzlHo8G1224NKh3zoZSULMkGh6MvOyjgEVj4k3_wTRM"
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0ODc5OTU2LCJleHAiOjE3MTQ5MTU5NTZ9._p7ags7ZiSH5yONP9BNnXJDqxVJ5G_tS_7_kMukwuKA"
     }
     const [student, setStudent] = useState<student>({ name: "", ID: "" })
     const [semes, setSemes] = useState<course[][]>([])
@@ -118,25 +118,36 @@ export default function MyScore() {
             setDateInfo(wDay + ', ' + date);
             const stuOp = new StudentOperation()
             let DATA: course[] = []
-            let semester: course[][] = [[]]
-            let curSemes: string = "231"
+            let semester: course[][] = []
             let avgSemester: avgSemes[] = []
-            let map = new Map<string, number>()
-            let loop = parseInt(curSemes[2], 10) % 2 == 0 ? 2 * (parseInt(curSemes[1], 10) - parseInt(student.ID[1], 10)) + 2 : 2 * (parseInt(curSemes[1], 10) - parseInt(student.ID[1], 10)) + 1
-            for (let temp: string = curSemes, i = loop - 1; i > -1; i--) {
-                avgSemester.push({ semester: temp, score: 0, credits: 0 })
-                map.set("HK" + temp, i)
-                if (temp[2] == '2') temp = temp[0] + temp[1] + '1'
-                else temp = (temp[1] == '0' ? (parseInt(temp[0], 10) - 1).toString() + '9' : temp[0] + (parseInt(temp[1], 10) - 1).toString()) + '2'
-            }
-            setScore(avgSemester.reverse())
+            let semesName: string[] = []
+
+
             const fetchScore = async () => {
                 await stuOp.getScore(token)
                     .then(data => {
                         DATA = data.data.allScores
+                        for (let i = 0; i < DATA.length; i++) {
+                            if (!semesName.includes(DATA[i].semester)) {
+                                semesName.push(DATA[i].semester); semester.push([])
+                                avgSemester.push({ semester: DATA[i].semester, score: 0, credits: 0 })
+                            }
+                        }
+                        setScore(avgSemester)
+                        semesName.sort((a, b) => {
+                            const numA = parseInt(a.substring(2));
+                            const numB = parseInt(b.substring(2));
+                            if (numA < numB) {
+                                return -1;
+                            } else if (numA > numB) {
+                                return 1;
+                            } else {
+                                return a.localeCompare(b);
+                            }
+                        });
                         for (let i = 0, j = 0, ss = ""; i < DATA.length; i++) {
                             ss = DATA[i].semester
-                            j = map.get(ss)
+                            j = semesName.indexOf(ss)
                             DATA[i].semester = "Học kỳ " + ss[4] + " Năm học 20" + ss[2] + ss[3] + " - "
                                 + "20" + (ss[3] == '9' ? (parseInt(ss[2], 10) + 1).toString() + '0' : ss[2] + (parseInt(ss[3], 10) + 1).toString())
                             semester[j].push(DATA[i])
@@ -144,7 +155,7 @@ export default function MyScore() {
                         setSemes(semester)
 
                     })
-                    .catch(error => console.log(error))
+                    .catch(error => alert(error))
 
             }
             fetchScore()
@@ -169,6 +180,7 @@ export default function MyScore() {
                 avgSemester[i].score = parseFloat((avgSemester[i].score * 0.4 / sum).toFixed(1))
                 avgSemester[i].credits = sum
                 credit += sum
+
             }
             setoverallCredits(credit)
             setoverallGPA(GPA / credit)
@@ -180,7 +192,7 @@ export default function MyScore() {
     useEffect(() => {
         const info = new StudentOperation()
         const fetchInfo = async () => {
-            await info.findByStudent(token).then(data => setStudent({ name: data.data.fullname, ID: "2313254" }))
+            await info.findByStudent(token).then(data => setStudent({ name: data.data.fullname, ID: data.data.student_id }))
         }
         fetchInfo()
     }, [])
@@ -386,7 +398,7 @@ export default function MyScore() {
 
             </div>
             {isMouseInside && score.length != 0 &&
-                <div className="rounded-lg p-2 z-50 bg-slate-300" style={{ position: "fixed", left: position.x, top: position.y - 40 }}>{score[curAv].score}{" HK" + score[curAv].semester}</div>}
+                <div className="rounded-lg p-2 z-50 bg-slate-300" style={{ position: "fixed", left: position.x, top: position.y - 40 }}>{score[curAv].score}{" " + score[curAv].semester}</div>}
         </>
     )
 }
