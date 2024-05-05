@@ -123,7 +123,7 @@ const Score = forwardRef((props: { class_id: string, course_id: string, token: t
                 const updateScore = new ClassOperation()
                 for (let i = 0; i < noStudent; i++) {
                     const loadScore = async () => {
-                        updateScore.updateScore({ student_id: score[i].student_id, midterm: score[i].midterm, final: score[i].final, exercise: score[i].exercise, lab: score[i].lab }, props.token)
+                        updateScore.updateScore({ student_id: score[i].student_id, midterm: score[i].midterm, final: score[i].final, exercise: score[i].exercise, lab: score[i].lab }, { class_id: props.class_id }, props.token)
                             .then(error => { if (error) console.log(error); setCheckupload(checkUpload + 1) })
                     }
                     loadScore()

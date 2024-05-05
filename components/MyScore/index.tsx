@@ -91,7 +91,7 @@ const PieChart = ({ percentages, animation }) => {
 
 export default function MyScore() {
     const token: token = {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0ODc5OTU2LCJleHAiOjE3MTQ5MTU5NTZ9._p7ags7ZiSH5yONP9BNnXJDqxVJ5G_tS_7_kMukwuKA"
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTIxMTEyLCJleHAiOjE3MTQ5NTcxMTJ9.a6zRRCLFoXgpT3j0nFgWVJZAEi1fnQtN0I1r2rVKDh0"
     }
     const [student, setStudent] = useState<student>({ name: "", ID: "" })
     const [semes, setSemes] = useState<course[][]>([])
