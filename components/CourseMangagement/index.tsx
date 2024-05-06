@@ -201,7 +201,30 @@ export default function Course() {
     return (
         <>
             <div className="flex flex-row  text-sm md:text-base ">
+                <div className=" w-10 bg-slate-200 p-2 block sm:hidden  h-full fixed">
 
+                    <div className="">
+                        <div className={`mt-10 flex flex-row items-center ${cur == 1 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10 `} onClick={() => { setCur(1) }}>
+                            <div className={` rounded-lg  bg-slate-200 ${cur == 1 ? 'bg-blue-600' : ''}`}><DescriptionOutlinedIcon className={`${cur == 1 ? 'text-white' : ''}`} /></div>
+                        </div>
+                        <div className={`mt-10 flex flex-row items-center ${cur == 2 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(2)}>
+                            <div className={` rounded-lg  bg-slate-200S ${cur == 2 ? 'bg-blue-600 ' : ''}`}><AppRegistrationIcon className={`${cur == 2 ? 'text-white' : ''}`} /></div>
+                        </div>
+                        <div className={`mt-10 flex flex-row items-center ${cur == 3 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(3)}>
+                            <div className={`rounded-lg  bg-slate-200 ${cur == 3 ? 'bg-blue-600' : ''}`}><SchoolOutlinedIcon className={`${cur == 3 ? 'text-white' : ''}`} /></div>
+                        </div>
+                        <div className={`mt-10 flex flex-row items-center ${cur == 4 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(4)}>
+                            <div className={`rounded-lg  bg-slate-200 ${cur == 4 ? 'bg-blue-600 ' : ''}`}><NotificationsActiveOutlinedIcon className={`${cur == 4 ? 'text-white' : ''}`} /></div>
+                        </div>
+                        <div className={`mt-10 flex flex-row items-center ${cur == 5 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(5)}>
+                            <div className={`rounded-lg  bg-slate-200 ${cur == 5 ? 'bg-blue-600 ' : ''}`}><InfoIcon className={`${cur == 5 ? 'text-white' : ''}`} /></div>
+                        </div>
+                        <div className={`mt-10 flex flex-row items-center ${cur == 6 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => { setCur(6); router.push("/dashboard/calendar") }}>
+                            <div className={` rounded-lg  bg-slate-200 ${cur == 6 ? 'bg-blue-600 ' : ''}`}><CalendarMonthIcon className={`${cur == 6 ? 'text-white' : ''}`} /></div>
+                        </div>
+                    </div>
+                </div>
+                <div className=" w-10 bg-slate-200 p-2 block sm:hidden "></div>
                 <div className=" w-80 bg-slate-200 p-2 hidden sm:block  h-full fixed">
                     <div className="mt-10 flex flex-row items-center justify-center gap-1 text-indigo-600 text-xl mb-10">
                         <AutoStoriesOutlinedIcon ></AutoStoriesOutlinedIcon>
