@@ -1,7 +1,6 @@
 import { useState} from "react";
 import {useRouter } from "next/navigation";
 import classNames from "classnames";
-import LoginLangSelector from "@/components/LangSelector/LoginLangSelector"
 import { FormattedMessage} from "react-intl";
 import { useContext } from "react";
 import { StudentOperation, TeacherOperation } from "@/ambLib/amb";
@@ -79,11 +78,12 @@ const SigninForm = () => {
     if (!res1?.error)
     {
       cookie.set("token", res1.token)
+      cookie.set("role", "student")
       router.push("/dashboard")
     }
     else if (!res2?.error)
       {
-        cookie.set("token", res2.token)
+        cookie.set("token", "teacher")
         router.push("/dashboard/courseLec")
       }
     else{
@@ -126,9 +126,6 @@ const SigninForm = () => {
     <div className="w-[calc(70%)] lg:w-[calc(25%)] bg-blue-500 h-[calc(350px)] lg:h-[calc(470px)] absolute transition-all transform
     rounded-xl rotate-6 animate-rotate-in-6deg"></div>
     <div className="bg-white w-[calc(70%)] lg:w-[calc(25%)] h-[calc(350px)] lg:h-[calc(470px)] p-8 absolute rounded-xl shadow-xl">
-    <div className="lg:pl-8">
-      <LoginLangSelector/>
-    </div>
       <div className="selection:bg-blue-500 selection:text-white">
         <div className="flex justify-center items-center">
           <div className="lg:p-8 flex-1">
