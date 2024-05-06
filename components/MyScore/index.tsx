@@ -252,8 +252,8 @@ export default function MyScore() {
                             <div>Họ và Tên: {student.name != "" ? student.name + " (" + student.ID + ")" : ""}</div>
                             {dateInfo.length != 0 && <div className=" truncate shadow-lg inline bg-blue-500 rounded-md text-white py-1 px-2">{dateInfo}</div>}
                         </div>
-                        <div className="mb-2">Điểm trung bình tích luỹ:{" " + overallCredits}</div>
-                        <div className="mb-2">Số tín chỉ tích luỹ:{" " + overallGPA}</div>
+                        <div className="mb-2">Điểm trung bình tích luỹ:{" " + overallGPA}</div>
+                        <div className="mb-2">Số tín chỉ tích luỹ:{" " + overallCredits}</div>
 
 
                         <label className="flex items-center">
