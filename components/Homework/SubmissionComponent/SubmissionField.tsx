@@ -71,7 +71,7 @@ const SubmissionField = (props: { role: string }) => {
 	// useEffect when the file change (after the file is uploaded), update isSubmitted, isBeforeDeadline state
 	useEffect(() => {
 		// Warning: useEffect in this component run twice
-		const operation = new ClassOperation();
+		// const operation = new ClassOperation();
 		if (listFileName != null && listFileName.length > 0) {
 			HomeworkSubmissionData.setIsSubmitted(true);
 			setIsSubmitted(true);
@@ -83,7 +83,20 @@ const SubmissionField = (props: { role: string }) => {
 			//console.log(HomeworkSubmissionData.isSubmitted);
 		}
 
-
+		const operation = new ClassOperation();
+		if (token && classID.class_id) {
+			operation.showSubmitFile({ class_id: String(classID.class_id.toString()) }, token)
+				.then(data => {
+					const getData = data;
+					if (getData.data) {
+						// console.log("list of submit File: ", getData);
+						setListFileName(getData.data);
+						setNumOfFile(getData.data.length);
+						console.log("showSubmitFile run from 1st load");
+					}
+				}
+				)
+		}
 
 	}, [numOfFile]);
 
@@ -131,12 +144,35 @@ const SubmissionField = (props: { role: string }) => {
 				<input type='file' id="selected_file" className=' hidden' 
 					onChange={(event) => {
 					// handle file change and upload file
+					let newFile: SubmitFile;
 					if (event.target.files && event.target.files.length > 0) {
-						const newFile : SubmitFile = {
+						newFile = {
 							submitFile : event.target.files[0]
 						}
 						setFile(newFile);
-						// props.setNumFile(props.numFile + 1);
+						console.log(newFile);
+					}
+
+					const operation = new ClassOperation();
+					if (newFile) {
+						console.log("upload file to local: ", newFile);
+						console.log("token from uploading: ", token);
+						console.log("classID from uploading: ", classID);
+						operation.submitFile(newFile, { class_id: String(classID.class_id) }, token)
+							.then(response => {
+								// console.log("File submitted: ", response.error);
+								if (response.error) {
+									setIsUploadError(true);
+									console.log("UPLOAD FAILED!!");
+								}
+								else {
+									HomeworkSubmissionData.setNewFile(newFile);
+									setIsUploadError(false);
+									console.log("UPLOAD SUCCESS!!");
+									setNumOfFile(numOfFile => numOfFile + 1);
+									setFile(newFile);
+								}
+							})
 					}
 				}}
 					onClick={(event) => {
@@ -164,7 +200,7 @@ const SubmissionField = (props: { role: string }) => {
 		const operation = new ClassOperation();
 		const handleDelete = () => {
 			setDeleteText("Đang xóa");
-			setDeleteStyles("bg-gray-300");
+			setDeleteStyles("bg-gray-300 hover:bg-gray-500");
 			operation.deleteSubmitFile({ class_id: String(classID.class_id), filename: props.deletedFileName }, token)
 				.then(response => {
 					// console.log("delete file: ", response);
@@ -180,6 +216,7 @@ const SubmissionField = (props: { role: string }) => {
 								if (getData) {
 									// console.log("list of submit File: ", getData);
 									setListFileName(getData.data);
+
 									if (getData.data) {
 										// setNumOfFile(getData.data.length);
 									}
