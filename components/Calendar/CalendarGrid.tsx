@@ -1,18 +1,9 @@
 'use client';
 import React, { useEffect, useState } from "react";
-import { render } from "react-dom";
-import { bool } from "prop-types";
-import { eventsData, subjectData, fillMissingData, generateWeekCalendar } from "./EventData";
+import {fillMissingData, generateWeekCalendar } from "./EventData";
 import { EventProps, SubjectProps } from "./Features/interfaceProps";
-import { Key } from "lucide-react";
-import { DateUtils, WeekUtils } from "./Features/utils_calendar";
-import { VisualEffect } from "./Features/utils_calendar";
-import Index from "../MyCourses/Information";
-import { off } from "process";
-import { Co2Sharp } from "@mui/icons-material";
-import { get } from "http";
+import { DateUtils } from "./Features/utils_calendar";
 import { StudentOperation, TeacherOperation, token } from "@/ambLib/amb";
-import { UserAccountProps } from "./Features/interfaceProps";
 
 
 // Build a component that will display the event based on the interface EventProps and fill the background color 

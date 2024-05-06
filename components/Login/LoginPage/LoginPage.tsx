@@ -2,6 +2,7 @@ import { useState} from "react";
 import SigninForm from "./SigninForm";
 import RightOverlayContent from "./RightOverlayContent";
 import { FormattedMessage, useIntl, IntlShape, } from "react-intl";
+import ParticlesBackground from "@/components/Particle/Particle"
 const LoginPage = () => {
   const [isAnimated, setIsAnimated] = useState(false);
   const intl = useIntl();
