@@ -146,7 +146,7 @@ useEffect(() => {
         <div className=''><DisplayModeSelector onChangeMode={handleModeChange} /></div>    
       </div>
       
-     { (  <div className={displayMode === 'card' ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-10" : "py-20 md:px-40 space-y-8 min-h-full"}>
+     { (  <div className={displayMode === 'card' ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-10 overflow-x-hidden " : "py-20 md:px-40 space-y-8  overflow-x-hidden"}>
   {courseInfo && courseInfo.map(course => ( course.semester != "HK232" ? "":  ( <div  key={course.course_id}>
       {displayMode === 'card' ? (
         <CardMode
