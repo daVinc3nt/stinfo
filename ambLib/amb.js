@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function () { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -53,11 +53,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/login"), {
-                            username: username,
-                            password: password,
-                        }, {
-                            withCredentials: true,
-                        })];
+                                username: username,
+                                password: password,
+                            }, {
+                                withCredentials: true,
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -82,11 +82,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create"), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -113,12 +113,12 @@ var StudentOperation = /** @class */ (function () {
                         formData = new FormData();
                         formData.append("file", info.file);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create_by_file"), formData, {
-                            headers: {
-                                'Content-Type': 'multipart/form-data',
-                                Authorization: token.token
-                            },
-                            withCredentials: true,
-                        })];
+                                headers: {
+                                    'Content-Type': 'multipart/form-data',
+                                    Authorization: token.token
+                                },
+                                withCredentials: true,
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -143,11 +143,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update?student_id=").concat(condition.student_id), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -172,11 +172,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update?student_id=").concat(condition.student_id), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -201,8 +201,8 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update_password"), info, {
-                            withCredentials: true,
-                        })];
+                                withCredentials: true,
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -227,11 +227,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.delete("".concat(this.baseUrl, "/delete?student_id=").concat(condition.student_id), {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -256,11 +256,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/get"), {}, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -285,11 +285,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/get"), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -314,11 +314,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_classes"), {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -343,11 +343,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_score"), {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -379,11 +379,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/login"), {
-                            username: username,
-                            password: password,
-                        }, {
-                            withCredentials: true,
-                        })];
+                                username: username,
+                                password: password,
+                            }, {
+                                withCredentials: true,
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -408,11 +408,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create"), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -437,11 +437,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update?teacher_id=").concat(condition.teacher_id), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -466,11 +466,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update?teacher_id=").concat(condition.teacher_id), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -495,11 +495,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update_password"), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -524,11 +524,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.delete("".concat(this.baseUrl, "/delete?teacher_id=").concat(condition.teacher_id), {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -553,11 +553,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/get"), {}, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -582,11 +582,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/get"), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -611,11 +611,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_classes"), {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -647,11 +647,11 @@ var AdminOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/login"), {
-                            username: username,
-                            password: password,
-                        }, {
-                            withCredentials: true,
-                        })];
+                                username: username,
+                                password: password,
+                            }, {
+                                withCredentials: true,
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -676,11 +676,11 @@ var AdminOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create"), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -712,11 +712,11 @@ var CourseOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create"), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -741,11 +741,11 @@ var CourseOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update?course_id=").concat(condition.course_id), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -770,11 +770,11 @@ var CourseOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.delete("".concat(this.baseUrl, "/delete?course_id=").concat(condition.course_id), {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -799,11 +799,11 @@ var CourseOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/get"), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -828,11 +828,11 @@ var CourseOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_classes?course_id=").concat(condition.course_id), {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -864,11 +864,11 @@ var ClassOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create"), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -884,7 +884,7 @@ var ClassOperation = /** @class */ (function () {
         });
     };
     //ROLE: ADMIN, TEACHER, STUDENT
-    ClassOperation.prototype.getClassInfo = function (info, token) {
+    ClassOperation.prototype.getStudentInClass = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
             var response, data, error_29;
@@ -892,12 +892,12 @@ var ClassOperation = /** @class */ (function () {
                 switch (_c.label) {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get?class_id=").concat(info.class_id), {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                        return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_students?class_id=").concat(info.class_id), {
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -912,8 +912,8 @@ var ClassOperation = /** @class */ (function () {
             });
         });
     };
-    //ROLE: TEACHER, STUDENT
-    ClassOperation.prototype.register = function (info, token) {
+    //ROLE: ADMIN, TEACHER, STUDENT
+    ClassOperation.prototype.getClassInfo = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
             var response, data, error_30;
@@ -921,21 +921,50 @@ var ClassOperation = /** @class */ (function () {
                 switch (_c.label) {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/register"), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                        return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get?class_id=").concat(info.class_id), {
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
                         return [2 /*return*/, { error: data.error, data: data.data, message: data.message }];
                     case 2:
                         error_30 = _c.sent();
-                        console.log("ClassOperation Error register: ", (_a = error_30 === null || error_30 === void 0 ? void 0 : error_30.response) === null || _a === void 0 ? void 0 : _a.data);
+                        console.log("ClassOperation Error create: ", (_a = error_30 === null || error_30 === void 0 ? void 0 : error_30.response) === null || _a === void 0 ? void 0 : _a.data);
                         console.error("Request that caused the error: ", error_30 === null || error_30 === void 0 ? void 0 : error_30.request);
                         return [2 /*return*/, { error: (_b = error_30 === null || error_30 === void 0 ? void 0 : error_30.response) === null || _b === void 0 ? void 0 : _b.data, request: error_30 === null || error_30 === void 0 ? void 0 : error_30.request, status: error_30.response ? error_30.response.status : null }];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //ROLE: TEACHER, STUDENT
+    ClassOperation.prototype.register = function (info, token) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function () {
+            var response, data, error_31;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        _c.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/register"), info, {
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
+                    case 1:
+                        response = _c.sent();
+                        data = response.data;
+                        return [2 /*return*/, { error: data.error, data: data.data, message: data.message }];
+                    case 2:
+                        error_31 = _c.sent();
+                        console.log("ClassOperation Error register: ", (_a = error_31 === null || error_31 === void 0 ? void 0 : error_31.response) === null || _a === void 0 ? void 0 : _a.data);
+                        console.error("Request that caused the error: ", error_31 === null || error_31 === void 0 ? void 0 : error_31.request);
+                        return [2 /*return*/, { error: (_b = error_31 === null || error_31 === void 0 ? void 0 : error_31.response) === null || _b === void 0 ? void 0 : _b.data, request: error_31 === null || error_31 === void 0 ? void 0 : error_31.request, status: error_31.response ? error_31.response.status : null }];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -945,7 +974,7 @@ var ClassOperation = /** @class */ (function () {
     ClassOperation.prototype.updateScore = function (info, condition, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
-            var response, data, error_31;
+            var response, data, error_32;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -961,10 +990,10 @@ var ClassOperation = /** @class */ (function () {
                         data = response.data;
                         return [2 /*return*/, { error: data.error, data: data.data, message: data.message }];
                     case 2:
-                        error_31 = _c.sent();
-                        console.log("ClassOperation Error updateScore: ", (_a = error_31 === null || error_31 === void 0 ? void 0 : error_31.response) === null || _a === void 0 ? void 0 : _a.data);
-                        console.error("Request that caused the error: ", error_31 === null || error_31 === void 0 ? void 0 : error_31.request);
-                        return [2 /*return*/, { error: (_b = error_31 === null || error_31 === void 0 ? void 0 : error_31.response) === null || _b === void 0 ? void 0 : _b.data, request: error_31 === null || error_31 === void 0 ? void 0 : error_31.request, status: error_31.response ? error_31.response.status : null }];
+                        error_32 = _c.sent();
+                        console.log("ClassOperation Error updateScore: ", (_a = error_32 === null || error_32 === void 0 ? void 0 : error_32.response) === null || _a === void 0 ? void 0 : _a.data);
+                        console.error("Request that caused the error: ", error_32 === null || error_32 === void 0 ? void 0 : error_32.request);
+                        return [2 /*return*/, { error: (_b = error_32 === null || error_32 === void 0 ? void 0 : error_32.response) === null || _b === void 0 ? void 0 : _b.data, request: error_32 === null || error_32 === void 0 ? void 0 : error_32.request, status: error_32.response ? error_32.response.status : null }];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -974,26 +1003,26 @@ var ClassOperation = /** @class */ (function () {
     ClassOperation.prototype.cancelRegister = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
-            var response, data, error_32;
+            var response, data, error_33;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/cancel_register"), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
                         return [2 /*return*/, { error: data.error, data: data.data, message: data.message }];
                     case 2:
-                        error_32 = _c.sent();
-                        console.log("ClassOperation Error cancelRegister: ", (_a = error_32 === null || error_32 === void 0 ? void 0 : error_32.response) === null || _a === void 0 ? void 0 : _a.data);
-                        console.error("Request that caused the error: ", error_32 === null || error_32 === void 0 ? void 0 : error_32.request);
-                        return [2 /*return*/, { error: (_b = error_32 === null || error_32 === void 0 ? void 0 : error_32.response) === null || _b === void 0 ? void 0 : _b.data, request: error_32 === null || error_32 === void 0 ? void 0 : error_32.request, status: error_32.response ? error_32.response.status : null }];
+                        error_33 = _c.sent();
+                        console.log("ClassOperation Error cancelRegister: ", (_a = error_33 === null || error_33 === void 0 ? void 0 : error_33.response) === null || _a === void 0 ? void 0 : _a.data);
+                        console.error("Request that caused the error: ", error_33 === null || error_33 === void 0 ? void 0 : error_33.request);
+                        return [2 /*return*/, { error: (_b = error_33 === null || error_33 === void 0 ? void 0 : error_33.response) === null || _b === void 0 ? void 0 : _b.data, request: error_33 === null || error_33 === void 0 ? void 0 : error_33.request, status: error_33.response ? error_33.response.status : null }];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -1003,7 +1032,7 @@ var ClassOperation = /** @class */ (function () {
     ClassOperation.prototype.submitFile = function (info, condition, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
-            var formData, response, data, error_33;
+            var formData, response, data, error_34;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -1011,20 +1040,20 @@ var ClassOperation = /** @class */ (function () {
                         formData = new FormData();
                         formData.append('submitFile', info.submitFile);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/submit_file?class_id=").concat(condition.class_id), formData, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
                         return [2 /*return*/, { error: data.error, data: data.data, message: data.message }];
                     case 2:
-                        error_33 = _c.sent();
-                        console.log("ClassOperation Error submitFile: ", (_a = error_33 === null || error_33 === void 0 ? void 0 : error_33.response) === null || _a === void 0 ? void 0 : _a.data);
-                        console.error("Request that caused the error: ", error_33 === null || error_33 === void 0 ? void 0 : error_33.request);
-                        return [2 /*return*/, { error: (_b = error_33 === null || error_33 === void 0 ? void 0 : error_33.response) === null || _b === void 0 ? void 0 : _b.data, request: error_33 === null || error_33 === void 0 ? void 0 : error_33.request, status: error_33.response ? error_33.response.status : null }];
+                        error_34 = _c.sent();
+                        console.log("ClassOperation Error submitFile: ", (_a = error_34 === null || error_34 === void 0 ? void 0 : error_34.response) === null || _a === void 0 ? void 0 : _a.data);
+                        console.error("Request that caused the error: ", error_34 === null || error_34 === void 0 ? void 0 : error_34.request);
+                        return [2 /*return*/, { error: (_b = error_34 === null || error_34 === void 0 ? void 0 : error_34.response) === null || _b === void 0 ? void 0 : _b.data, request: error_34 === null || error_34 === void 0 ? void 0 : error_34.request, status: error_34.response ? error_34.response.status : null }];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -1034,26 +1063,26 @@ var ClassOperation = /** @class */ (function () {
     ClassOperation.prototype.deleteSubmitFile = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
-            var response, data, error_34;
+            var response, data, error_35;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.delete("".concat(this.baseUrl, "/delete_file?class_id=").concat(info.class_id, "&filename=").concat(info.filename), {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
                         return [2 /*return*/, { error: data.error, data: data.data, message: data.message }];
                     case 2:
-                        error_34 = _c.sent();
-                        console.log("ClassOperation Error deleteSubmitFile: ", (_a = error_34 === null || error_34 === void 0 ? void 0 : error_34.response) === null || _a === void 0 ? void 0 : _a.data);
-                        console.error("Request that caused the error: ", error_34 === null || error_34 === void 0 ? void 0 : error_34.request);
-                        return [2 /*return*/, { error: (_b = error_34 === null || error_34 === void 0 ? void 0 : error_34.response) === null || _b === void 0 ? void 0 : _b.data, request: error_34 === null || error_34 === void 0 ? void 0 : error_34.request, status: error_34.response ? error_34.response.status : null }];
+                        error_35 = _c.sent();
+                        console.log("ClassOperation Error deleteSubmitFile: ", (_a = error_35 === null || error_35 === void 0 ? void 0 : error_35.response) === null || _a === void 0 ? void 0 : _a.data);
+                        console.error("Request that caused the error: ", error_35 === null || error_35 === void 0 ? void 0 : error_35.request);
+                        return [2 /*return*/, { error: (_b = error_35 === null || error_35 === void 0 ? void 0 : error_35.response) === null || _b === void 0 ? void 0 : _b.data, request: error_35 === null || error_35 === void 0 ? void 0 : error_35.request, status: error_35.response ? error_35.response.status : null }];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -1063,26 +1092,26 @@ var ClassOperation = /** @class */ (function () {
     ClassOperation.prototype.showSubmitFile = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
-            var response, data, error_35;
+            var response, data, error_36;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/show_files?class_id=").concat(info.class_id), {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
                         return [2 /*return*/, { error: data.error, data: data.data, message: data.message }];
                     case 2:
-                        error_35 = _c.sent();
-                        console.log("ClassOperation Error showSubmitFile: ", (_a = error_35 === null || error_35 === void 0 ? void 0 : error_35.response) === null || _a === void 0 ? void 0 : _a.data);
-                        console.error("Request that caused the error: ", error_35 === null || error_35 === void 0 ? void 0 : error_35.request);
-                        return [2 /*return*/, { error: (_b = error_35 === null || error_35 === void 0 ? void 0 : error_35.response) === null || _b === void 0 ? void 0 : _b.data, request: error_35 === null || error_35 === void 0 ? void 0 : error_35.request, status: error_35.response ? error_35.response.status : null }];
+                        error_36 = _c.sent();
+                        console.log("ClassOperation Error showSubmitFile: ", (_a = error_36 === null || error_36 === void 0 ? void 0 : error_36.response) === null || _a === void 0 ? void 0 : _a.data);
+                        console.error("Request that caused the error: ", error_36 === null || error_36 === void 0 ? void 0 : error_36.request);
+                        return [2 /*return*/, { error: (_b = error_36 === null || error_36 === void 0 ? void 0 : error_36.response) === null || _b === void 0 ? void 0 : _b.data, request: error_36 === null || error_36 === void 0 ? void 0 : error_36.request, status: error_36.response ? error_36.response.status : null }];
                     case 3: return [2 /*return*/];
                 }
             });
@@ -1091,18 +1120,18 @@ var ClassOperation = /** @class */ (function () {
     //ROLE: TEACHER, STUDENT
     ClassOperation.prototype.getSubmitFile = function (info, token) {
         return __awaiter(this, void 0, void 0, function () {
-            var response, url, link, error_36;
+            var response, url, link, error_37;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_files?class_id=").concat(info.class_id), {
-                            responseType: 'blob', // Set response type to blob for binary data (ZIP file)
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                responseType: 'blob', // Set response type to blob for binary data (ZIP file)
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _a.sent();
                         url = window.URL.createObjectURL(new Blob([response.data]));
@@ -1114,8 +1143,8 @@ var ClassOperation = /** @class */ (function () {
                         link.remove();
                         return [2 /*return*/, { success: true }];
                     case 2:
-                        error_36 = _a.sent();
-                        console.error('Error downloading files:', error_36);
+                        error_37 = _a.sent();
+                        console.error('Error downloading files:', error_37);
                         return [2 /*return*/, { success: false, error: 'Error downloading files' }];
                     case 3: return [2 /*return*/];
                 }
@@ -1125,26 +1154,26 @@ var ClassOperation = /** @class */ (function () {
     ClassOperation.prototype.getScoreForTeacher = function (info, token) {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
-            var response, data, error_37;
+            var response, data, error_38;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_score?class_id=").concat(info.class_id), {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
                         return [2 /*return*/, { error: data.error, data: data.data, message: data.message }];
                     case 2:
-                        error_37 = _c.sent();
-                        console.log("ClassOperation Error showSubmitFile: ", (_a = error_37 === null || error_37 === void 0 ? void 0 : error_37.response) === null || _a === void 0 ? void 0 : _a.data);
-                        console.error("Request that caused the error: ", error_37 === null || error_37 === void 0 ? void 0 : error_37.request);
-                        return [2 /*return*/, { error: (_b = error_37 === null || error_37 === void 0 ? void 0 : error_37.response) === null || _b === void 0 ? void 0 : _b.data, request: error_37 === null || error_37 === void 0 ? void 0 : error_37.request, status: error_37.response ? error_37.response.status : null }];
+                        error_38 = _c.sent();
+                        console.log("ClassOperation Error showSubmitFile: ", (_a = error_38 === null || error_38 === void 0 ? void 0 : error_38.response) === null || _a === void 0 ? void 0 : _a.data);
+                        console.error("Request that caused the error: ", error_38 === null || error_38 === void 0 ? void 0 : error_38.request);
+                        return [2 /*return*/, { error: (_b = error_38 === null || error_38 === void 0 ? void 0 : error_38.response) === null || _b === void 0 ? void 0 : _b.data, request: error_38 === null || error_38 === void 0 ? void 0 : error_38.request, status: error_38.response ? error_38.response.status : null }];
                     case 3: return [2 /*return*/];
                 }
             });
