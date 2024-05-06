@@ -5,77 +5,52 @@ import Info from "@/components/Homework/Info";
 import { HomeworkGeneralData, storeUserAPIAHomeworkArgs } from "@/components/Homework/Data";
 import { ClassOperation, StudentOperation, TeacherOperation, token, ClassID } from '@/ambLib/amb';
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 export default function Quiz () {  
-	const router = useRouter();
-	const { routerClassID, routerCourseID, routerCourseName, routerTeacher, routerToken } = router.query;
-	const [role, setRole] = useState<string>("student");
-	const [userToken, setUserToken] = useState<token>({ token: routerToken as string });
+	const [role, setRole] = useState<string>(localStorage.getItem("role"));
+	const [userToken, setUserToken] = useState<token>({ token: ""});
 	const [getUserData, setUserData] = useState<any>(null);
-	const [classID, setClassID] = useState<ClassID>(null);
-	const [courseName, setCourseName] = useState<string>(routerCourseName as string);
+	const [classID, setClassID] = useState<ClassID>({ class_id: localStorage.getItem("classID")});
+	const [courseName, setCourseName] = useState<string>(localStorage.getItem("courseName"));
 	const [loadingState, setLoadingState] = useState<boolean>(true);
 	const [file, setFile] = useState<File | null>(null);
 	const [multipleFile, setMultipleFile] = useState<File[]>([]);
 
-
-
-	useEffect(() => {
-		if (router.isReady) {
-			if (router.query.token) {
-				setUserToken({ token: router.query.token as string });
-			}
-			if (router.query.class_id) {
-				setClassID( { class_id: router.query.class_id as string });
-				console.log("ClassID in query: ", router.query.class_id);
-				if (classID)
-				{
-					console.log("ClassID: ", classID);
-				}
-				
-			}
-			if (router.query.course_name) {
-				setCourseName(router.query.course_name as string);
-			}
-
-		}
-
-	}, [router]);
 
 	// first useEffect to get token
 	let student = new StudentOperation();
 	let teacher = new TeacherOperation();
 	// to get student token
 	useEffect(() => {
-		if (role == "student") {
-			student.login("long.nguyen24243004", "Student@24243004")
-				// student.login("viet.nguyen24156661", "089204006677")
-				.then(data => {
-					console.log("Data: ", data);
-					const newToken = { token: data.token };
-					if (newToken) {
-						setUserToken(newToken);
-						console.log("newToken: ", newToken.token);
-					}
-				});
-		}
-		else if (role == "teacher") {
-			teacher.login("huy.bui53587", "huy.bui53587")
+		setRole(localStorage.getItem("currentRole"));
+		setCourseName(localStorage.getItem("currentCourseName"));
+		setClassID({ class_id: localStorage.getItem("currentClassID") });
+		const currentToken = Cookies.get("userToken");
+		// console.log("currentToken: ", currentToken);
+		setUserToken({ token: currentToken });
+		// console.log("Update token Cookies!: ", Cookies.get("userToken"));
+		console.log("Real token cookie: ", userToken)
+		console.log("DATA UPDATED!!");
 
-				.then(data => {
-					console.log("Data: ", data);
-					const newToken = { token: data.token };
-					if (newToken) {
-						setUserToken(newToken);
-						console.log("newToken: ", newToken.token);
-					}
-				});
-		}
-	}, []);
+		// return () => {
+		// 	// cleanup localStorage
+		// 	localStorage.removeItem("currentRole");
+		// 	localStorage.removeItem("currentClassID");
+		// 	localStorage.removeItem("currentCourseName");
+		// }
+
+	}, [
+		localStorage.getItem("currentRole"),
+		localStorage.getItem("currentClassID"),
+		localStorage.getItem("currentCourseName"),
+	]);
 
 	// second useEffect to get data
 	useEffect(() => {
+		console.log("token has been updated!");
 		if (userToken) {
+			// console.log("role: ", role);
 			if (role == "student") {
 				student.findStudentRegisteredClass({ token: userToken.token })
 					.then(data => {
@@ -109,18 +84,13 @@ export default function Quiz () {
 
 	}, [userToken]);
 
-	if (classID && userToken && getUserData && router.isReady) {
-		storeUserAPIAHomeworkArgs.setToken(userToken);
-		// console.log("userToken: ", userToken);
-		if (classID)
-		{
-			storeUserAPIAHomeworkArgs.setClassID(classID);
-		}
-		
-		// console.log("classID: ", classID);
+	if (role)
+	{
+		console.log("role: ", role);
+	
 	}
 
-	if (getUserData == null || router.isReady == false) {
+	if (getUserData == null) {
 
 		return (
 			<div className="block">

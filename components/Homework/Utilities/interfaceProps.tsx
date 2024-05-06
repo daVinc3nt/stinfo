@@ -41,3 +41,10 @@ export interface Subject {
     course_name: string,
     teacher: string,
 }
+
+export interface Score {
+    course_id: string,
+    course_name: string,
+    exercise: number,
+    lab: number,
+}

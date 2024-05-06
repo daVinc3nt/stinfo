@@ -1,6 +1,6 @@
 // generate two event for today and tomorrow, and store it in an array based on the interface EventProps
 import { EventProps, SubjectProps } from '@/components/Calendar/Features/interfaceProps';
-import { WeekUtils, DateUtils, HourUtils } from './Features/utils_calendar';
+import { WeekUtils, DateUtils, HourUtils, VisualEffect } from './Features/utils_calendar';
 // sample dataset
 
 
@@ -124,16 +124,10 @@ function fillMissingData(subjectData) : SubjectProps[]
 			room: subjectData[i].room,
 			semester: subjectData[i].semester,
 			weeks: subjectData[i].weeks,
-			color: subjectData[i].color
+			color: VisualEffect.chooseColor(i),
 		};
 		fillListOfSubjects.push(subject);
 	}
-	// fillListOfSubjects[0].weeks = [2, 3, 4, 5, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18];
-	// fillListOfSubjects[1].weeks = [2, 3, 4, 5, 8, 9, 10, 12, 13, 14, 15, 16, 17];
-	// fillListOfSubjects[2].weeks = [2, 3, 4, 5, 8, 9, 10, 17, 18, 19, 20, 21, 22];
-	fillListOfSubjects[0].color = "bg-blue-200";
-	fillListOfSubjects[1].color = "bg-green-200";
-	// fillListOfSubjects[2].color = "bg-red-200";
 
 	return fillListOfSubjects;
 }

@@ -13,8 +13,9 @@ import {
 import { Subject } from "@/components/Homework/Utilities/interfaceProps";
 import { SubmissionFieldUtils } from "@/components/Homework/Utilities/utils_homework";
 import Link from "next/link";
+import Cookies from "js-cookie"
 import { useRouter } from "next/router";
-
+import Quiz from "./ShowQuiz";
 
 const ListOfSubmittedSubject = () => {
 	const [role, setRole] = useState<string>("student");
@@ -23,7 +24,12 @@ const ListOfSubmittedSubject = () => {
 	const [classID, setClassID] = useState<ClassID>(null);
 	const [courseName, setCourseName] = useState<string>("");
 	const [loadingState, setLoadingState] = useState<boolean>(true);
-	const [listSubject, setListSubject] = useState<Subject[]>([]);
+	const [listSubject, setListSubject] = useState<Subject[]>(null);
+	const [listScore, setListScore] = useState<any[]>(null);
+	// const [showSubmission, setShowSubmission] = useState<boolean>(false);
+	// Keep track of the index of the item whose submission is being shown
+	const [showSubmissionIndex, setShowSubmissionIndex] = useState<number>(-1);
+	const router = useRouter();
 
 	let student = new StudentOperation();
 	let teacher = new TeacherOperation();
@@ -52,24 +58,43 @@ const ListOfSubmittedSubject = () => {
 					}
 				});
 		}
+
+		return () => {
+			// cleanup localStorage
+			localStorage.removeItem("currentRole");
+			localStorage.removeItem("currentClassID");
+			localStorage.removeItem("currentCourseName");
+		}
+
 	}, []);
 
 	// second useEffect to get data
+	let getListSubjectData, getListScoreData;
 	useEffect(() => {
+
+
 		if (userToken) {
 			if (role == "student") {
 				student.findStudentRegisteredClass({ token: userToken.token })
 					.then(data => {
-						const getData = data.data;
-						if (getData) {
-							console.log("newData: ", getData);
-							setUserData(getData);
-							setListSubject(SubmissionFieldUtils.createArrayOfSubject(getData));
-							console.log("listSubject: ", listSubject);
-							// let newClassID: ClassID = getData[0].class_id;
-							// setClassID(newClassID);
-							// console.log("currentClassID: ", newClassID);
-							// setCourseName(getData[0].course_name);
+						getListSubjectData = data.data;
+						if (getListSubjectData) {
+							SubmissionFieldUtils.sortListSubject(getListSubjectData);
+							setListSubject(SubmissionFieldUtils.createArrayOfSubject(getListSubjectData));
+							// console.log("subject data: ", listSubject);
+						}
+					}
+					)
+				student.getScore({ token: userToken.token })
+					.then(data => {
+						if (data.data) {
+							getListScoreData = data.data.allScores;
+						}
+						if (getListScoreData) {
+							// console.log("score data: ", getListScoreData);
+							SubmissionFieldUtils.sortListScore(getListScoreData);
+							setListScore(SubmissionFieldUtils.createArrayOfScore(getListScoreData));
+							// console.log("score data: ", listScore)
 						}
 					}
 					)
@@ -89,28 +114,33 @@ const ListOfSubmittedSubject = () => {
 					)
 			}
 		}
-		storeUserAPIAHomeworkArgs.setToken(userToken);
+		Cookies.set("userToken", userToken.token);
 
 	}, [userToken]);
 
-	const router = useRouter();
-	const routeToShowQuiz = (subject: Subject, index: number) => {
-		storeUserAPIAHomeworkArgs.setClassID({ class_id: subject.class_id });
-		console.log("Show Subject: ", subject);
-		router.push({
-			pathname: "/dashboard/ShowQuiz",
-			query: {
-				class_id: subject.class_id, 
-				course_id: subject.course_id,
-				course_name: subject.course_name,
-				teacher: subject.teacher,
-				token: userToken.token,
-			}
-		});
+	if (listSubject && listScore) {
+		console.log("listSubject: ", listSubject);
+		console.log("listScore: ", listScore);
 	}
 
-	if (listSubject)
-	{
+
+	const routeToShowQuiz = (subject: Subject, index: number) => {
+		localStorage.setItem("currentClassID", subject.class_id);
+		localStorage.setItem("currentCourseName", subject.course_name);
+		localStorage.setItem("currentRole", "student");
+		localStorage.setItem("currentCourseID", subject.course_id);
+		localStorage.setItem("currentTeacher", subject.teacher);
+		localStorage.setItem("currentScore", String(listScore[index].exercise))
+		console.log(localStorage.getItem("currentScore"));
+		console.log("currentScore: ", listScore[index].exercise);
+		console.log("currentIndex: ", index);
+		console.log("listOfScore: ", listScore);
+		setCourseName(subject.course_name);
+		setRole("student");
+		setShowSubmissionIndex(prevIndex => prevIndex === index ? -1 : index);
+	}
+
+	if (listSubject && listScore) {
 		return (
 			<div>
 				<div className="flex justify-between items-center bg-gray-200 p-4">
@@ -120,19 +150,40 @@ const ListOfSubmittedSubject = () => {
 				</div>
 				<div>
 					{listSubject.map((subject, index) => (
-						<div key={index} className=" shadow-md p-6 my-4 mx-4 rounded-md bg-blue-200">
+						<div key={index} className=" shadow-md p-6 my-4 mx-4 rounded-md border border-blue-200 border-solid">
 							<h2 className="text-xl font-semibold mb-2">{subject.course_name}</h2>
 							<p className="text-gray-600 mb-2">Course ID: {subject.course_id}</p>
 							<p className="text-gray-600 mb-2">Class ID: {subject.class_id}</p>
 							<p className="text-gray-600 mb-2">Teacher: {subject.teacher}</p>
 							<button onClick={() => routeToShowQuiz(subject, index)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-								Show Submission
+								{
+									showSubmissionIndex == index ? "Ẩn" : "Xem"
+								}
 							</button>
+							<div>
+								{
+									showSubmissionIndex == index ? <Quiz /> : null
+								}
+							</div>
 						</div>
 					))}
 				</div>
 			</div>
 		);
+	}
+	else {
+		return (
+			<div>
+				<div className="flex justify-between items-center bg-gray-200 p-4">
+					<h1 className="text-2xl font-bold">
+						Danh sách các môn nộp bài
+					</h1>
+				</div>
+				<div className="flex justify-center items-center h-64">
+					<p>Đang tải...</p>
+				</div>
+			</div>
+		)
 	}
 
 }

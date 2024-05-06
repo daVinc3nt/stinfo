@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import SubmitButton from './FinishSubmissionButton';
 import { SubmissionProps, Deadline } from '../Utilities/interfaceProps';
 import { SubmissionFieldUtils } from '../Utilities/utils_homework';
-import ScoreField from './ScoreField';
+// import ScoreField from './ScoreField';
 import { HomeworkSubmissionData, storeUserAPIAHomeworkArgs } from "@/components/Homework/Data";
 import { ClassOperation, StudentOperation, TeacherOperation, token, ClassID, SubmitFile } from '@/ambLib/amb';
-
+import Cookies from "js-cookie";
+import { list } from '@material-tailwind/react';
 
 // This component is a container for the submission field of a quiz
 const SubmissionField = (props: { role: string }) => {
@@ -18,19 +18,42 @@ const SubmissionField = (props: { role: string }) => {
 	const [timeLeft, setTimeLeft] = useState<string>(HomeworkSubmissionData.calculateTimeLeft());
 	const [lastModifiedTime, setLastModifiedTime] = useState<string>(HomeworkSubmissionData.lastModifiedTime);
 	const [role, setRole] = useState<string>(props.role); // the role will be taken from login page
-	const [classID, setClassID] = useState<ClassID>(storeUserAPIAHomeworkArgs.classID);
-	const [className, setClassName] = useState<string>("");
+	const [classID, setClassID] = useState<ClassID>({ class_id: localStorage.getItem("currentClassID") });
 	const [score, setScore] = useState<number>(0);
 	const [loadingState, setLoadingState] = useState<boolean>(false);
-	const [token, setToken] = useState<token>(storeUserAPIAHomeworkArgs.currentToken);
+	const [token, setToken] = useState<token>({ token: localStorage.getItem("currentRole") });
 	const [isUploadError, setIsUploadError] = useState<boolean>(false);
 	const [listFileName, setListFileName] = useState<string[]>([]);
 	const [numOfFile, setNumOfFile] = useState<number>(0);
+	const [diffNumOfFile, setDiffNumOfFile] = useState<number>(0);
 
 	// useEffect to get list of submit file
+
+	useEffect(() => {
+		setRole(localStorage.getItem("currentRole"));
+		setClassID({ class_id: localStorage.getItem("currentClassID") });
+		const currentToken = Cookies.get("userToken");
+		// console.log("currentToken: ", currentToken);
+		setToken({ token: currentToken });
+		// console.log("Update token Cookies!: ", Cookies.get("userToken"));
+		// console.log("Real token cookie: ", token)
+
+		// return () => {
+		// 	// cleanup localStorage
+		// 	localStorage.removeItem("currentRole");
+		// 	localStorage.removeItem("currentClassID");
+		// 	localStorage.removeItem("currentCourseName");
+		// }
+
+	}, [
+		localStorage.getItem("currentRole"),
+		localStorage.getItem("currentClassID"),
+		localStorage.getItem("currentCourseName"),
+	]);
+
 	useEffect(() => {
 		const operation = new ClassOperation();
-		if (token && classID) {
+		if (token && classID.class_id) {
 			operation.showSubmitFile({ class_id: String(classID.class_id.toString()) }, token)
 				.then(data => {
 					const getData = data;
@@ -38,11 +61,12 @@ const SubmissionField = (props: { role: string }) => {
 						// console.log("list of submit File: ", getData);
 						setListFileName(getData.data);
 						setNumOfFile(getData.data.length);
+						console.log("showSubmitFile run from 1st load");
 					}
 				}
 				)
 		}
-	}, []);
+	}, [token]);
 
 	// useEffect when the file change (after the file is uploaded), update isSubmitted, isBeforeDeadline state
 	useEffect(() => {
@@ -59,59 +83,30 @@ const SubmissionField = (props: { role: string }) => {
 			//console.log(HomeworkSubmissionData.isSubmitted);
 		}
 
-		if (token && classID) {
-			operation.showSubmitFile({ class_id: String(classID) }, token)
-				.then(data => {
-					const getData = data;
-					if (getData) {
-						// console.log("list of submit File: ", getData);
-						setListFileName(getData.data);
-						if (getData.data) {
-							// setNumOfFile(getData.data.length);
-						}
 
-					}
-				}
-				)
-			console.log("this command re-run!!");
-		}
-
-		console.log("useEffect re-run!!");
 
 	}, [numOfFile]);
 
-	if (classID)
-	{
-		console.log("ClassID in SubmissionField: ", classID);
-	}
-
 	console.log("numOfFile: ", numOfFile);
+	console.log("diffNumOfFile: ", diffNumOfFile);
 
 	// This component only inside the SubmissionField component
 	const ShowUploadFile = () => {
-		if (listFileName) {
-			if (isUploadError == true) {
-				return (
-					<div className="bg-red-500">
-						Chỉ có thể nộp file PDF
-					</div>
-				)
-			} else {
-				return (
-					<div className='bg-green-200'>
-						{
-							// show all the File Name based on listFileName
-							listFileName.map((fileName, index) => {
-								return (
-									<div key={index}>
-										{fileName}
-									</div>
-								)
-							})
-						}
-					</div>
-				)
-			}
+		if (listFileName && listFileName.length > 0) {
+			return (
+				<div className='bg-green-200 p-2'>
+					{
+						// show all the File Name based on listFileName
+						listFileName.map((fileName, index) => {
+							return (
+								<div key={index}>
+									{fileName}
+								</div>
+							)
+						})
+					}
+				</div>
+			)
 		}
 		else {
 			return (
@@ -130,67 +125,53 @@ const SubmissionField = (props: { role: string }) => {
 		};
 
 		return (
-			<div className="py-3">
-				{/* the input element actually upload the file, but hidden from the UI, the button will 
-			trigger the onChange event */}
-				<input type='file' id="selected_file" className=' hidden'
-					onChange={(event) => {
-						// handle file change and upload file
-						if (event.target.files && event.target.files.length > 0) {
-							const newFile: SubmitFile = {
-								submitFile: event.target.files[0]
-							}
-							setFile(newFile);
-							// setNumOfFile(numOfFile => numOfFile + 1);
-							const operation = new ClassOperation();
-							if (newFile) {
-								console.log("information about new file: ", newFile);
-								console.log("upload file to local: ", newFile);
-								console.log("token from uploading: ", token);
-								console.log("classID from uploading: ", classID.class_id);
-								operation.submitFile(newFile, { class_id: classID.class_id.toString() }, token)
-									.then(response => {
-										console.log("File submitted: ", response.error);
-										if (response.error) {
-											setIsUploadError(true);
-											console.log("UPLOAD FAILED!!");
-										}
-										else {
-											HomeworkSubmissionData.setNewFile(newFile);
-											setIsUploadError(false);
-											console.log("UPLOAD SUCCESS!!");
-											setNumOfFile(numOfFile => numOfFile + 1);
-										}
-									})
-							}
-						}
-					}}
-					onClick={(event) => {
-						// reset the input element value to allow the same file to be uploaded
-						event.currentTarget.value = '';
-					}}>
-				</input>
+			<div className="py-3 flex items-center">
 				<button
-					className="bg-blue-500 text-center block py-3 px-4 text-white border rounded-md hover:bg-blue-800"
+					className="bg-blue-500 text-center py-3 px-4 text-white border rounded-md hover:bg-blue-800"
 					onClick={handleClick}
 				>
 					Thêm bài nộp
 				</button>
+				{
+					isUploadError ? <div className="text-red-500 ml-2">Chỉ có thể nộp file PDF</div> : null
+				}
 			</div>
 		);
 	}
 
 	const DeleteFileButton = (props: { deletedFileName: string }) => {
+		const [deleteText, setDeleteText] = useState<string>("Xóa");
+		const [deleteStyle, setDeleteStyles] = useState<string>("bg-red-300")
 		// design style for delete button
 
 		const operation = new ClassOperation();
 		const handleDelete = () => {
-			operation.deleteSubmitFile({ class_id: String(classID), filename: props.deletedFileName }, token)
+			setDeleteText("Đang xóa");
+			setDeleteStyles("bg-gray-300");
+			operation.deleteSubmitFile({ class_id: String(classID.class_id), filename: props.deletedFileName }, token)
 				.then(response => {
 					// console.log("delete file: ", response);
 					setNumOfFile(numOfFile => numOfFile - 1);
+					setDiffNumOfFile(diffNumOfFile => diffNumOfFile - 1);
 				}
 				)
+				.then(() => {
+					if (token && classID) {
+						operation.showSubmitFile({ class_id: String(classID.class_id) }, token)
+							.then(data => {
+								const getData = data;
+								if (getData) {
+									// console.log("list of submit File: ", getData);
+									setListFileName(getData.data);
+									if (getData.data) {
+										// setNumOfFile(getData.data.length);
+									}
+								}
+							}
+							)
+					}
+				})
+
 		}
 
 		// console.log("deletedFileName: ", props.deletedFileName);
@@ -198,14 +179,16 @@ const SubmissionField = (props: { role: string }) => {
 		return (
 			<button
 				onClick={handleDelete}
-				className='bg-red-300 text-center block w-full text-black border rounded-md hover:bg-red-500 h-full'>
-				Xóa
+				className={`${deleteStyle} text-center block w-full text-black border hover:bg-red-500 h-full`}>
+				{
+					deleteText
+				}
 			</button>
 		);
 	}
 
 	// gridStyles for the grid layout
-	const gridStyles = 'border p-2 text-left ';
+	const gridStyles = 'border text-left';
 
 
 	if (!loadingState) {
@@ -228,7 +211,8 @@ const SubmissionField = (props: { role: string }) => {
 										(
 											<div className={`grid grid-row-[${listFileName.length}]`}>
 												{
-													// show delete button for each file
+
+													// show delete button for each 
 													listFileName.map((fileName, index) => {
 														return (
 															<div key={index}>
@@ -246,35 +230,13 @@ const SubmissionField = (props: { role: string }) => {
 				}
 
 
-				<div className='grid grid-cols-[30%_70%] grid-rows-4 border border-gray-400 mx-8 shadow-lg'>
-					<div className={gridStyles + "bg-gray-100"}> Trạng thái bài nộp</div>
+				<div className='grid grid-cols-[30%_70%] grid-rows-1 border border-gray-400 mx-8 shadow-lg'>
+					<div className={gridStyles + "bg-gray-100 p-2"}> Trạng thái bài nộp</div>
 					<div className={gridStyles + SubmissionFieldUtils.setIsSubmittedStyles(HomeworkSubmissionData.isSubmitted, HomeworkSubmissionData.isDeadline, numOfFile)} id="isSubmittedDiv">
 						{
-							(HomeworkSubmissionData.isSubmitted && numOfFile > 0) ? 'Đã nộp' : 'Chưa nộp'
+							(numOfFile > 0) ? 'Đã nộp' : 'Chưa nộp'
 						}
 					</div>
-					{}
-					<div className={gridStyles}>
-						Trạng thái chấm điểm
-					</div>
-					<div className={gridStyles}>
-						{
-							HomeworkSubmissionData.isGraded ? 'Đã chấm' : 'Chưa chấm'
-						}
-					</div>
-					<div className={gridStyles + "bg-gray-100"}> Thời gian còn lại</div>
-					<div className={gridStyles + "bg-gray-100"}>
-						{
-							timeLeft
-						}
-					</div>
-					<div className={gridStyles}> Chỉnh sửa lần cuối </div>
-					<div className={gridStyles}>
-						{
-							lastModifiedTime
-						}
-					</div>
-
 				</div>
 				{
 					HomeworkSubmissionData.isGraded ? <ScoreField /> : null
@@ -290,6 +252,55 @@ const SubmissionField = (props: { role: string }) => {
 		)
 	}
 
+}
+
+function ScoreField() {
+
+
+	return (
+		<div className='my-8'>
+			<ScoreInfo />
+			{/* <ScoreDate /> */}
+			<ReviewField />
+		</div>
+
+	)
+}
+
+const ScoreInfo = () => {
+	return (
+		<div className=" bg-white border-b-2 text-3xl text-blue">
+			<div className=''>
+				Điểm số
+			</div>
+		</div>
+	)
+}
+
+const ReviewField = () => {
+	const gridStyles = 'border p-2 text-left';
+	return (
+		<div className='grid grid-cols-[30%_70%] grid-rows-2 border border-gray-400 mx-8 shadow-lg my-6 '>
+			<div className={gridStyles}> Giảng viên</div>
+			<div className={gridStyles}>
+				{localStorage.getItem("currentTeacher")}
+			</div>
+			<div className={gridStyles}> Điểm số </div>
+			<div className={gridStyles}>
+				{localStorage.getItem("currentScore")}
+			</div>
+		</div>
+	)
+}
+
+const ScoreDate = () => {
+	return (
+		<div className=" bg-blue-100 mb-10 rounded text-black my-7 border-b-2  p-2 shadow-lg">
+			<div>
+				Ngày cho điểm: {HomeworkSubmissionData.gradedDate.toLocaleString()}
+			</div>
+		</div>
+	)
 }
 
 export default SubmissionField;
