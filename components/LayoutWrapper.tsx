@@ -27,7 +27,7 @@ const Wrapper = ({ children }: LayoutProps) => {
   };
   return (
     <div className=" flex">
-      <div className="flex-1 flex flex-col h-screen">
+      <div className="flex-1 z-50 flex flex-col h-screen">
         <div className="flex flex-col">
           <header className="h-16 flex w-full p-4 justify-between bg-blue-900 items-center px-3 xl:px-2">
                   <div className="flex gap-5 items-center">
@@ -73,7 +73,7 @@ const Wrapper = ({ children }: LayoutProps) => {
           </header>
         </div>
         {modalIsOpen && <DetailStaff onClose={closeModal}/>}
-        <div className="">
+        <div className="w-full z-10">
           {children}
         </div>
       </div>
