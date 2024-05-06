@@ -1,4 +1,5 @@
-import CouresInfo from "@/components/MyCourses/MyClass/CouresInfo"
+
+import MyClass from "@/components/MyCourses/MyClass/content/MyClass";
 import { useRouter } from "next/router";
 
 
@@ -8,7 +9,7 @@ const class_info = () => {
     const { class_id } = router.query;
     return (
         <div>
-            <CouresInfo class_id={String(class_id)}/>
+            <MyClass ClassID={String(class_id)}/>
         </div>
     )
 }

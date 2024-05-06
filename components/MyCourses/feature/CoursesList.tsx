@@ -5,6 +5,7 @@ import ListMode from './DisplayMode/ListMode';
 import CardMode from './DisplayMode/CardMode';
 import { ClassID, CourseID, CourseOperation, StudentOperation, UpdatingCourseInfo, token } from '@/ambLib/amb';
 import cookie from "js-cookie"
+import { Diversity1 } from '@mui/icons-material';
 
 
 
@@ -118,21 +119,20 @@ const fetchCourseList = async () => {
   try {
       const getCourseListAPI = new StudentOperation();
       const response = await getCourseListAPI.findStudentRegisteredClass(myToken);
-      console.log("Course data :", response.data); // Log the specific data part
+      console.log(response.data)
+
+
       setCourseInfo(response.data);
 
-      // Fetch class ID for the first course
-      // if (response.data.length > 0) {
-      //     const firstCourseID = response.data[0].course_id;
-      //     console.log(firstCourseID)
-      //     fetchClassID(firstCourseID);
-      // }
   } catch (error) {
       console.error("Error fetching course data:", error);
   }
 };
 useEffect(() => {
   fetchCourseList();  
+}, []);
+useEffect(() => {
+  console.log(courseInfo);  
 }, []);
 
   return(
@@ -146,22 +146,29 @@ useEffect(() => {
         <div className=''><DisplayModeSelector onChangeMode={handleModeChange} /></div>    
       </div>
       
-    <div className={displayMode === 'card' ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-10" : "py-20 md:px-40 space-y-8 min-h-full"}>
-  {courseInfo && courseInfo.map(course => (  ( <div  key={course.course_id}>
+     { (  <div className={displayMode === 'card' ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-10" : "py-20 md:px-40 space-y-8 min-h-full"}>
+  {courseInfo && courseInfo.map(course => ( course.semester != "HK232" ? "":  ( <div  key={course.course_id}>
       {displayMode === 'card' ? (
         <CardMode
           CourseID={course.course_id}
-      
+          ClassID={course.class_id}
+          CourseName={course.course_name}
+          Teacher={course.teacher}
         />
       ) : (
         <ListMode
           CourseID={course.course_id}
+          ClassID={course.class_id}
+          CourseName={course.course_name}
+          Teacher={course.teacher}
         />
       )}
     </div>)
    
   ))}
-</div>
+</div>) } 
+
+      
 
       </div>
     </div>

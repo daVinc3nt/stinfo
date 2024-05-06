@@ -27,7 +27,7 @@ export interface Student {
 
 
 const MyClass: React.FC<MyClassProps> = ({ClassID}) => {
-    
+
     const [filteredStudents, setFilteredStudents] = useState<string[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [sortType, setSortType] = useState<'name' | 'ID'>('ID');
@@ -67,23 +67,15 @@ const MyClass: React.FC<MyClassProps> = ({ClassID}) => {
 //     });
 //     setSortedstudent_array(sorted);
 // }, []);
-
-const handleSort = (type: 'name' | 'ID') => {
-    setSortType(type);
-};
-
-
-
-
-    
-
+// const handleSort = (type: 'name' | 'ID') => {
+//     setSortType(type);
+// };
     const [studentID, setStudentID] = useState<any[]>([]);
-
     const fetchStudentID = async () => {
         try {
             const getStudentListID = new ClassOperation();
-            const responseID = await getStudentListID.getStudentInClass({class_id: String(ClassID)}, myToken); // truyền vào tham số mã số lớp học
-            console.log(responseID.data[0])
+            const responseID = await getStudentListID.getStudentInClass({class_id: ClassID}, myToken); // truyền vào tham số mã số lớp học
+            console.log(ClassID)
             setStudentID(responseID.data);
         }
         catch ( error) {
@@ -124,16 +116,9 @@ const handleSort = (type: 'name' | 'ID') => {
                 <div className="text-center font-bold col-span-2">Chức danh</div>   
             </div>
         </div>
-        <div >
-            {studentID.length == 0 || studentID == null ?   <div className="flex items-center justify-center mx-auto my-20 font-bold text-lg p-20 rounded-xl border h-[1rem] w-1 bg-red-200 border-red-100 ">
-                
-                <div > <ErrorRounded className="mr-5 ml-8"/>
-                <div>"currently updating the student list" </div>
-                </div></div> : ( <div>{studentID && studentID.map( student => ( <div key= {student.student_id}> <StudentList StudentID={student.student_id} FullName={student.fullname} Role={student.role}/> </div> ))}</div> ) }
-            
-           
-            
-        </div>
+  
+         <div>{studentID && studentID.map( student => ( <div key= {student.student_id}> <StudentList StudentID={student.student_id} FullName={student.fullname} Role={student.role}/> </div> ))}</div> 
+
 
     </div>
        
