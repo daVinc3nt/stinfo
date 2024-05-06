@@ -1,6 +1,5 @@
 import React, { FC, useState, useRef, useEffect} from "react";
 import { useRouter } from 'next/router'
-import { User, OTP } from "../LoginPage/fetching"
 import { FormattedMessage } from "react-intl";
 // import { UsersAuthenticate } from "@/TDLib/tdlogistics";
 interface OptFieldProps {

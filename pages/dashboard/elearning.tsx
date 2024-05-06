@@ -1,6 +1,5 @@
 import React from 'react';
 import CoursesList from '@/components/MyCourses/feature/CoursesList';
-import { coursesData } from '@/components/MyCourses/content/coursesData';
 
 const elearning = () => {
     return (
