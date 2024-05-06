@@ -11,7 +11,7 @@ import { cookies } from 'next/headers';
 
 // KHAI BAO TAM THOi
 const Token: token = {
-  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVyX2lkIjoiR1Y1MzU4NyIsInJvbGUiOiJHaeG6o25nIHZpw6puIiwiYWN0aXZlIjoxLCJpYXQiOjE3MTQ5MjI1MTAsImV4cCI6MTcxNDk1ODUxMH0.w43xyP55fcXuk8g4Nu37IUeKTPljOOXGiEivacgbq_o"
+  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVyX2lkIjoiR1Y1MzU4NyIsInJvbGUiOiJHaeG6o25nIHZpw6puIiwiYWN0aXZlIjoxLCJpYXQiOjE3MTQ5NjQ5MzEsImV4cCI6MTcxNTAwMDkzMX0.wJotmNDAfcKomZ-zuggNixxWGc9XcC1OyJxzPpYMc7k"
 };
 const CouseInfo: UpdatingCourseInfo = {}
 

@@ -13,7 +13,7 @@ export default function Teacher() {
     return (
         <div className=" mt-4 mx-6  bg-white  shadow-gray-200">
             <div className="p-8 text-3xl text-white font-bold bg-sky-200">Thông tin giảng viên</div>
-            <ColorTabs pages={pages} />
+            <MyTeacher />
         </div>
     )
 }

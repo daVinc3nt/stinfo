@@ -163,10 +163,15 @@ export default function Registration(props: { token: token }) {
 
         setCourse(temp);
     }
-    const handleResToServer = () => {
+    const handleResToServer = async () => {
         const postClass = new ClassOperation()
+        let response
         for (let i = 0; i < choose.length; i++) {
-            postClass.register({ class_id: choose[i].classState, course_id: choose[i].course_id }, props.token).then(data => console.log(data))
+            if (choose[i].classState == "") continue
+            response = await postClass.register({ class_id: choose[i].classState, course_id: choose[i].course_id }, props.token)
+            console.log(response)
+            if (response.error.error) alert(response.error.message)
+            else alert(response.message)
         }
     }
     return (

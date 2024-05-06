@@ -103,11 +103,11 @@ const Score = forwardRef((props: { class_id: string, course_id: string, token: t
                         // index = score.indexOf(ele)
                         // console.log(index)
                         temp[i].fullname = Data[i].fullname
-                        temp[i].GPA = isNaN(Data[i].GPA) ? -1 : Data[i].GPA
-                        temp[i].exercise = isNaN(Data[i].exercise) ? -1 : Data[i].exercise
-                        temp[i].final = isNaN(Data[i].final) ? -1 : Data[i].final
-                        temp[i].midterm = isNaN(Data[i].midterm) ? -1 : Data[i].midterm
-                        temp[i].lab = isNaN(Data[i].lab) ? -1 : Data[i].lab
+                        temp[i].GPA = Data[i].GPA
+                        temp[i].exercise = Data[i].exercise
+                        temp[i].final = Data[i].final
+                        temp[i].midterm = Data[i].midterm
+                        temp[i].lab = Data[i].lab
                     }
                     setScore(temp)
                 })
@@ -124,7 +124,7 @@ const Score = forwardRef((props: { class_id: string, course_id: string, token: t
                 for (let i = 0; i < noStudent; i++) {
                     const loadScore = async () => {
                         updateScore.updateScore({ student_id: score[i].student_id, midterm: score[i].midterm, final: score[i].final, exercise: score[i].exercise, lab: score[i].lab }, { class_id: props.class_id }, props.token)
-                            .then(error => { if (error) console.log(error); setCheckupload(checkUpload + 1) })
+                            .then(error => { if (error.error) alert(error.error.message); else alert(error.message); setCheckupload(checkUpload + 1) })
                     }
                     loadScore()
                 }
@@ -177,7 +177,7 @@ const Score = forwardRef((props: { class_id: string, course_id: string, token: t
                                         return (
                                             <tr className="cursor-pointer border-b-[1px] border-gray-500 bg-white dark:bg-gray-800 hover:bg-slate-30">
                                                 <td className="px-6 py-4 bg-white">{item.student_id}</td>
-                                                <td className="px-6 py-4 bg-blue-200">{item.fullname}</td>
+                                                <td className="px-6 py-4 bg-blue-200">{item.fullname == "" ? "Không có điểm" : item.fullname}</td>
                                                 <td className="px-6 py-4 bg-white">
                                                     <div className="grid grid-cols-3 lg:grid-cols-5">
 
