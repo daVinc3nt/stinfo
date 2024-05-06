@@ -83,7 +83,8 @@ const SigninForm = () => {
     }
     else if (!res2?.error)
       {
-        cookie.set("token", "teacher")
+        cookie.set("token", res2.token)
+        cookie.set("role", "teacher")
         router.push("/dashboard/courseLec")
       }
     else{
