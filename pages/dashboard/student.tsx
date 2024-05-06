@@ -13,7 +13,7 @@ const pages: Page[] = [
 const student: React.FC = () => {
   return (
     <>
-      <div className="p-3 bg-gray-200 text-end text-2xl text-slate-700">Thông tin sinh viên</div>
+      <div className="p-3 font-bold bg-gray-200 text-end text-2xl text-slate-700">Thông tin sinh viên</div>
       <div className="bg-white">
         <ColorTabs pages={pages} />
       </div>

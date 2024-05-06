@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { ClassID, ClassOperation, CourseID, CourseOperation, FindingStudentInfoByAdmin, StudentID, StudentOperation, token } from "@/ambLib/amb"
 import StudentList from "../data/dataClass/StudentList";
 import cookie from "js-cookie"
+import { Diversity1, ErrorOutlineTwoTone, ErrorRounded, LocalDiningRounded, UpdateDisabledTwoTone } from "@mui/icons-material";
+import { FaTruckLoading } from "react-icons/fa";
 
 // KHAI BAO TAM THOI    
 const Course_ID : CourseID =  {
@@ -80,9 +82,9 @@ const handleSort = (type: 'name' | 'ID') => {
     const fetchStudentID = async () => {
         try {
             const getStudentListID = new ClassOperation();
-            const responseID = await getStudentListID.getClassInfo({class_id: String(ClassID)}, myToken); // truyền vào tham số mã số lớp học
-            console.log(responseID.data.students)
-            setStudentID(responseID.data.students);
+            const responseID = await getStudentListID.getStudentInClass({class_id: String(ClassID)}, myToken); // truyền vào tham số mã số lớp học
+            console.log(responseID.data[0])
+            setStudentID(responseID.data);
         }
         catch ( error) {
             console.error("Error fetching student data:", error);
@@ -90,9 +92,6 @@ const handleSort = (type: 'name' | 'ID') => {
     }
     useEffect(() => {
         fetchStudentID();  
-    }, []);
-    useEffect(() => {
-        console.log(studentID);  
     }, []);
     return (
       
@@ -119,16 +118,21 @@ const handleSort = (type: 'name' | 'ID') => {
             </div>
         </div> */}
         <div className=" rounded-md rounded-gray-100 border shadow-sm shadow-gray-100 w-full ">
-        <div className="border-y-2 grid grid-cols-6">
+         <div className="border-y-2 grid grid-cols-6">
                 <div className="text-center font-bold col-span-1" >Mã số sinh viên</div>
                 <div className="text-center font-bold col-span-3">Tên</div>
                 <div className="text-center font-bold col-span-2">Chức danh</div>   
             </div>
         </div>
         <div >
+            {studentID.length == 0 || studentID == null ?   <div className="flex items-center justify-center mx-auto my-20 font-bold text-lg p-20 rounded-xl border h-[1rem] w-1 bg-red-200 border-red-100 ">
+                
+                <div > <ErrorRounded className="mr-5 ml-8"/>
+                <div>"currently updating the student list" </div>
+                </div></div> : ( <div>{studentID && studentID.map( student => ( <div key= {student.student_id}> <StudentList StudentID={student.student_id} FullName={student.fullname} Role={student.role}/> </div> ))}</div> ) }
             
-            {/* {studentID &&  ( <div> <StudentList StudentID={String(studentID)}/> </div> )} */}
-            {studentID && studentID.map( student => ( <div key= {student}> <StudentList StudentID={student}/> </div> ))}
+           
+            
         </div>
 
     </div>
