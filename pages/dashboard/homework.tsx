@@ -45,7 +45,7 @@ const TeacherDownloadButton = (props: { classID: ClassID, userToken: token }) =>
 }
 
 const Quiz = () => {
-	const [role, setRole] = useState<string>("student");
+	const [role, setRole] = useState<string>("teacher");
 	const [userToken, setUserToken] = useState<token>({ token: "" });
 	const [getUserData, setUserData] = useState<any>(null);
 	const [classID, setClassID] = useState<ClassID>(null);
@@ -114,14 +114,13 @@ const Quiz = () => {
 							setCourseName(getData[2].course_name);
 						}
 					}
-				)
+					)
 			}
 		}
 
 	}, [userToken]);
 
-	if (classID && userToken && getUserData)
-	{
+	if (classID && userToken && getUserData) {
 		storeUserAPIAHomeworkArgs.setToken(userToken);
 		// console.log("userToken: ", userToken);
 		storeUserAPIAHomeworkArgs.setClassID(classID);
