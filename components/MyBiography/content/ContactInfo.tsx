@@ -19,9 +19,9 @@ interface Student {
 export  const ContactInfo = () => {
     const student: Student = {
     
-        Identification: "090707001111",
-        frontIdentification: "https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg",
-        backIdentification: "https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg",
+        Identification: "090703001234",
+        frontIdentification: "https://th.bing.com/th/id/OIP.8bss3pk_BMm06NPJfvQrHAHaDm?rs=1&pid=ImgDetMain",
+        backIdentification: "https://th.bing.com/th/id/OIP.8bss3pk_BMm06NPJfvQrHAHaDm?rs=1&pid=ImgDetMain",
         Birthplace: "Ba Ria Vung Tau",
         PermanentResidence: "Ho Chi Minh",
     };
@@ -29,16 +29,16 @@ export  const ContactInfo = () => {
         Father: {
             Name: "Father's Name",
             Email: "father@example.com",
-            Phone: "123456789",
+            Phone: "+84000000000",
             Job: "Father's Job",
-            Workplace: "Father'sWorkplacefasdfsdafasfsdf",
+            Workplace: "Father'sWorkplace",
         },
         Mother: {
             Name: "Mother's Name",
             Email: "mother@example.com",
-            Phone: "987654321",
+            Phone: "+84000000000",
             Job: "Mother's Job",
-            Workplace: "Mother's Workplace 21312312",
+            Workplace: "Mother's Workplace",
         }
     };
     return (
@@ -46,36 +46,15 @@ export  const ContactInfo = () => {
                          border shadow-gray-200 shadow-sm rounded-lg">
                 <div className="md:flex justify-center items-center">
                     <img 
-                    src={"https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"}
+                    src={"https://th.bing.com/th/id/OIP.8bss3pk_BMm06NPJfvQrHAHaDm?rs=1&pid=ImgDetMain"}
                     alt="front_CCCD" 
                     className="h-[82%] w-[78%] md:h-[62%] md:w-[42%] rounded-xl shadow-xl shadow-gray-100  mx-auto"
                     />
                     <img 
-                    src={"https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"}
+                    src={"https://th.bing.com/th/id/OIP.8bss3pk_BMm06NPJfvQrHAHaDm?rs=1&pid=ImgDetMain"}
                     alt="back_CCCD" 
                     className="h-[82%] w-[78%] md:h-[62%] md:w-[42%] rounded-xl shadow-xl shadow-gray-100  mx-auto"
                     />
-                </div>
-
-                <div className="justify-center items-center
-                                w-full py-6  space-y-6">
-                    <div className="w-[98%] h-[42%] px-2 py-6 sm:p-10 
-                                    border rounded-lg shadow-sm shadow-teal-200">
-                            <div className="space-y-3 text-lg">
-                                <div className="sm:flex justify-start border-solid">
-                                    <div className="font-bold  items-start">CCCD/CMND:</div>
-                                    <div className="items-center sm:mx-auto sm:px-4 px-10">{}</div>
-                                </div>
-                                <div className="md:flex justify-start border-solid">
-                                    <div className="font-bold  items-start">Nơi sinh:</div>
-                                    <div className="items-center sm:mx-auto sm:px-4 px-10">{}</div>
-                                </div>
-                                <div className="md:flex justify-start border-solid">
-                                    <div className="font-bold  items-start">Hộ khẩu thường trú:</div>
-                                    <div className="items-center sm:mx-auto sm:px-4 px-10">{}</div>
-                                </div>
-                            </div>
-                    </div>
                 </div>
 
                 <div className="justify-center items-center

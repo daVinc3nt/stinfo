@@ -4,15 +4,15 @@ import DisplayModeSelector from '../content/DisplayModeSelector';
 import ListMode from './DisplayMode/ListMode';
 import CardMode from './DisplayMode/CardMode';
 import { ClassID, CourseID, CourseOperation, StudentOperation, UpdatingCourseInfo, token } from '@/ambLib/amb';
-import { cookies } from 'next/headers';
+import cookie from "js-cookie"
 
 
 
-
+const myToken: token = {
+  token: cookie.get("token"),
+};
 // KHAI BAO TAM THOi
-  const Token: token = {
-    token:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTY2MDIwLCJleHAiOjE3MTUwMDIwMjB9.sX-xyPVY4JT-QFA2ePVGTuCciKMHzHDtd80vCF2tBrU"
-  };
+
   const CouseInfo: UpdatingCourseInfo = {}
   
   const Course_ID: CourseID = {
@@ -117,7 +117,7 @@ const [courseInfo, setCourseInfo] = useState<Course[]>([]);
 const fetchCourseList = async () => {  
   try {
       const getCourseListAPI = new StudentOperation();
-      const response = await getCourseListAPI.findStudentRegisteredClass(Token);
+      const response = await getCourseListAPI.findStudentRegisteredClass(myToken);
       console.log("Course data :", response.data); // Log the specific data part
       setCourseInfo(response.data);
 
@@ -137,20 +137,21 @@ useEffect(() => {
 
   return(
     <div>
-    <div className='flex justify-center items-center pb-8'>
+    {/* <div className='flex justify-center items-center pb-8'>
       <DataTableControls onSearch={handleSearch} onFilter={handleFilter} />
-    </div>
+    </div> */}
     <div>   
       <div className="flex justify-between items-center w-[98%] bg-sky-300 mx-auto rounded-md shadow-sm shadow-gray-300 ">
         <div className='p-6 px-[8%] text-3xl font-bold text-white'>Khóa học của tôi</div>
         <div className=''><DisplayModeSelector onChangeMode={handleModeChange} /></div>    
       </div>
       
-    <div className={displayMode === 'card' ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-10" : "py-20 px-40 space-y-8 min-h-full"}>
+    <div className={displayMode === 'card' ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-10" : "py-20 md:px-40 space-y-8 min-h-full"}>
   {courseInfo && courseInfo.map(course => (  ( <div  key={course.course_id}>
       {displayMode === 'card' ? (
         <CardMode
           CourseID={course.course_id}
+      
         />
       ) : (
         <ListMode
