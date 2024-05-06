@@ -4,7 +4,7 @@ import { TeacherOperation, token } from "@/ambLib/amb";
 const MyTeacher = () => {
     const [teacherData, setTeacherData] = useState<any>(null);
     const tokenData: token = {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVyX2lkIjoiR1Y1MzU4NyIsInJvbGUiOiJHaeG6o25nIHZpw6puIiwiYWN0aXZlIjoxLCJpYXQiOjE3MTQ2MzU0NDQsImV4cCI6MTcxNDY3MTQ0NH0.lHuuT399jqdEiz2y3gyt33Ywsk5UwWuhXgpU_Kj-Ks4"
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVyX2lkIjoiR1Y1MzU4NyIsInJvbGUiOiJHaeG6o25nIHZpw6puIiwiYWN0aXZlIjoxLCJpYXQiOjE3MTQ5NjQ5MzEsImV4cCI6MTcxNTAwMDkzMX0.wJotmNDAfcKomZ-zuggNixxWGc9XcC1OyJxzPpYMc7k"
     };
 
     const fetchTeacherData = async () => {
@@ -28,14 +28,14 @@ const MyTeacher = () => {
             {teacherData && (
                 <div className="space-y-8">
                     <div className="lg:grid grid-cols-4 border shadow-sm shadow-gray-200 rounded-md p-8">
-                                 { <img 
-               src="https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg" 
-             alt="Anh the" 
-              className=" col-span-1
+                        {<img
+                            src="https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"
+                            alt="Anh the"
+                            className=" col-span-1
                          flex justify-center items-center
                             h-[85%] w-[92%] md:h-[42%] md:w-[34%] lg:h-[98%] lg:w-[87%]  mx-auto
                          rounded-sm shadow-sm shadow-white"
-               /> }
+                        />}
                         <div className="col-span-3 w-full rounded-sm border shadow-sm shadow-gray-200">
                             <h1 className="w-full p-4 uppercase font-bold text-center bg-light-primary-200">Thông tin cá nhân</h1>
                             <div className="space-y-3 text-lg my-6 p-4">

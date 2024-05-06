@@ -1,5 +1,3 @@
-import { color } from "@material-tailwind/react/types/components/alert";
-
 export interface EventProps {
 	title: string;
 	startTime: string;
@@ -24,5 +22,19 @@ export interface TimeRowProps {
 	currentTime: Date;
 }
 
-export interface CalendarGridProps {
+export interface SubjectProps {
+	course_id: string
+	course_name: string
+	credits: number
+	day: string
+	period: number[]
+	room: string
+	semester: string
+	weeks: number[]
+	color: string
+}
+
+export interface UserAccountProps{
+	username: string
+	password: string
 }

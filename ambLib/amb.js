@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function () { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -53,11 +53,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/login"), {
-                                username: username,
-                                password: password,
-                            }, {
-                                withCredentials: true,
-                            })];
+                            username: username,
+                            password: password,
+                        }, {
+                            withCredentials: true,
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -82,11 +82,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create"), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -113,12 +113,12 @@ var StudentOperation = /** @class */ (function () {
                         formData = new FormData();
                         formData.append("file", info.file);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create_by_file"), formData, {
-                                headers: {
-                                    'Content-Type': 'multipart/form-data',
-                                    Authorization: token.token
-                                },
-                                withCredentials: true,
-                            })];
+                            headers: {
+                                'Content-Type': 'multipart/form-data',
+                                Authorization: token.token
+                            },
+                            withCredentials: true,
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -143,11 +143,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update?student_id=").concat(condition.student_id), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -172,11 +172,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update?student_id=").concat(condition.student_id), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -201,8 +201,8 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update_password"), info, {
-                                withCredentials: true,
-                            })];
+                            withCredentials: true,
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -227,11 +227,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.delete("".concat(this.baseUrl, "/delete?student_id=").concat(condition.student_id), {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -256,11 +256,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/get"), {}, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -285,11 +285,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/get"), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -314,11 +314,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_classes"), {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -343,11 +343,11 @@ var StudentOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_score"), {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -379,11 +379,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/login"), {
-                                username: username,
-                                password: password,
-                            }, {
-                                withCredentials: true,
-                            })];
+                            username: username,
+                            password: password,
+                        }, {
+                            withCredentials: true,
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -408,11 +408,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create"), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -437,11 +437,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update?teacher_id=").concat(condition.teacher_id), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -466,11 +466,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update?teacher_id=").concat(condition.teacher_id), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -495,11 +495,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update_password"), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -524,11 +524,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.delete("".concat(this.baseUrl, "/delete?teacher_id=").concat(condition.teacher_id), {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -553,11 +553,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/get"), {}, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -582,11 +582,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/get"), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -611,11 +611,11 @@ var TeacherOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_classes"), {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -647,11 +647,11 @@ var AdminOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/login"), {
-                                username: username,
-                                password: password,
-                            }, {
-                                withCredentials: true,
-                            })];
+                            username: username,
+                            password: password,
+                        }, {
+                            withCredentials: true,
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -676,11 +676,11 @@ var AdminOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create"), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -712,11 +712,11 @@ var CourseOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create"), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -741,11 +741,11 @@ var CourseOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/update?course_id=").concat(condition.course_id), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -770,11 +770,11 @@ var CourseOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.delete("".concat(this.baseUrl, "/delete?course_id=").concat(condition.course_id), {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -799,11 +799,11 @@ var CourseOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/get"), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -828,11 +828,11 @@ var CourseOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_classes?course_id=").concat(condition.course_id), {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -864,11 +864,11 @@ var ClassOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/create"), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -893,11 +893,11 @@ var ClassOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get?class_id=").concat(info.class_id), {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -922,11 +922,11 @@ var ClassOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/register"), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -980,11 +980,11 @@ var ClassOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.put("".concat(this.baseUrl, "/cancel_register"), info, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -1011,11 +1011,11 @@ var ClassOperation = /** @class */ (function () {
                         formData = new FormData();
                         formData.append('submitFile', info.submitFile);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/submit_file?class_id=").concat(condition.class_id), formData, {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -1040,11 +1040,11 @@ var ClassOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.delete("".concat(this.baseUrl, "/delete_file?class_id=").concat(info.class_id, "&filename=").concat(info.filename), {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -1069,11 +1069,11 @@ var ClassOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/show_files?class_id=").concat(info.class_id), {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
@@ -1097,12 +1097,12 @@ var ClassOperation = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_files?class_id=").concat(info.class_id), {
-                                responseType: 'blob', // Set response type to blob for binary data (ZIP file)
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            responseType: 'blob', // Set response type to blob for binary data (ZIP file)
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _a.sent();
                         url = window.URL.createObjectURL(new Blob([response.data]));
@@ -1131,11 +1131,11 @@ var ClassOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.get("".concat(this.baseUrl, "/get_score?class_id=").concat(info.class_id), {
-                                withCredentials: true,
-                                headers: {
-                                    Authorization: token.token
-                                }
-                            })];
+                            withCredentials: true,
+                            headers: {
+                                Authorization: token.token
+                            }
+                        })];
                     case 1:
                         response = _c.sent();
                         data = response.data;

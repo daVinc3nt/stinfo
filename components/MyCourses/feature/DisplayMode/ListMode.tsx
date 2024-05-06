@@ -53,12 +53,12 @@ const handleLinkClick = (ClassID_input:string) => {
                           
                   </div>
 
-                  </div>
-                  
-                </div>
-              </div>   
+          </div>
+
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 export default ListMode;

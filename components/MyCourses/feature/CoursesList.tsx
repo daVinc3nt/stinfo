@@ -26,7 +26,7 @@ export interface CustomLink {
 }
 
 export interface Course {
-  course_id?:string;
+  course_id?: string;
   course_name?: string;
   class_link?: CustomLink;
   faculty?: string;
@@ -37,47 +37,47 @@ export interface Course {
 
 
 const CoursesList = () => {
-  
-//   const [displayMode, setDisplayMode] = useState<'list' | 'card'>('list');
-//   const [filteredCourses, setFilteredCourses] = useState<any[]>(null);
-//   const handleModeChange = (mode: 'list' | 'card') => {
-//     setDisplayMode(mode);
-//   };
 
-//   const handleSearch = (query: string) => {
-//     const filtered = courseInfo.filter((course: Course) =>
-//         course.course_name?.toLowerCase().includes(query.toLowerCase())
-//     );
-//     setFilteredCourses(filtered);
-// };
+  //   const [displayMode, setDisplayMode] = useState<'list' | 'card'>('list');
+  //   const [filteredCourses, setFilteredCourses] = useState<any[]>(null);
+  //   const handleModeChange = (mode: 'list' | 'card') => {
+  //     setDisplayMode(mode);
+  //   };
 
-// const handleFilter = (filterKey: string, value: string) => {
-//   const filtered = courseInfo.filter((course: Course) => {
-//       if (filterKey === 'course_type') {
-//           return course.course_type === value;
-//       }
-//       return true;
-//   });
-//   setFilteredCourses(filtered);
-// };
+  //   const handleSearch = (query: string) => {
+  //     const filtered = courseInfo.filter((course: Course) =>
+  //         course.course_name?.toLowerCase().includes(query.toLowerCase())
+  //     );
+  //     setFilteredCourses(filtered);
+  // };
+
+  // const handleFilter = (filterKey: string, value: string) => {
+  //   const filtered = courseInfo.filter((course: Course) => {
+  //       if (filterKey === 'course_type') {
+  //           return course.course_type === value;
+  //       }
+  //       return true;
+  //   });
+  //   setFilteredCourses(filtered);
+  // };
 
 
-const [displayMode, setDisplayMode] = useState<'card' | 'list'>('card');
-const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
-const [searchQuery, setSearchQuery] = useState<string>('');
-const [filterType, setFilterType] = useState<string>('');
+  const [displayMode, setDisplayMode] = useState<'card' | 'list'>('card');
+  const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [filterType, setFilterType] = useState<string>('');
 
-const handleModeChange = (mode: 'card' | 'list') => {
-  setDisplayMode(mode);
-};
+  const handleModeChange = (mode: 'card' | 'list') => {
+    setDisplayMode(mode);
+  };
 
-const handleSearch = (query: string) => {
-  setSearchQuery(query);
-};
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
 
-const handleFilter = (filterKey: string, value: string) => {
-  setFilterType(value);
-};
+  const handleFilter = (filterKey: string, value: string) => {
+    setFilterType(value);
+  };
 
 
 
@@ -120,7 +120,7 @@ const fetchCourseList = async () => {
       const response = await getCourseListAPI.findStudentRegisteredClass(Token);
       console.log("Course data :", response.data); // Log the specific data part
       setCourseInfo(response.data);
-      
+
       // Fetch class ID for the first course
       // if (response.data.length > 0) {
       //     const firstCourseID = response.data[0].course_id;
@@ -162,8 +162,8 @@ useEffect(() => {
   ))}
 </div>
 
+      </div>
     </div>
-  </div>
 
   )
 };

@@ -1,11 +1,15 @@
 // generate a homework submission data
-import { floated } from '@material-tailwind/react/types/components/card';
 import { Deadline, HomeworkType, SubmissionProps, MultipleChoiceScoreAttempt} from './Utilities/interfaceProps';
 import { MultipleChoiceQuestion } from './Utilities/interfaceProps';
+import { token, ClassID, SubmitFile } from '@/ambLib/amb';
+
+
+// Most of this class is useless
 
 class HomeWork {
     whichHomeworkType: HomeworkType;
-    submissionFile: File | null;
+    // a list of File objects
+    submissionFile: SubmitFile | null;
     isSubmitted: boolean;
     isGraded: boolean;
     isDeadline: Deadline;
@@ -21,7 +25,7 @@ class HomeWork {
         this.gradedDate = new Date(2024, 4, 5, 10, 0, 0, 0);
         this.isDeadline = Deadline.undefinedState;
         this.openedDate = new Date(2024, 3, 10, 10, 0, 0, 0);
-        this.closedDate = new Date(2024, 3, 20, 10, 0, 0, 0);
+        this.closedDate = new Date(2024, 4, 6, 10, 0, 0, 0);
         this.lastModifiedTime = "-";
         this.score = 8.5;
         // default type of homework is submission
@@ -174,8 +178,7 @@ class HomeworMultipleChoice extends HomeWork{
     }
 }
 
-class HomeworkSubmission extends HomeWork
-{
+class HomeworkSubmission extends HomeWork {
     // create a constructor for HomeworkSubmission
     lecturerName: string;
     lecturerComment: string;
@@ -186,10 +189,14 @@ class HomeworkSubmission extends HomeWork
         this.whichHomeworkType = HomeworkType.submission;
     }
 
-    setNewFile = (newFile: File) => {
+    setNewFile = (newFile: SubmitFile) => {
         this.submissionFile = newFile;
     }
 
+    getCurrentFile = (): SubmitFile => {
+        let getFile: SubmitFile = this.submissionFile;
+        return getFile;
+    }
 }
 
 // create a new instance of HomeworkSubmission
@@ -197,11 +204,20 @@ class HomeworkSubmission extends HomeWork
 let HomeworkSubmissionData = new HomeworkSubmission();
 let HomeworkMultipleChoiceData = new HomeworMultipleChoice();
 
-// let HomeworkGeneralData: HomeWork = HomeworkMultipleChoiceData;
+// decide HomeworkData type
 let HomeworkGeneralData: HomeWork = HomeworkSubmissionData;
 
-// console.log(HomeworkGeneralData.whichHomeworkType);
+class storeUserAPIAHomeworkArgs {
+    static currentToken: token;
+    static classID: ClassID;
+    static setToken = (newToken: token) => {
+        storeUserAPIAHomeworkArgs.currentToken = newToken;
+        // console.log("store token complete!!!!", this.currentToken);
+    }
+    static setClassID = (newClassID: ClassID) => {
+        storeUserAPIAHomeworkArgs.classID = newClassID;
+        // console.log("store classID complete!!!!", this.classID);
+    }
+}
 
-// decide HomeworkData type
-
-export { HomeworkSubmissionData, HomeworkMultipleChoiceData, HomeworkGeneralData};
+export { HomeworkSubmissionData, HomeworkMultipleChoiceData, HomeworkGeneralData, storeUserAPIAHomeworkArgs};

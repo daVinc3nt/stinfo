@@ -11,51 +11,51 @@ export interface CreatingUserInfo {
     email: string,
 }
 export interface CreatingStudentInfo {
-    fullname: string,                 
-    date_of_birth: string,                                     
-    gender: string,                               
-    credential_id: string,               
-    phone_number: string,                  
-    contact_email: string,     
-    address: string,                                            
-    class: string,                           
-    faculty: string,    
-    major: string,                  
-    level: string,                            
-    program: string                                                        
+    fullname: string,
+    date_of_birth: string,
+    gender: string,
+    credential_id: string,
+    phone_number: string,
+    contact_email: string,
+    address: string,
+    class: string,
+    faculty: string,
+    major: string,
+    level: string,
+    program: string
 }
 
-export interface UpdatingStudentInfoByStudent {             
-    phone_number?: string,                  
-    contact_email?: string,     
-    address?: string,                                                                                                   
+export interface UpdatingStudentInfoByStudent {
+    phone_number?: string,
+    contact_email?: string,
+    address?: string,
 }
 export interface UpdatingStudentInfoByAdmin {
-    fullname?: string,                 
-    date_of_birth?: string,                                     
-    gender?: string,                               
-    credential_id?: string,               
-    phone_number?: string,                  
-    contact_email?: string, 
+    fullname?: string,
+    date_of_birth?: string,
+    gender?: string,
+    credential_id?: string,
+    phone_number?: string,
+    contact_email?: string,
     username?: string,
-    password?: string,    
-    address?: string,                                            
-    class?: string,                           
-    faculty?: string,    
-    major?: string,                  
-    level?: string,                            
-    program?: string                                                        
+    password?: string,
+    address?: string,
+    class?: string,
+    faculty?: string,
+    major?: string,
+    level?: string,
+    program?: string
 }
 
 export interface FindingStudentInfoByAdmin {
-    fullname?: string,                 
-    student_id?: string,                              
-    credential_id?: string,                                                           
-    class?: string,                           
-    faculty?: string,    
-    major?: string,                  
-    level?: string,                            
-    program?: string                                                        
+    fullname?: string,
+    student_id?: string,
+    credential_id?: string,
+    class?: string,
+    faculty?: string,
+    major?: string,
+    level?: string,
+    program?: string
 }
 
 export interface StudentID {
@@ -65,7 +65,7 @@ export interface StudentID {
 export interface UpdatingPassword {
     username: string,
     password: string,
-    new_password: string                                                        
+    new_password: string
 }
 
 export interface CreatingStudentByFile {
@@ -106,7 +106,7 @@ class StudentOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -126,13 +126,13 @@ class StudentOperation {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: token.token
-                    
+
                 },
                 withCredentials: true,
             });
 
             const data = response.data;
-			return { error: data.error, message: data.message };
+            return { error: data.error, message: data.message };
         } catch (error: any) {
             console.error('StudentOperation Error creating orders by file:', error?.response?.data);
             console.error("Request that caused the error: ", error?.request);
@@ -149,7 +149,7 @@ class StudentOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -168,7 +168,7 @@ class StudentOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -184,7 +184,7 @@ class StudentOperation {
             const response: AxiosResponse = await axios.put(`${this.baseUrl}/update_password`, info, {
                 withCredentials: true,
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -203,7 +203,7 @@ class StudentOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -222,7 +222,7 @@ class StudentOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -241,7 +241,7 @@ class StudentOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -260,7 +260,7 @@ class StudentOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -279,7 +279,7 @@ class StudentOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -331,16 +331,16 @@ export interface UpdateTeacherByAdminInfo {
 }
 
 export interface FindingTeacherInfoByAdmin {
-    fullname?: string,                 
-    teacher_id?: string,                              
-    credential_id?: string,                                                           
-    class?: string,                           
-    faculty?: string,    
-    major?: string,                  
-    level?: string,                            
+    fullname?: string,
+    teacher_id?: string,
+    credential_id?: string,
+    class?: string,
+    faculty?: string,
+    major?: string,
+    level?: string,
     program?: string,
     homeroom_class?: string,
-    phone_number?: string                                                       
+    phone_number?: string
 }
 
 class TeacherOperation {
@@ -377,7 +377,7 @@ class TeacherOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -396,7 +396,7 @@ class TeacherOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -415,7 +415,7 @@ class TeacherOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -434,7 +434,7 @@ class TeacherOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -453,7 +453,7 @@ class TeacherOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -472,7 +472,7 @@ class TeacherOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -491,7 +491,7 @@ class TeacherOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -510,7 +510,7 @@ class TeacherOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -564,7 +564,7 @@ class AdminOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -614,7 +614,7 @@ class CourseOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -633,7 +633,7 @@ class CourseOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -652,7 +652,7 @@ class CourseOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -671,7 +671,7 @@ class CourseOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -690,7 +690,7 @@ class CourseOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -740,7 +740,7 @@ export interface UpdateScoreInfo {
     midterm: number;
     final: number;
     lab: number;
-    exeercise: number;
+    exercise: number;
 }
 
 
@@ -759,7 +759,7 @@ class ClassOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -778,7 +778,7 @@ class ClassOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -798,7 +798,7 @@ class ClassOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -807,7 +807,7 @@ class ClassOperation {
             return { error: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
         }
     }
-    
+
     //ROLE: TEACHER
     async updateScore(info: UpdateScoreInfo, condition: ClassID, token: token) {
         try {
@@ -817,7 +817,7 @@ class ClassOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -836,7 +836,7 @@ class ClassOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -850,14 +850,14 @@ class ClassOperation {
     async submitFile(info: SubmitFile, condition: ClassID, token: token) {
         try {
             const formData = new FormData();
-			formData.append('submitFile', info.submitFile);
+            formData.append('submitFile', info.submitFile);
             const response: AxiosResponse = await axios.post(`${this.baseUrl}/submit_file?class_id=${condition.class_id}`, formData, {
                 withCredentials: true,
                 headers: {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -876,7 +876,7 @@ class ClassOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -895,7 +895,7 @@ class ClassOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -940,7 +940,7 @@ class ClassOperation {
                     Authorization: token.token
                 }
             });
-            
+
             const data = response.data;
             return { error: data.error, data: data.data, message: data.message };
         } catch (error: any) {
@@ -953,7 +953,7 @@ class ClassOperation {
 }
 
 export {
-	StudentOperation,
+    StudentOperation,
     TeacherOperation,
     AdminOperation,
     CourseOperation,

@@ -1,11 +1,11 @@
 import { useState} from "react";
 import {useRouter } from "next/navigation";
-import OTPField from "../OtpField";
 import classNames from "classnames";
 import LoginLangSelector from "@/components/LangSelector/LoginLangSelector"
 import { FormattedMessage} from "react-intl";
 import { useContext } from "react";
-import { AdminOperation, StudentOperation, TeacherOperation } from "@/ambLib/amb";
+import { StudentOperation, TeacherOperation } from "@/ambLib/amb";
+import cookie from "js-cookie";
 interface FormValues {
   email?: string;
   phoneNumber?: string;
@@ -21,8 +21,7 @@ interface ErrorValues {
   passEr: string;
 }
 const SigninForm = () => {
-  const welcome = <FormattedMessage id="signup.welcome.message" />
-  const initialValues: FormValues = { name:"", pass:""};
+  const initialValues: FormValues = {  email: "", phoneNumber: "", otp: "", name:"", pass:""};
   const initialValues2: ErrorValues = { emailEr: "", phoneNumberEr: "" , nameEr: "", passEr:""};
   const [formValues, setFormValues] = useState<FormValues>(initialValues);
   const [formErrors, setFormErrors] = useState<ErrorValues>(initialValues2);
@@ -31,7 +30,7 @@ const SigninForm = () => {
   
 
   const buttonstyle = classNames(
-    "mt-7 py-3 px-4  w-[calc(95%)] rounded-full text-white font-bold uppercase text-xs text-center block focus:outline-none cursor-pointer active:scale-110 sm:mt-10 sm:text-sm transition duration-150",
+    "mt-7 py-3 px-4  w-full rounded-full text-white font-bold uppercase text-xs text-center block focus:outline-none cursor-pointer active:scale-110 sm:mt-10 sm:text-sm transition duration-150",
     {
       ["bg-blue-200 animate-shake"]: shake,
       ["bg-blue-600"]: !shake,
@@ -61,7 +60,9 @@ const SigninForm = () => {
     const {name, pass} = formValues;
     const {nameEr, passEr} = formErrors;
     handleName(name);
+    console.log(nameEr)
     handlePass(pass);
+    console.log(passEr)
     if (nameEr || passEr) {setshake(true); return}
       await adAuth();
   } 
@@ -71,16 +72,24 @@ const SigninForm = () => {
     const {name, pass} = formValues;
     if (!name || !pass)
       return null;
-    console.log(name, pass)
-    const cai_gi_cung_duoc= new StudentOperation()
-    await cai_gi_cung_duoc.login(name, pass)
-    .then(result => console.log(result))
-    .catch(error => console.log(error))
-    // const res = await staffsOperation.getAuthenticatedStaffInfo();
-    // if (res.data) {
-    //   setInfo(res.data);
-    //   router.push("/dashboard")
-    // }
+    const stu = new StudentOperation();
+    const tea = new TeacherOperation();
+    const res1 = await stu.login(name, pass)
+    const res2 = await tea.login(name, pass)
+    if (!res1?.error)
+    {
+      cookie.set("token", res1.token)
+      router.push("/dashboard")
+    }
+    else if (!res2?.error)
+      {
+        cookie.set("token", res2.token)
+        router.push("/dashboard/courseLec")
+      }
+    else{
+      alert(res1?.error.error)
+      alert(res2?.error.error)
+    }
   }
 
 
@@ -125,7 +134,7 @@ const SigninForm = () => {
           <div className="lg:p-8 flex-1">
             <div className="mx-auto">
               <div className="text-center w-[calc(95%)]">
-                <h1 className="text-4xl lg:text-5xl lg:w-64 font-bold text-blue-900">
+                <h1 className="text-4xl lg:text-5xl font-bold text-blue-900">
                   <FormattedMessage id="signup.welcomeboss.message" />
                 </h1>
                 <form className="mt-5 lg:mt-12" action="" method="POST">
