@@ -18,10 +18,10 @@ const SubmissionField = (props: { role: string }) => {
 	const [timeLeft, setTimeLeft] = useState<string>(HomeworkSubmissionData.calculateTimeLeft());
 	const [lastModifiedTime, setLastModifiedTime] = useState<string>(HomeworkSubmissionData.lastModifiedTime);
 	const [role, setRole] = useState<string>(props.role); // the role will be taken from login page
-	const [classID, setClassID] = useState<ClassID>({ class_id: if (typeof window !== "undefined") window.localStorage.getItem("currentClassID") });
+	const [classID, setClassID] = useState<ClassID>({ class_id: window?.localStorage.getItem("currentClassID") });
 	const [score, setScore] = useState<number>(0);
 	const [loadingState, setLoadingState] = useState<boolean>(false);
-	const [token, setToken] = useState<token>({ token: if (typeof window !== "undefined") window.localStorage.getItem("currentRole") });
+	const [token, setToken] = useState<token>({ token: window?.localStorage.getItem("currentRole") });
 	const [isUploadError, setIsUploadError] = useState<boolean>(false);
 	const [listFileName, setListFileName] = useState<string[]>([]);
 	const [numOfFile, setNumOfFile] = useState<number>(0);
@@ -30,8 +30,8 @@ const SubmissionField = (props: { role: string }) => {
 	// useEffect to get list of submit file
 
 	useEffect(() => {
-		setRole(if (typeof window !== "undefined") window.localStorage.getItem("currentRole"));
-		setClassID({ class_id: if (typeof window !== "undefined") window.localStorage.getItem("currentClassID") });
+		setRole(window?.localStorage.getItem("currentRole"));
+		setClassID({ class_id: window?.localStorage.getItem("currentClassID") });
 		const currentToken = Cookies.get("userToken");
 		// console.log("currentToken: ", currentToken);
 		setToken({ token: currentToken });
@@ -40,15 +40,15 @@ const SubmissionField = (props: { role: string }) => {
 
 		// return () => {
 		// 	// cleanup localStorage
-		// 	if (typeof window !== "undefined") window.localStorage.removeItem("currentRole");
-		// 	if (typeof window !== "undefined") window.localStorage.removeItem("currentClassID");
-		// 	if (typeof window !== "undefined") window.localStorage.removeItem("currentCourseName");
+		// 	window?.localStorage.removeItem("currentRole");
+		// 	window?.localStorage.removeItem("currentClassID");
+		// 	window?.localStorage.removeItem("currentCourseName");
 		// }
 
 	}, [
-		if (typeof window !== "undefined") window.localStorage.getItem("currentRole"),
-		if (typeof window !== "undefined") window.localStorage.getItem("currentClassID"),
-		if (typeof window !== "undefined") window.localStorage.getItem("currentCourseName"),
+		window?.localStorage.getItem("currentRole"),
+		window?.localStorage.getItem("currentClassID"),
+		window?.localStorage.getItem("currentCourseName"),
 	]);
 
 	useEffect(() => {
@@ -337,11 +337,11 @@ const ReviewField = () => {
 		<div className='grid grid-cols-[30%_70%] grid-rows-2 border border-gray-400 mx-8 shadow-lg my-6 '>
 			<div className={gridStyles}> Giảng viên</div>
 			<div className={gridStyles}>
-				{if (typeof window !== "undefined") window.localStorage.getItem("currentTeacher")}
+				{window?.localStorage.getItem("currentTeacher")}
 			</div>
 			<div className={gridStyles}> Điểm số </div>
 			<div className={gridStyles}>
-				{if (typeof window !== "undefined") window.localStorage.getItem("currentScore")}
+				{window?.localStorage.getItem("currentScore")}
 			</div>
 		</div>
 	)
