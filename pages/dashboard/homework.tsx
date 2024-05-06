@@ -34,30 +34,30 @@ const ListOfSubmittedSubject = () => {
 	let student = new StudentOperation();
 	let teacher = new TeacherOperation();
 	useEffect(() => {
-		if (role == "student") {
-			student.login("long.nguyen24243004", "Student@24243004")
-				// student.login("viet.nguyen24156661", "089204006677")
-				.then(data => {
-					console.log("Data: ", data);
-					const newToken = { token: data.token };
-					if (newToken) {
-						setUserToken(newToken);
-						console.log("newToken: ", newToken.token);
-					}
-				});
-		}
-		else if (role == "teacher") {
-			teacher.login("huy.bui53587", "huy.bui53587")
+		// if (role == "student") {
+		// 	student.login("long.nguyen24243004", "Student@24243004")
+		// 		// student.login("viet.nguyen24156661", "089204006677")
+		// 		.then(data => {
+		// 			console.log("Data: ", data);
+		// 			const newToken = { token: data.token };
+		// 			if (newToken) {
+		// 				setUserToken(newToken);
+		// 				console.log("newToken: ", newToken.token);
+		// 			}
+		// 		});
+		// }
+		// else if (role == "teacher") {
+		// 	teacher.login("huy.bui53587", "huy.bui53587")
 
-				.then(data => {
-					console.log("Data: ", data);
-					const newToken = { token: data.token };
-					if (newToken) {
-						setUserToken(newToken);
-						console.log("newToken: ", newToken.token);
-					}
-				});
-		}
+		// 		.then(data => {
+		// 			console.log("Data: ", data);
+		// 			const newToken = { token: data.token };
+		// 			if (newToken) {
+		// 				setUserToken(newToken);
+		// 				console.log("newToken: ", newToken.token);
+		// 			}
+		// 		});
+		// }
 
 		return () => {
 			// cleanup localStorage

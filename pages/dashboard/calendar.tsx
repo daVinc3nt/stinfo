@@ -10,6 +10,7 @@ import { WeekUtils, DateUtils } from "@/components/Calendar/Features/utils_calen
 import gradient from "@material-tailwind/react/theme/components/timeline/timelineIconColors/gradient";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { useRouter } from "next/router";
+import Cookies from 'js-cookie';
 
 const WeekCalendar = () => {
 
@@ -21,6 +22,7 @@ const WeekCalendar = () => {
 	const [showWeek, setShowWeek] = useState<number>(WeekUtils.getWeekNumber(new Date()));
 
 
+
 	function changeCalendarWeek(navDirection: number) {
 		setDiffWeekNum(diffWeekNum + navDirection);
 		const week: Date[] = DateUtils.getWeekNavigation(diffWeekNum + navDirection);
@@ -30,6 +32,8 @@ const WeekCalendar = () => {
 	}
 	const router = useRouter()
 	console.log("showWeek: ", showWeek);
+
+	const role = Cookies.get("role");
 
 	return (
 		<>
@@ -46,7 +50,7 @@ const WeekCalendar = () => {
 				<CalendarGrid
 					offset={diffWeekNum}
 					showWeek={showWeek}
-					role={"teacher"}
+					role={role}
 				></CalendarGrid>
 			</div>
 		</>

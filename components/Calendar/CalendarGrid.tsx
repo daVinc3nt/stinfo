@@ -4,6 +4,7 @@ import {fillMissingData, generateWeekCalendar } from "./EventData";
 import { EventProps, SubjectProps } from "./Features/interfaceProps";
 import { DateUtils } from "./Features/utils_calendar";
 import { StudentOperation, TeacherOperation, token } from "@/ambLib/amb";
+import Cookies from "js-cookie";
 
 
 // Build a component that will display the event based on the interface EventProps and fill the background color 
@@ -135,24 +136,12 @@ export default function CalendarGrid(props: { offset: number, showWeek: number, 
     const [listEvent, setListEvent] = useState<SubjectProps[]>([]);
     const [weekEventsData, setWeekEventsData] = useState<Array<Array<EventProps>>>(new Array(7));
     const [loadingState, setLoadingState] = useState<boolean>(true);
-    const [userToken, setUserToken] = useState<token>({ token: "" });
+    const [userToken, setUserToken] = useState<token>({ token: Cookies.get("token") });
+
+    console.log("role: ", props.role);
 
     if (props.role == "student") {
         let student = new StudentOperation();
-
-        useEffect(() => {
-            student.login("long.nguyen24243004", "Student@24243004")
-                .then(data => {
-                    console.log("Data: ", data);
-                    const newToken = { token: data.token };
-                    if (newToken) {
-                        setUserToken(newToken);
-                        console.log("newToken: ", newToken.token);
-                    }
-                });
-
-
-        }, []);
 
         useEffect(() => {
             if (userToken) {
@@ -178,7 +167,6 @@ export default function CalendarGrid(props: { offset: number, showWeek: number, 
     }
     else if (props.role == "teacher") {
         let teacher = new TeacherOperation();
-
         useEffect(() => {
             teacher.login("huy.bui53587", "huy.bui53587")
                 .then(data => {
