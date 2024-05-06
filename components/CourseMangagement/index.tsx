@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react"
+import { useRouter } from "next/router";
 import React from "react";
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import Image from "next/image";
@@ -16,6 +17,8 @@ import { token } from "@/ambLib/amb";
 import { RegisterClassInfo } from "@/ambLib/amb";
 import CourseRegistration from "./courseRes";
 import Teacher from "./teacherInfo";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import InfoIcon from '@mui/icons-material/Info';
 
 const WEEKDAY: { [key: string]: string } = {
     "Thứ Hai": "Thứ 2",
@@ -110,6 +113,7 @@ export default function Course() {
         token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVyX2lkIjoiR1Y1MzU4NyIsInJvbGUiOiJHaeG6o25nIHZpw6puIiwiYWN0aXZlIjoxLCJpYXQiOjE3MTQ5NjQ5MzEsImV4cCI6MTcxNTAwMDkzMX0.wJotmNDAfcKomZ-zuggNixxWGc9XcC1OyJxzPpYMc7k"
     }
     console.log(techerInfo)
+    const router = useRouter()
 
     useEffect(() => {
         const wDay = new Date().toLocaleString('vi-VN', { weekday: 'long', timeZone: 'Asia/Ho_Chi_Minh' });
@@ -209,8 +213,11 @@ export default function Course() {
                         <div className={`mt-10 flex flex-row items-center ${cur == 4 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(4)}>
                             <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 4 ? 'bg-blue-600 ' : ''}`}><NotificationsActiveOutlinedIcon className={`${cur == 4 ? 'text-white' : ''}`} /></div>Xem bài nộp
                         </div>
-                        <div className={`mt-10 flex flex-row items-center ${cur == 4 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(5)}>
-                            <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 4 ? 'bg-blue-600 ' : ''}`}><NotificationsActiveOutlinedIcon className={`${cur == 5 ? 'text-white' : ''}`} /></div>Thông tin cá nhân
+                        <div className={`mt-10 flex flex-row items-center ${cur == 5 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(5)}>
+                            <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 5 ? 'bg-blue-600 ' : ''}`}><InfoIcon className={`${cur == 5 ? 'text-white' : ''}`} /></div>Thông tin cá nhân
+                        </div>
+                        <div className={`mt-10 flex flex-row items-center ${cur == 6 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => { setCur(6); router.push("/dashboard/calendar") }}>
+                            <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 6 ? 'bg-blue-600 ' : ''}`}><CalendarMonthIcon className={`${cur == 6 ? 'text-white' : ''}`} /></div>Lịch
                         </div>
                     </div>
                 </div>

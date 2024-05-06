@@ -4,6 +4,8 @@ import course from "@/pages/dashboard/course_registration";
 import { ClassOperation, TeacherOperation, CourseOperation, token } from "@/ambLib/amb";
 import { UpdateScoreInfo } from "@/ambLib/amb";
 import { UpdatingCourseInfo } from "@/ambLib/amb";
+import { ContactSupportOutlined } from "@mui/icons-material";
+import { FaCommentsDollar } from "react-icons/fa";
 interface CLASS {
     class_id: string
     students: string[]
@@ -21,14 +23,44 @@ interface studScore {
 
 
 const Score = forwardRef((props: { class_id: string, course_id: string, token: token }, ref) => {
-    const it = ["BT", "LAB", "GK", "CK", "GPA"]
+    const [coef, setCoef] = useState([0, 0, 0, 0])
+    const it = ["BT", "LAB", "GK", "CK"]
     const [checkUpload, setCheckupload] = useState(0)
     const [scorechange, setScorechange] = useState(0)
     const [score, setScore] = useState<studScore[]>([])
     const [noStudent, setnoStudent] = useState(0)
     const [loadingInfo, setLoadingInfo] = useState(true)
     const [rightformat, setRightformat] = useState(true);
+    const [valid, setValid] = useState(false)
     const pattern = /^\d+(\.\d)?$/;
+    const ExistCoef = () => {
+        if (coef[0] != 0 && coef[1] != 0 && coef[2] != 0 && coef[3] != 0) return true;
+        else return false
+    }
+    useEffect(() => {
+
+        if (rightformat && ExistCoef() && (coef[0] + coef[1] + coef[2] + coef[3] == 1)) setValid(true)
+        else setValid(false)
+
+    }, [coef, rightformat])
+
+    const handleCoef = (e, index: number) => {
+        if (e.target.value == "") setRightformat(true);
+        else {
+            if (pattern.test(e.target.value)) {
+                setRightformat(true)
+                const temp = [...coef]
+                temp[index] = parseFloat(e.target.value)
+                setCoef(temp)
+            } else setRightformat(false)
+        }
+    }
+    const calGPA = (index: number) => {
+        const temp = [...score]
+        const x = (ExistCoef() && temp[index].exercise != -1 && temp[index].lab != -1 && temp[index].midterm != -1 && temp[index].final != -1) ?
+            coef[0] * temp[index].exercise + coef[1] * temp[index].lab + coef[2] * temp[index].midterm + coef[3] * temp[index].final : -1
+        return Math.round(x * 10) / 10
+    }
     const handleText = (e, typeScore: string, index: number) => {
         if (e.target.value == "") setRightformat(true);
         else {
@@ -48,9 +80,7 @@ const Score = forwardRef((props: { class_id: string, course_id: string, token: t
                     case ("CK"):
                         temp[index].final = parseFloat(e.target.value)
                         break
-                    case ("GPA"):
-                        temp[index].GPA = parseFloat(e.target.value)
-                        break
+
                 }
                 setScore(temp)
 
@@ -95,13 +125,9 @@ const Score = forwardRef((props: { class_id: string, course_id: string, token: t
                     if (Data == undefined) { setnoStudent(0); return }
                     let no = Data.length
                     setnoStudent(no)
-                    //let index = 0
-                    //let ele: studScore
+
                     for (let i = 0; i < no; i++) {
-                        // ele = { student_id: Data[i].student_id, fullname: "", GPA: -1, midterm: -1, final: -1, exercise: -1, lab: -1 }
-                        // console.log(ele)
-                        // index = score.indexOf(ele)
-                        // console.log(index)
+
                         temp[i].fullname = Data[i].fullname
                         temp[i].GPA = Data[i].GPA
                         temp[i].exercise = Data[i].exercise
@@ -123,8 +149,9 @@ const Score = forwardRef((props: { class_id: string, course_id: string, token: t
                 const updateScore = new ClassOperation()
                 for (let i = 0; i < noStudent; i++) {
                     const loadScore = async () => {
+                        let temp = checkUpload + 1
                         updateScore.updateScore({ student_id: score[i].student_id, midterm: score[i].midterm, final: score[i].final, exercise: score[i].exercise, lab: score[i].lab }, { class_id: props.class_id }, props.token)
-                            .then(error => { if (error.error) alert(error.error.message); else alert(error.message); setCheckupload(checkUpload + 1) })
+                            .then(error => { setCheckupload(temp); if (error.error) alert(error.error.message); else alert(error.message) })
                     }
                     loadScore()
                 }
@@ -144,12 +171,12 @@ const Score = forwardRef((props: { class_id: string, course_id: string, token: t
     }, [checkUpload])
     return (
         <div className="p-2">
-            <div className="p-2 flex-col  rounded-lg bg-slate-200">
+            <div className="p-2  rounded-lg bg-slate-200">
 
                 {/*Button for scorechange */}
                 <div className="flex flex-row">
                     <div className=" inline ml-2 mr-2 mt-2 lg:mt-0 rounded-md hover:scale-110 hover:ease-in-out text-center truncate hover:bg-blue-700 hover:text-black p-2 bg-blue-500 text-white cursor-pointer"
-                        onClick={() => { if (scorechange == 0) setScorechange(1); else if (scorechange == 1) setScorechange(2) }}>
+                        onClick={() => { if (scorechange == 0) setScorechange(1); else if (scorechange == 1) { if (valid) setScorechange(2); else alert("Hệ số hoặc điểm không hợp lệ!\n") } }}>
                         {scorechange == 0 && <div>Nhập và chỉnh sửa điểm</div>}
                         {scorechange == 1 && <div>Hoàn tất</div>}
                         {scorechange == 2 && <div >Đang tiến hành lưu điểm ...</div>}
@@ -202,44 +229,64 @@ const Score = forwardRef((props: { class_id: string, course_id: string, token: t
 
                     {/*TABLE FOR SCORE CHANGING */}
                     {scorechange != 0 &&
-                        <div className="flex-1 mt-4 flex flex-col h-80">
-
-                            <div className="overflow-auto border-[1px] border-gray-500 rounded-lg text-sm">
-                                <div className=" flex flex-row border-b-[1px] border-gray-500 bg-blue-300 p-3 justify-center text-center">
-                                    Nhập và chỉnh sửa điểm
+                        <div className="flex-1">
+                            <div className="flex flex-row p-2 w-full">
+                                <div className="">Nhập hệ số</div>
+                                <div className="flex flex-row">
+                                    {it.map((item, idx) => {
+                                        if (idx != 4)
+                                            return (
+                                                <div className="flex-1 flex flex-row ">
+                                                    <div className="flex-1 flex flex-row gap-2 px-2 items-center justify-between">
+                                                        <p className="flex-1 ">{item}</p>
+                                                        <input type="text" onChange={(e) => handleCoef(e, idx)} className={`text-center h-6 w-12 ${rightformat ? "focus:outline-blue-400 bg-slate-100" : "focus:outline-red-500 bg-red-200"} focus:ring-blue-400 rounded-lg`} ></input>
+                                                    </div>
+                                                    {idx != 3 && <div className="w-[2px] h-full rounded-lg bg-gray-400 m-[1px]"></div>}
+                                                </div>
+                                            )
+                                    })}
                                 </div>
-                                {score.length != 0 &&
-                                    score.map((item, index) => {
-                                        return (
-                                            <div className="border-b-[1px] border-gray-500">
-                                                <div className="flex flex-row bg-white">
-                                                    <div className="py-3 flex-1 flex justify-center">{item.fullname}</div>
-                                                    <div className="w-[1px] bg-black h-11"></div>
-                                                    <div className="py-3 flex-1 flex justify-center">{item.student_id}</div>
-                                                </div>
-                                                <div className="bg-blue-200 flex flex-row py-3">
-                                                    {it.map((other, idx) => {
-                                                        return (
-                                                            <div className="flex-1 flex flex-row ">
-
-                                                                <div className="flex-1 flex flex-row gap-2 px-2 items-center justify-between">
-                                                                    <p className="flex-1 ">{other}</p>
-                                                                    <input type="text" onChange={(e) => handleText(e, it[idx], index)} className={`text-center h-6 w-12 ${rightformat ? "focus:outline-blue-400 bg-slate-100" : "focus:outline-red-500 bg-red-200"} focus:ring-blue-400 rounded-lg`} ></input>
-                                                                </div>
-                                                                {idx != 4 && <div className="w-[2px] h-full rounded-lg bg-gray-400 m-[1px]"></div>}
-                                                            </div>
-
-
-                                                        )
-                                                    })}
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                }
                             </div>
-                            <div className="flex-1"></div>
-                        </div>}
+                            <div className="flex-1 mt-4 flex flex-col h-80">
+
+                                <div className="overflow-auto border-[1px] border-gray-500 rounded-lg text-sm">
+                                    <div className=" flex flex-row border-b-[1px] border-gray-500 bg-blue-300 p-3 justify-center text-center">
+                                        Nhập và chỉnh sửa điểm
+                                    </div>
+                                    {score.length != 0 &&
+                                        score.map((item, index) => {
+                                            return (
+                                                <div className="border-b-[1px] border-gray-500">
+                                                    <div className="flex flex-row bg-white">
+                                                        <div className="py-3 flex-1 flex justify-center">{item.fullname + " " + item.student_id + " "}</div>
+                                                        <div className="w-[1px] bg-black h-11"></div>
+                                                        <div className="py-3 flex-1 flex justify-center">{"GPA:" + calGPA(index)}</div>
+                                                    </div>
+                                                    <div className="bg-blue-200 flex flex-row py-3">
+                                                        {it.map((other, idx) => {
+                                                            return (
+                                                                <div className="flex-1 flex flex-row ">
+
+                                                                    <div className="flex-1 flex flex-row gap-2 px-2 items-center justify-between">
+                                                                        <p className="flex-1 ">{other}</p>
+                                                                        <input type="text" onChange={(e) => handleText(e, it[idx], index)} className={`text-center h-6 w-12 ${rightformat ? "focus:outline-blue-400 bg-slate-100" : "focus:outline-red-500 bg-red-200"} focus:ring-blue-400 rounded-lg`} ></input>
+                                                                    </div>
+                                                                    {idx != 3 && <div className="w-[2px] h-full rounded-lg bg-gray-400 m-[1px]"></div>}
+                                                                </div>
+
+
+                                                            )
+                                                        })}
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <div className="flex-1"></div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
