@@ -6,6 +6,8 @@ import { UpdateScoreInfo } from "@/ambLib/amb";
 import { UpdatingCourseInfo } from "@/ambLib/amb";
 import { ContactSupportOutlined } from "@mui/icons-material";
 import { FaCommentsDollar } from "react-icons/fa";
+import cookie from 'js-cookie'
+
 interface CLASS {
     class_id: string
     students: string[]
@@ -22,7 +24,7 @@ interface studScore {
 
 
 
-const Score = forwardRef((props: { class_id: string, course_id: string, token: token }, ref) => {
+const Score = forwardRef((props: { class_id: string, course_id: string }, ref) => {
     const [coef, setCoef] = useState([0, 0, 0, 0])
     const it = ["BT", "LAB", "GK", "CK"]
     const [checkUpload, setCheckupload] = useState(0)
@@ -93,7 +95,10 @@ const Score = forwardRef((props: { class_id: string, course_id: string, token: t
         const Class = new CourseOperation()
         let Data: CLASS[]
         const fetchData = async () => {
-            await Class.findClasses({ course_id: props.course_id }, props.token)
+            const myToken: token = {
+                token: cookie.get("token"),
+            };
+            await Class.findClasses({ course_id: props.course_id }, myToken)
                 .then(data => {
                     Data = data.data
                     for (let i = 0; i < Data.length; i++) {
@@ -120,7 +125,10 @@ const Score = forwardRef((props: { class_id: string, course_id: string, token: t
             let Data: studScore[]
             const temp = [...score]
             const fetchData = async () => {
-                await course.getScoreForTeacher({ class_id: props.class_id }, props.token).then(data => {    //Load score
+                const myToken: token = {
+                    token: cookie.get("token"),
+                };
+                await course.getScoreForTeacher({ class_id: props.class_id }, myToken).then(data => {    //Load score
                     Data = data.data
                     if (Data == undefined) { setnoStudent(0); return }
                     let no = Data.length
@@ -147,10 +155,13 @@ const Score = forwardRef((props: { class_id: string, course_id: string, token: t
         if (scorechange == 2) {
             if (rightformat) {
                 const updateScore = new ClassOperation()
+                const myToken: token = {
+                    token: cookie.get("token"),
+                };
                 for (let i = 0; i < noStudent; i++) {
                     const loadScore = async () => {
                         let temp = checkUpload + 1
-                        updateScore.updateScore({ student_id: score[i].student_id, midterm: score[i].midterm, final: score[i].final, exercise: score[i].exercise, lab: score[i].lab }, { class_id: props.class_id }, props.token)
+                        updateScore.updateScore({ student_id: score[i].student_id, midterm: score[i].midterm, final: score[i].final, exercise: score[i].exercise, lab: score[i].lab }, { class_id: props.class_id }, myToken)
                             .then(error => { setCheckupload(temp); if (error.error) alert(error.error.message); else alert(error.message) })
                     }
                     loadScore()

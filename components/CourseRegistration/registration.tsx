@@ -6,7 +6,7 @@ import ReportOutlinedIcon from '@mui/icons-material/ReportOutlined';
 import { toNonAccentVietnamese } from "./nonAccentVietnamese";
 import { ClassOperation, token, CourseOperation, UpdatingCourseInfo, RegisterClassInfo, StudentOperation } from "@/ambLib/amb";
 import CloseIcon from '@mui/icons-material/Close';
-
+import cookie from 'js-cookie'
 interface registerdCourse {
     class_id: string
     course_id: string
@@ -28,7 +28,7 @@ interface Course {
     classState: string
 }
 
-export default function Registration(props: { token: token }) {
+export default function Registration() {
     const [course, setCourse] = useState<Course[]>([]);
     const [search, setSearch] = useState("");
     const [choose, setChoose] = useState<Course[]>([]);
@@ -52,8 +52,11 @@ export default function Registration(props: { token: token }) {
             const Class = new CourseOperation()
             let temp: Course[] = courselst
             let len = courselst.length
+            const myToken: token = {
+                token: cookie.get("token"),
+            };
             for (let i = 0; i < len; i++) {
-                await Class.findClasses({ course_id: courselst[i].course_id }, props.token)
+                await Class.findClasses({ course_id: courselst[i].course_id }, myToken)
                     .then(data => {
                         let x = data.data
                         for (let j = 0; j < x.length; j++) {
@@ -71,7 +74,10 @@ export default function Registration(props: { token: token }) {
             let temp: UpdatingCourseInfo
             const course = new CourseOperation()
             let lst: Course[] = []
-            await course.findAllCourses(temp, props.token).then(data => {
+            const myToken: token = {
+                token: cookie.get("token"),
+            };
+            await course.findAllCourses(temp, myToken).then(data => {
                 if (data.data) {
                     let x: Course[] = data.data
                     for (let i = 0; i < x.length; i++) {
@@ -166,9 +172,12 @@ export default function Registration(props: { token: token }) {
     const handleResToServer = async () => {
         const postClass = new ClassOperation()
         let response
+        const myToken: token = {
+            token: cookie.get("token"),
+        };
         for (let i = 0; i < choose.length; i++) {
             if (choose[i].classState == "") continue
-            response = await postClass.register({ class_id: choose[i].classState, course_id: choose[i].course_id }, props.token)
+            response = await postClass.register({ class_id: choose[i].classState, course_id: choose[i].course_id }, myToken)
             console.log(response)
             if (response.error.error) alert(response.error.message)
             else alert(response.message)

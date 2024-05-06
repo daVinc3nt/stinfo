@@ -1,20 +1,28 @@
 import { forwardRef, useEffect, useState } from "react";
 import { ClassOperation, CourseOperation, TeacherOperation, token } from "@/ambLib/amb";
+import cookie from 'js-cookie'
 
 
-const Submiss = forwardRef((props: { class_id: string, course_id: string, token: token }, ref) => {
+const Submiss = forwardRef((props: { class_id: string, course_id: string }, ref) => {
 
     const [listFileName, setListFileName] = useState<string[]>([]);
     const fetchFile = async () => {
         const file = new ClassOperation()
-        await file.getSubmitFile({ class_id: props.class_id }, props.token)
+        const myToken: token = {
+            token: cookie.get("token"),
+        };
+        await file.getSubmitFile({ class_id: props.class_id }, myToken)
             .then(data => console.log(data))
     }
 
     useEffect(() => {
+
         const operation = new ClassOperation();
-        if (props.class_id && props.token) {
-            operation.showSubmitFile({ class_id: props.class_id }, props.token)
+        const myToken: token = {
+            token: cookie.get("token"),
+        };
+        if (props.class_id && myToken) {
+            operation.showSubmitFile({ class_id: props.class_id }, myToken)
                 .then(data => {
                     const getData = data;
                     if (getData.data) {

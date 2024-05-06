@@ -4,6 +4,7 @@ import { Button, button } from "@material-tailwind/react"
 import { StudentOperation, token } from "@/ambLib/amb";
 import { ContactSupportOutlined } from "@mui/icons-material";
 import course from "@/pages/dashboard/course_registration";
+import cookie from 'js-cookie'
 const DATE = new Date();
 interface course {
     GPA: number,
@@ -90,9 +91,7 @@ const PieChart = ({ percentages, animation }) => {
 };
 
 export default function MyScore() {
-    const token: token = {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTY3MDg1LCJleHAiOjE3MTUwMDMwODV9.fdrPBmSUhT1R91w8qC6Zkj402ixiqbn3DQa1E1xVRLc"
-    }
+
     const [student, setStudent] = useState<student>({ name: "", ID: "" })
     const [semes, setSemes] = useState<course[][]>([])
     const [cursemes, setCursemes] = useState("")
@@ -124,7 +123,10 @@ export default function MyScore() {
 
 
             const fetchScore = async () => {
-                await stuOp.getScore(token)
+                const myToken: token = {
+                    token: cookie.get("token"),
+                };
+                await stuOp.getScore(myToken)
                     .then(data => {
                         DATA = data.data.allScores
                         for (let i = 0; i < DATA.length; i++) {
@@ -176,14 +178,15 @@ export default function MyScore() {
                     avgSemester[i].score += (semes[i][j].GPA * semes[i][j].credits)
                     sum += semes[i][j].credits
                 }
-                GPA = avgSemester[i].score
+
+                GPA += avgSemester[i].score
                 avgSemester[i].score = parseFloat((avgSemester[i].score * 0.4 / sum).toFixed(1))
                 avgSemester[i].credits = sum
                 credit += sum
 
             }
             setoverallCredits(credit)
-            setoverallGPA(GPA / credit)
+            setoverallGPA(Math.round((GPA / credit) * 10) / 10)
             setScore(avgSemester)
         }
     }, [semes])
@@ -192,7 +195,10 @@ export default function MyScore() {
     useEffect(() => {
         const info = new StudentOperation()
         const fetchInfo = async () => {
-            await info.findByStudent(token).then(data => setStudent({ name: data.data.fullname, ID: data.data.student_id }))
+            const myToken: token = {
+                token: cookie.get("token"),
+            };
+            await info.findByStudent(myToken).then(data => setStudent({ name: data.data.fullname, ID: data.data.student_id }))
         }
         fetchInfo()
     }, [])
@@ -246,8 +252,8 @@ export default function MyScore() {
                             <div>Họ và Tên: {student.name != "" ? student.name + " (" + student.ID + ")" : ""}</div>
                             {dateInfo.length != 0 && <div className=" truncate shadow-lg inline bg-blue-500 rounded-md text-white py-1 px-2">{dateInfo}</div>}
                         </div>
-                        <div className="mb-2">Điểm trung bình tích luỹ</div>
-                        <div className="mb-2">Số tín chỉ tích luỹ</div>
+                        <div className="mb-2">Điểm trung bình tích luỹ:{" " + overallCredits}</div>
+                        <div className="mb-2">Số tín chỉ tích luỹ:{" " + overallGPA}</div>
 
 
                         <label className="flex items-center">

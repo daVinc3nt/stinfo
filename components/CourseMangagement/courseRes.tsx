@@ -8,7 +8,7 @@ import { error } from "console";
 
 
 
-export default function CourseRegistration(props: { token: token }) {
+export default function CourseRegistration() {
     const [current, setCurrent] = useState(0)
 
     return (
@@ -19,7 +19,7 @@ export default function CourseRegistration(props: { token: token }) {
 
                     <div className=" text-center bg-slate-300 text-sm sm:text-lg p-2 rounded-t-lg">Đăng ký môn giảng dạy</div>
 
-                    {current == 0 && <Registration token={props.token} />}
+                    {current == 0 && <Registration />}
 
 
                 </div>
