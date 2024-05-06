@@ -12,7 +12,7 @@ const Submiss = forwardRef((props: { class_id: string, course_id: string }, ref)
             token: cookie.get("token"),
         };
         await file.getSubmitFile({ class_id: props.class_id }, myToken)
-            .then(data => console.log(data))
+
     }
 
     useEffect(() => {
@@ -26,7 +26,6 @@ const Submiss = forwardRef((props: { class_id: string, course_id: string }, ref)
                 .then(data => {
                     const getData = data;
                     if (getData.data) {
-                        // console.log("list of submit File: ", getData);
                         setListFileName(getData.data);
                     }
                 }
