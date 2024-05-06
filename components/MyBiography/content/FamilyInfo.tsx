@@ -16,14 +16,14 @@ interface Family {
 
 const FamilyInfo: React.FC = () => {
     const student: Student = {
-        Address: "KTX DHQG àuihsdkjfhdsjkfsadkjfhks",
-        Phone: "00000000000000",
-        FamilyPhone: "1213333321321312",
+        Address: "KTX DHQG HCM",
+        Phone: "+8400000000",
+        FamilyPhone: "+8400000000",
     };
 
     const family: Family = {
         Name: "Tran Thu Do",
-        Phone: "1674132422",
+        Phone: "+8400000000",
         Email: "callme@example.com",
         FamilyContact: "Địa chỉ liên lạc",
         FamilyAddress: "Địa chỉ theo hộ khẩu",

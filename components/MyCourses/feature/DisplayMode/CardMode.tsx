@@ -1,23 +1,9 @@
-// import React, { useEffect, useState } from 'react';
-// import { CourseID, CourseOperation, UpdatingCourseInfo, token } from "@/ambLib/amb";
-// import { Course, CustomLink } from '../../content/coursesData';
-
 import { useEffect, useState } from "react";
-import MyClass from "../../MyClass/content/MyClass";
 import { ClassID, CourseOperation, token } from "@/ambLib/amb";
-import { Link, Route } from "lucide-react";
-
-
-
 
 
 interface CardModeProps {
   CourseID: string;
-  // CourseName: string;
-  // Faculty: string;
-  // CourseType?: string;
-  // ClassID: string;
-
 }
 const Token: token = {
   token:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTY2MDIwLCJleHAiOjE3MTUwMDIwMjB9.sX-xyPVY4JT-QFA2ePVGTuCciKMHzHDtd80vCF2tBrU"
