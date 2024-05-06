@@ -217,7 +217,7 @@ const Score = forwardRef((props: { class_id: string, course_id: string }, ref) =
                                                 <td className="px-6 py-4 bg-white">{item.student_id}</td>
                                                 <td className="px-6 py-4 bg-blue-200">{item.fullname == "" ? "Không có điểm" : item.fullname}</td>
                                                 <td className="px-6 py-4 bg-white">
-                                                    <div className="grid grid-cols-3 lg:grid-cols-5">
+                                                    <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5">
 
                                                         <div>BT:{item.GPA == -1 ? "..." : item.GPA}</div>
                                                         <div>LAB:{item.lab == -1 ? "..." : item.lab}</div>
