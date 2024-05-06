@@ -113,7 +113,7 @@ const DetailStaff: React.FC<Props> = ({ onClose }) => {
   return (
     <>
       <motion.div
-        className={`fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-60 z-10 text-[#545e7b]`}
+        className={`fixed  top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-60 z-50 text-[#545e7b]`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
         exit={{ opacity: 0 }}
