@@ -151,10 +151,16 @@ function generateWeekCalendar(subjectData: SubjectProps[], currentWeek: number):
 		console.log("It is null!!!");
 		return null;
 	}
+	console.log("Lịch dạy trong tuần");
+
 	for (let i = 0; i < subjectData.length; i++)
 	{
 		// Kiểm tra xem môn nào có tiết trong tuần hiện tại
-		if (subjectData[i].weeks.includes(currentWeek) && subjectData[i].semester == "HK232")
+		if (subjectData[i].weeks)
+		{
+			console.log(subjectData[i].weeks);
+		}
+		if (subjectData[i].weeks && subjectData[i].weeks.includes(currentWeek) && subjectData[i].semester == "HK232")
 		{
 			// console.log("There is a subject in this week: ", subjectData[i].course_name);
 			const index: number = DateUtils.convertDayToNumber(subjectData[i].day.toString());
