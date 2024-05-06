@@ -8,11 +8,11 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 
 export default function Quiz () {  
-	const [role, setRole] = useState<string>(localStorage.getItem("role"));
+	const [role, setRole] = useState<string>(if (typeof window !== "undefined") window.localStorage.getItem("role"));
 	const [userToken, setUserToken] = useState<token>({ token: ""});
 	const [getUserData, setUserData] = useState<any>(null);
-	const [classID, setClassID] = useState<ClassID>({ class_id: localStorage.getItem("classID")});
-	const [courseName, setCourseName] = useState<string>(localStorage.getItem("courseName"));
+	const [classID, setClassID] = useState<ClassID>({ class_id: if (typeof window !== "undefined") window.localStorage.getItem("classID")});
+	const [courseName, setCourseName] = useState<string>(if (typeof window !== "undefined") window.localStorage.getItem("courseName"));
 	const [loadingState, setLoadingState] = useState<boolean>(true);
 	const [file, setFile] = useState<File | null>(null);
 	const [multipleFile, setMultipleFile] = useState<File[]>([]);
@@ -23,9 +23,9 @@ export default function Quiz () {
 	let teacher = new TeacherOperation();
 	// to get student token
 	useEffect(() => {
-		setRole(localStorage.getItem("currentRole"));
-		setCourseName(localStorage.getItem("currentCourseName"));
-		setClassID({ class_id: localStorage.getItem("currentClassID") });
+		setRole(if (typeof window !== "undefined") window.localStorage.getItem("currentRole"));
+		setCourseName(if (typeof window !== "undefined") window.localStorage.getItem("currentCourseName"));
+		setClassID({ class_id: if (typeof window !== "undefined") window.localStorage.getItem("currentClassID") });
 		const currentToken = Cookies.get("userToken");
 		// console.log("currentToken: ", currentToken);
 		setUserToken({ token: currentToken });
@@ -35,15 +35,15 @@ export default function Quiz () {
 
 		// return () => {
 		// 	// cleanup localStorage
-		// 	localStorage.removeItem("currentRole");
-		// 	localStorage.removeItem("currentClassID");
-		// 	localStorage.removeItem("currentCourseName");
+		// 	if (typeof window !== "undefined") window.localStorage.removeItem("currentRole");
+		// 	if (typeof window !== "undefined") window.localStorage.removeItem("currentClassID");
+		// 	if (typeof window !== "undefined") window.localStorage.removeItem("currentCourseName");
 		// }
 
 	}, [
-		localStorage.getItem("currentRole"),
-		localStorage.getItem("currentClassID"),
-		localStorage.getItem("currentCourseName"),
+		if (typeof window !== "undefined") window.localStorage.getItem("currentRole"),
+		if (typeof window !== "undefined") window.localStorage.getItem("currentClassID"),
+		if (typeof window !== "undefined") window.localStorage.getItem("currentCourseName"),
 	]);
 
 	// second useEffect to get data

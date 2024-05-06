@@ -61,9 +61,9 @@ const ListOfSubmittedSubject = () => {
 
 		return () => {
 			// cleanup localStorage
-			localStorage.removeItem("currentRole");
-			localStorage.removeItem("currentClassID");
-			localStorage.removeItem("currentCourseName");
+			if (typeof window !== "undefined") window.localStorage.removeItem("currentRole");
+			if (typeof window !== "undefined") window.localStorage.removeItem("currentClassID");
+			if (typeof window !== "undefined") window.localStorage.removeItem("currentCourseName");
 		}
 
 	}, []);
@@ -125,13 +125,13 @@ const ListOfSubmittedSubject = () => {
 
 
 	const routeToShowQuiz = (subject: Subject, index: number) => {
-		localStorage.setItem("currentClassID", subject.class_id);
-		localStorage.setItem("currentCourseName", subject.course_name);
-		localStorage.setItem("currentRole", "student");
-		localStorage.setItem("currentCourseID", subject.course_id);
-		localStorage.setItem("currentTeacher", subject.teacher);
-		localStorage.setItem("currentScore", String(listScore[index].exercise))
-		console.log(localStorage.getItem("currentScore"));
+		if (typeof window !== "undefined") window.localStorage.setItem("currentClassID", subject.class_id);
+		if (typeof window !== "undefined") window.localStorage.setItem("currentCourseName", subject.course_name);
+		if (typeof window !== "undefined") window.localStorage.setItem("currentRole", "student");
+		if (typeof window !== "undefined") window.localStorage.setItem("currentCourseID", subject.course_id);
+		if (typeof window !== "undefined") window.localStorage.setItem("currentTeacher", subject.teacher);
+		if (typeof window !== "undefined") window.localStorage.setItem("currentScore", String(listScore[index].exercise))
+		console.log(if (typeof window !== "undefined") window.localStorage.getItem("currentScore"));
 		console.log("currentScore: ", listScore[index].exercise);
 		console.log("currentIndex: ", index);
 		console.log("listOfScore: ", listScore);

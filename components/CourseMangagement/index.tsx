@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react"
+import { useRouter } from "next/router";
 import React from "react";
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import Image from "next/image";
@@ -16,6 +17,10 @@ import { token } from "@/ambLib/amb";
 import { RegisterClassInfo } from "@/ambLib/amb";
 import CourseRegistration from "./courseRes";
 import Teacher from "./teacherInfo";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import InfoIcon from '@mui/icons-material/Info';
+import cookie from 'js-cookie'
+import MyApp from "@/pages/_app";
 
 const WEEKDAY: { [key: string]: string } = {
     "Thứ Hai": "Thứ 2",
@@ -106,10 +111,8 @@ export default function Course() {
     const [dateInfo, setDateInfo] = useState('');
     const [today, setToday] = useState<TimeTable>({ time: [] })
     const [course, Setcourse] = useState<Course[]>([])
-    const token: token = {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVyX2lkIjoiR1Y1MzU4NyIsInJvbGUiOiJHaeG6o25nIHZpw6puIiwiYWN0aXZlIjoxLCJpYXQiOjE3MTQ5NjQ5MzEsImV4cCI6MTcxNTAwMDkzMX0.wJotmNDAfcKomZ-zuggNixxWGc9XcC1OyJxzPpYMc7k"
-    }
-    console.log(techerInfo)
+
+    const router = useRouter()
 
     useEffect(() => {
         const wDay = new Date().toLocaleString('vi-VN', { weekday: 'long', timeZone: 'Asia/Ho_Chi_Minh' });
@@ -122,7 +125,10 @@ export default function Course() {
         const teacher = new TeacherOperation()
         const Class = new CourseOperation()
         const fetchData1 = async () => {
-            await teacher.findTeacherRegisteredClass(token)
+            const myToken: token = {
+                token: cookie.get("token"),
+            };
+            await teacher.findTeacherRegisteredClass(myToken)
                 .then(data => {
                     DATA = data.data
                     let temp: TeacherInfo
@@ -155,12 +161,18 @@ export default function Course() {
                 .catch(error => console.log(error))
         }
         const fetchData2 = async () => {
-            await teacher.findByTeacher(token)
+            const myToken: token = {
+                token: cookie.get("token"),
+            };
+            await teacher.findByTeacher(myToken)
                 .then(data => setTeacherInfo({ name: data.data.fullname, gender: data.data.gender }))
                 .catch(error => console.log(error))
         }
         const fetchData3 = async () => {
-            await Class.findClasses({ course_id: "CS1716" }, token)
+            const myToken: token = {
+                token: cookie.get("token"),
+            };
+            await Class.findClasses({ course_id: "CS1716" }, myToken)
         }
         fetchData1()
         fetchData2()
@@ -209,8 +221,11 @@ export default function Course() {
                         <div className={`mt-10 flex flex-row items-center ${cur == 4 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(4)}>
                             <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 4 ? 'bg-blue-600 ' : ''}`}><NotificationsActiveOutlinedIcon className={`${cur == 4 ? 'text-white' : ''}`} /></div>Xem bài nộp
                         </div>
-                        <div className={`mt-10 flex flex-row items-center ${cur == 4 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(5)}>
-                            <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 4 ? 'bg-blue-600 ' : ''}`}><NotificationsActiveOutlinedIcon className={`${cur == 5 ? 'text-white' : ''}`} /></div>Thông tin cá nhân
+                        <div className={`mt-10 flex flex-row items-center ${cur == 5 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => setCur(5)}>
+                            <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 5 ? 'bg-blue-600 ' : ''}`}><InfoIcon className={`${cur == 5 ? 'text-white' : ''}`} /></div>Thông tin cá nhân
+                        </div>
+                        <div className={`mt-10 flex flex-row items-center ${cur == 6 ? 'text-blue-600' : ''} gap-1 cursor-pointer  mb-10`} onClick={() => { setCur(6); router.push("/dashboard/calendar") }}>
+                            <div className={`p-1 rounded-lg  bg-slate-200 ${cur == 6 ? 'bg-blue-600 ' : ''}`}><CalendarMonthIcon className={`${cur == 6 ? 'text-white' : ''}`} /></div>Lịch
                         </div>
                     </div>
                 </div>
@@ -310,15 +325,15 @@ export default function Course() {
 
 
                     {/*LECTURE*/}
-                    {cur == 2 && <CourseRegistration token={token} />}
+                    {cur == 2 && <CourseRegistration />}
                     {/* {cur == 2 && showClass == 0 && <div className="inline-flex flex-row m-4 gap-2 p-2 rounded-lg bg-slate-300 animate-bounce "><ErrorOutlineIcon />Vui lòng chọn môn học !</div>} */}
 
                     {/*SCORE*/}
-                    {cur == 3 && showClass == 2 && <Score ref={upData} class_id={curClass.class_name} course_id={course[curcourse].course_id} token={token} />}
+                    {cur == 3 && showClass == 2 && <Score ref={upData} class_id={curClass.class_name} course_id={course[curcourse].course_id} />}
                     {cur == 3 && showClass != 2 && <div className="inline-flex flex-row m-4 gap-2 p-2 rounded-lg bg-slate-300 animate-bounce "><ErrorOutlineIcon />Vui lòng chọn lớp học !</div>}
 
                     {/*SUBMISSION*/}
-                    {cur == 4 && showClass == 2 && <Submiss ref={upData} class_id={curClass.class_name} course_id={course[curcourse].course_id} token={token} />}
+                    {cur == 4 && showClass == 2 && <Submiss ref={upData} class_id={curClass.class_name} course_id={course[curcourse].course_id} />}
                     {cur == 4 && showClass != 2 && <div className="inline-flex flex-row m-4 gap-2 p-2 rounded-lg bg-slate-300 animate-bounce "><ErrorOutlineIcon />Vui lòng chọn lớp học !</div>}
 
                     {cur == 5 && <Teacher />}

@@ -2,6 +2,7 @@ import { CourseOperation, token } from "@/ambLib/amb"
 import { StudentOperation } from "@/ambLib/amb"
 import { useState, useEffect } from "react"
 import { UpdatingCourseInfo } from "@/ambLib/amb"
+import cookie from 'js-cookie'
 interface registerdCourse {
     class_id: string
     course_id: string
@@ -14,15 +15,18 @@ interface registerdCourse {
     period: number[]
 }
 
-export default function Result(props: { token: token }) {
+export default function Result() {
     const [result, setResult] = useState<registerdCourse[]>([])
     const fixed = [1, 2, 3, 4, 5, 6]
     useEffect(() => {
         const fetchClass = async () => {
             const studOp = new StudentOperation()
             let result: registerdCourse[]
-            await studOp.findStudentRegisteredClass(props.token)
-                .then(data => { setResult(data.data), console.log(data.data) })
+            const myToken: token = {
+                token: cookie.get("token"),
+            };
+            await studOp.findStudentRegisteredClass(myToken)
+                .then(data => { setResult(data.data) })
                 .catch(error => console.log(error))
         }
         fetchClass()
