@@ -79,11 +79,9 @@ const handleLinkClick = (ClassID_input:string) => {
                 <button>
                   <span className="cursor-pointer text-blue-500 border-b border-blue-500 hover:border-transparent hover:bg-transparent" 
                   onClick={() => handleLinkClick(ClassID)}>
-                    <div>
-                    Lớp:{ClassID}
+                    <div>Lớp:{ClassID}
                     </div>
-                    <div>
-                    GV:{Teacher} 
+                    <div>GV:{Teacher} 
                     </div>
                
                   </span>
