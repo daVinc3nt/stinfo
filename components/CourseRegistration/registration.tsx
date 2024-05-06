@@ -58,9 +58,12 @@ export default function Registration() {
             for (let i = 0; i < len; i++) {
                 await Class.findClasses({ course_id: courselst[i].course_id }, myToken)
                     .then(data => {
-                        let x = data.data
-                        for (let j = 0; j < x.length; j++) {
-                            temp[i].class_id.push(x[j].class_id)
+                        if (data.error) alert("Đã có lỗi xảy ra vui lòng thử lại!")
+                        else {
+                            let x = data.data
+                            for (let j = 0; j < x.length; j++) {
+                                temp[i].class_id.push(x[j].class_id)
+                            }
                         }
                     }
                     )
@@ -78,12 +81,15 @@ export default function Registration() {
                 token: cookie.get("token"),
             };
             await course.findAllCourses(temp, myToken).then(data => {
-                if (data.data) {
-                    let x: Course[] = data.data
-                    for (let i = 0; i < x.length; i++) {
-                        lst.push({ class_id: [], course_id: x[i].course_id, course_name: x[i].course_name, credits: x[i].credits, course_type: x[i].course_type, classState: "" })
+                if (data.error) alert("Đã có lỗi xảy ra vui lòng thử lại!")
+                else {
+                    if (data.data) {
+                        let x: Course[] = data.data
+                        for (let i = 0; i < x.length; i++) {
+                            lst.push({ class_id: [], course_id: x[i].course_id, course_name: x[i].course_name, credits: x[i].credits, course_type: x[i].course_type, classState: "" })
+                        }
+                        setCourselst(lst)
                     }
-                    setCourselst(lst)
                 }
             })
         }

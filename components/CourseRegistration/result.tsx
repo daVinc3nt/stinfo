@@ -27,7 +27,7 @@ export default function Result() {
             };
             await studOp.findStudentRegisteredClass(myToken)
                 .then(data => { setResult(data.data) })
-                .catch(error => console.log(error))
+                .catch(error => { if (error.error) alert("Đã có lỗi xảy ra vui lòng thử lại") })
         }
         fetchClass()
     }, [])
