@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { StudentOperation, token } from '@/ambLib/amb';
+import cookie from "js-cookie"
 
 
-const Token: token = {
-    token:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTY2MDIwLCJleHAiOjE3MTUwMDIwMjB9.sX-xyPVY4JT-QFA2ePVGTuCciKMHzHDtd80vCF2tBrU"
-}
+const myToken: token = {
+    token: cookie.get("token"),
+  };
 interface Props {
     StudentID: string; 
 }
@@ -15,7 +16,7 @@ const StudentList: React.FC<Props> = ({ StudentID }) => {
     const fetchStudentList = async () => {  
         try {
             const getStudentListInfo = new StudentOperation();
-            const responseInfo = await getStudentListInfo.findByAdmin({ student_id: StudentID }, {token: null});
+            const responseInfo = await getStudentListInfo.findByAdmin({ student_id: StudentID }, myToken);
             // const responseInfo = await getStudentListInfo.findByStudent({token: null})
             setStudentInfo(responseInfo.data)
             console.log(responseInfo.data)

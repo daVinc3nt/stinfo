@@ -20,8 +20,8 @@ export  const ContactInfo = () => {
     const student: Student = {
     
         Identification: "090703001234",
-        frontIdentification: "https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg",
-        backIdentification: "https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg",
+        frontIdentification: "https://th.bing.com/th/id/OIP.8bss3pk_BMm06NPJfvQrHAHaDm?rs=1&pid=ImgDetMain",
+        backIdentification: "https://th.bing.com/th/id/OIP.8bss3pk_BMm06NPJfvQrHAHaDm?rs=1&pid=ImgDetMain",
         Birthplace: "Ba Ria Vung Tau",
         PermanentResidence: "Ho Chi Minh",
     };
@@ -46,12 +46,12 @@ export  const ContactInfo = () => {
                          border shadow-gray-200 shadow-sm rounded-lg">
                 <div className="md:flex justify-center items-center">
                     <img 
-                    src={"https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"}
+                    src={"https://th.bing.com/th/id/OIP.8bss3pk_BMm06NPJfvQrHAHaDm?rs=1&pid=ImgDetMain"}
                     alt="front_CCCD" 
                     className="h-[82%] w-[78%] md:h-[62%] md:w-[42%] rounded-xl shadow-xl shadow-gray-100  mx-auto"
                     />
                     <img 
-                    src={"https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"}
+                    src={"https://th.bing.com/th/id/OIP.8bss3pk_BMm06NPJfvQrHAHaDm?rs=1&pid=ImgDetMain"}
                     alt="back_CCCD" 
                     className="h-[82%] w-[78%] md:h-[62%] md:w-[42%] rounded-xl shadow-xl shadow-gray-100  mx-auto"
                     />

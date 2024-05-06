@@ -1,55 +1,21 @@
 import { StudentOperation, token } from "@/ambLib/amb";
 import { useEffect, useState } from "react";
+import cookie from "js-cookie"
 
-// interface information {
-//     Name:               string,
-//     Email:              string,
-//     StudentID:          string,
-//     BirthDay:           string,
-//     Sex:                boolean,
-//     Avatar:             string,
-// };
-// interface academic {
-//     Condition:          string,
-//     Major:              string,
-//     Program:            string,
-//     Faculty:            string,
-//     Class:              string,
-//     Teacher:            string,
-//     Timeline:           string,
-// };
-// const student: { personal: information, study: academic } = {
-//     personal: {
-//         Name: "Nguyen Van A",
-//         Email: "nguyenvana@hcmut.edu.vn",
-//         StudentID: "S1234567",
-//         BirthDay: "1998-05-15",
-//         Sex: true,   // true là nam, false là nữ
-//         Avatar: "https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"  
 
-//     },
-//     study: {
-//         Condition: "Đang học",
-//         Major: "Khoa học máy tính",
-//         Program: "Chính quy (CQ)",
-//         Faculty: "Khoa Khoa học và Kỹ thuật máy tính",
-//         Class: "MT22KH00",
-//         Teacher: "Steven Jobs",
-//         Timeline: "12/2022-10/2028"
-//     }
-// };
+
+const myToken: token = {
+  token: cookie.get("token"),
+};
+
   
 const MainInfo = () => {
     
     const [studentData, setStudentData] = useState<any>(null);
-    const tokenData: token = {
-        token:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTY2MDIwLCJleHAiOjE3MTUwMDIwMjB9.sX-xyPVY4JT-QFA2ePVGTuCciKMHzHDtd80vCF2tBrU"
-    };
-
     const fetchStudentData = async () => {
         try {
             const studentAPI = new StudentOperation();
-            const response = await studentAPI.findByAdmin({}, tokenData);
+            const response = await studentAPI.findByAdmin({}, myToken);
             console.log("Full response:", response); // Log the entire response
             console.log("Teacher data:", response.data); // Log the specific data part
             setStudentData(response.data); // Set teacherData state with the fetched data
@@ -71,7 +37,7 @@ const MainInfo = () => {
                 border shadow-gray-200 shadow-sm rounded-lg">
       <div className="flex justify-center items-center p-2 ">
         <img 
-        src= "https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"
+        src= "https://th.bing.com/th/id/OIP.8bss3pk_BMm06NPJfvQrHAHaDm?rs=1&pid=ImgDetMain"
         alt="Avatar" 
         className=" h-[72%] w-[65%] md:h-[62%] md:w-[42%] rounded-xl shadow-xl shadow-gray-100  mx-auto mb-2"
         />

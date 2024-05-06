@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { ClassID, ClassOperation, CourseID, CourseOperation, FindingStudentInfoByAdmin, StudentID, StudentOperation, token } from "@/ambLib/amb"
-import CouresInfo from "../CouresInfo";
 import StudentList from "../data/dataClass/StudentList";
-
+import cookie from "js-cookie"
 
 // KHAI BAO TAM THOI    
 const Course_ID : CourseID =  {
     course_id: "CN2690"
 }
-const Token: token = {
-    token:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTY2MDIwLCJleHAiOjE3MTUwMDIwMjB9.sX-xyPVY4JT-QFA2ePVGTuCciKMHzHDtd80vCF2tBrU"
-}
+const myToken: token = {
+    token: cookie.get("token"),
+  };
 const CourseInfo: FindingStudentInfoByAdmin = {}
 // KHAI BAO TAM THOI   
 
@@ -81,7 +80,7 @@ const handleSort = (type: 'name' | 'ID') => {
     const fetchStudentID = async () => {
         try {
             const getStudentListID = new ClassOperation();
-            const responseID = await getStudentListID.getClassInfo({class_id: String(ClassID)}, Token); // truyền vào tham số mã số lớp học
+            const responseID = await getStudentListID.getClassInfo({class_id: String(ClassID)}, myToken); // truyền vào tham số mã số lớp học
             console.log(responseID.data.students)
             setStudentID(responseID.data.students);
         }
@@ -99,7 +98,7 @@ const handleSort = (type: 'name' | 'ID') => {
       
 
     <div className="w-[98%] min-h-screen mt-4 border border-gray-200 rounded-md mx-auto">
-        <div className="bg-sky-200 p-6 flex justify-between items-center">
+        {/* <div className="bg-sky-200 p-6 flex justify-between items-center">
         <h1 className="uppercase font-bold text-2xl text-white">Danh sách sinh viên</h1>
                      <input
                         type="text"
@@ -108,9 +107,9 @@ const handleSort = (type: 'name' | 'ID') => {
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="w-[40%] px-3 py-2 border rounded-md"
                      />
-        </div>
+        </div> */}
 
-        <div className="p-3 md:p-6">
+        {/* <div className="p-3 md:p-6">
             <div className="flex items-center justify-center space-x-4 mb-4">
                 <span>Sort by:</span>
                     <select value={sortType} onChange={(e) => handleSort(e.target.value as 'name' | 'ID')}>
@@ -118,7 +117,7 @@ const handleSort = (type: 'name' | 'ID') => {
                         <option value="ID">ID</option>
                     </select>
             </div>
-        </div>
+        </div> */}
         <div className=" rounded-md rounded-gray-100 border shadow-sm shadow-gray-100 w-full ">
         <div className="border-y-2 grid grid-cols-6">
                 <div className="text-center font-bold col-span-1" >Mã số sinh viên</div>
