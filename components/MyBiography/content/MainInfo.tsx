@@ -37,7 +37,7 @@ const MainInfo = () => {
                 border shadow-gray-200 shadow-sm rounded-lg">
       <div className="flex justify-center items-center p-2 ">
         <img 
-        src= "https://th.bing.com/th/id/OIP.8bss3pk_BMm06NPJfvQrHAHaDm?rs=1&pid=ImgDetMain"
+        src= "https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"
         alt="Avatar" 
         className=" h-[72%] w-[65%] md:h-[62%] md:w-[42%] rounded-xl shadow-xl shadow-gray-100  mx-auto mb-2"
         />

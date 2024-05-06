@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { TeacherOperation, token } from "@/ambLib/amb";
+import cookie from "js-cookie"
+
+
+
+const myToken: token = {
+  token: cookie.get("token"),
+};
+
+
 
 const MyTeacher = () => {
     const [teacherData, setTeacherData] = useState<any>(null);
-    const tokenData: token = {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZWFjaGVyX2lkIjoiR1Y1MzU4NyIsInJvbGUiOiJHaeG6o25nIHZpw6puIiwiYWN0aXZlIjoxLCJpYXQiOjE3MTQ5NjQ5MzEsImV4cCI6MTcxNTAwMDkzMX0.wJotmNDAfcKomZ-zuggNixxWGc9XcC1OyJxzPpYMc7k"
-    };
-
+    
     const fetchTeacherData = async () => {
         try {
             const teacherAPI = new TeacherOperation();
-            const response = await teacherAPI.findByAdmin({}, tokenData);
+            const response = await teacherAPI.findByAdmin({}, myToken);
             console.log("Full response:", response); // Log the entire response
             console.log("Teacher data:", response.data); // Log the specific data part
             setTeacherData(response.data); // Set teacherData state with the fetched data

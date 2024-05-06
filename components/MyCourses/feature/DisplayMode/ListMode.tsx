@@ -10,10 +10,13 @@ const myToken: token = {
 
 interface ListModeProps {
   CourseID: string;
+  CourseName: string;
+  Teacher: string;
+  ClassID: string;
 }
 
 
-const ListMode: React.FC<ListModeProps> = ({ CourseID}) => {
+const ListMode: React.FC<ListModeProps> = ({ CourseID,CourseName,Teacher,ClassID}) => {
 
 const [classID, setClassID] = useState<any>([]);
 const fetchClassID = async (courseID: string) => {  
@@ -39,21 +42,21 @@ const handleLinkClick = (ClassID_input:string) => {
     return (
         <div className=" md:mx-20  w-full md:w-[75%]  bg-gray-200 rounded-md shadow-md hover:scale-105 duration-100 ease-in-out shadow-gray-300 relative overflow-hidden">
               <div className="grid grid-cols-4">
-                <img src="https://th.bing.com/th/id/OIP.8bss3pk_BMm06NPJfvQrHAHaDm?rs=1&pid=ImgDetMain"  className="w-full h-full col-span-1 " />
+                <img src="https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"  className="w-full h-full col-span-1 " />
                 <div className='col-span-3'>
-                  <div className="font-bold text-lg mb-2 px-10 md:px-20 mx-15 py-2">{classID.course_name}</div>
+                  <div className="font-bold text-lg mb-2 px-10 md:px-20 mx-15 py-2">{CourseName}</div>
                   
-                  <div className=''>
+                  <div >
                   {/* <div className='text-lg mb-2 px-20 mx-15 py-2'>{classID.course_type}</div> */}
                   <p> 
                     <span className="ml-20 mb-5 cursor-pointer text-blue-500 border-b border-blue-500 hover:border-transparent hover:bg-transparent"
-                        onClick={() => handleLinkClick(classID.class_id)}>
-                     {classID.class_id}----{classID.teacher} 
+                        onClick={() => handleLinkClick(ClassID)}>
+                     Lớp:{ClassID}----- GV:{Teacher} 
                   </span>  
                 </p>
 
                   <div className="  bg-teal-100 rounded-md absolute  top-2 left-2 p-2 w-[10]">
-                          <div className="text-sm">{classID.program}-- {classID.course_id}</div>
+                          <div className="text-sm">MÃ MÔN:{CourseID}</div>
                           
                   </div>
 
