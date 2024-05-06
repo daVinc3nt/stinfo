@@ -26,7 +26,7 @@ export default function Result() {
                 token: cookie.get("token"),
             };
             await studOp.findStudentRegisteredClass(myToken)
-                .then(data => { setResult(data.data), console.log(data.data) })
+                .then(data => { setResult(data.data) })
                 .catch(error => console.log(error))
         }
         fetchClass()

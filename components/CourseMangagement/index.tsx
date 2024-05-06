@@ -112,7 +112,6 @@ export default function Course() {
     const [today, setToday] = useState<TimeTable>({ time: [] })
     const [course, Setcourse] = useState<Course[]>([])
 
-    console.log(techerInfo)
     const router = useRouter()
 
     useEffect(() => {

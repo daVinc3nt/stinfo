@@ -178,7 +178,6 @@ export default function Registration() {
         for (let i = 0; i < choose.length; i++) {
             if (choose[i].classState == "") continue
             response = await postClass.register({ class_id: choose[i].classState, course_id: choose[i].course_id }, myToken)
-            console.log(response)
             if (response.error.error) alert(response.error.message)
             else alert(response.message)
         }
