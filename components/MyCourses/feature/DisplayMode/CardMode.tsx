@@ -69,8 +69,8 @@ const handleLinkClick = (ClassID_input:string) => {
     return (
         <div>
          
-          <div className="bg-gray-200 rounded-md shadow-md hover:scale-105 duration-100 ease-in-out shadow-gray-300 relative overflow-hidden">
-          <img src="https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"  className="w-full" />
+          <div className="bg-gray-200 rounded-md shadow-md hover:scale-105 duration-100 ease-in-out shadow-gray-300 relative overflow-hidden group">
+          <img src="https://th.bing.com/th/id/OIP.s5i4oFXbcoqebKq3ylnzqgHaHa?w=158&h=180&c=7&r=0&o=5&pid=1.7"  className="w-full" />
           <div className="p-4 text-black">
               <div className="flex justify-between items-center">
                   <div className="font-bold text-lg mb-2">{CourseName}-{CourseID} </div>
@@ -79,7 +79,13 @@ const handleLinkClick = (ClassID_input:string) => {
                 <button>
                   <span className="cursor-pointer text-blue-500 border-b border-blue-500 hover:border-transparent hover:bg-transparent" 
                   onClick={() => handleLinkClick(ClassID)}>
-                    Lớp:{ClassID}----- GV:{Teacher} 
+                    <div>
+                    Lớp:{ClassID}
+                    </div>
+                    <div>
+                    GV:{Teacher} 
+                    </div>
+               
                   </span>
                 </button>
                  {/* <div className="flex justify-between items-center bg-teal-100 rounded-md absolute top-2 left-2 p-2 md:w-2/3">

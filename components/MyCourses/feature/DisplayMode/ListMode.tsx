@@ -42,8 +42,8 @@ const handleLinkClick = (ClassID_input:string) => {
     return (
         <div className=" md:mx-20  w-full md:w-[75%]  bg-gray-200 rounded-md shadow-md hover:scale-105 duration-100 ease-in-out shadow-gray-300 relative overflow-hidden">
               <div className="grid grid-cols-4">
-                <img src="https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"  className="w-full h-full col-span-1 " />
-                <div className='col-span-3'>
+                <img src="https://th.bing.com/th/id/OIP.s5i4oFXbcoqebKq3ylnzqgHaHa?w=158&h=180&c=7&r=0&o=5&pid=1.7"  className="w-full h-full col-span-1 " />
+                <div className='col-span-3 p-12'>
                   <div className="font-bold text-lg mb-2 px-10 md:px-20 mx-15 py-2">{CourseName}</div>
                   
                   <div >

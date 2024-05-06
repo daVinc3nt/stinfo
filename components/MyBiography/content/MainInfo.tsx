@@ -153,8 +153,7 @@ const MainInfo = () => {
 </div>
             )}
         </div>
-        
-        
+      
     );
 }
 
