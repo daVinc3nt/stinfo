@@ -91,6 +91,7 @@ const Score = forwardRef((props: { class_id: string, course_id: string }, ref) =
     }
 
     useEffect(() => {
+        if (!loadingInfo) return
         let temp: studScore[] = []
         const Class = new CourseOperation()
         let Data: CLASS[]
@@ -118,7 +119,7 @@ const Score = forwardRef((props: { class_id: string, course_id: string }, ref) =
                 })
         }
         fetchData()
-    }, [])
+    }, [loadingInfo])
     useEffect(() => {
         if (!loadingInfo) {
             const course = new ClassOperation()
@@ -153,18 +154,20 @@ const Score = forwardRef((props: { class_id: string, course_id: string }, ref) =
 
     useEffect(() => {
         if (scorechange == 2) {
-            if (rightformat) {
+            if (valid) {
                 const updateScore = new ClassOperation()
                 const myToken: token = {
                     token: cookie.get("token"),
                 };
                 for (let i = 0; i < noStudent; i++) {
                     const loadScore = async () => {
-                        let temp = checkUpload + 1
-                        updateScore.updateScore({ student_id: score[i].student_id, midterm: score[i].midterm, final: score[i].final, exercise: score[i].exercise, lab: score[i].lab }, { class_id: props.class_id }, myToken)
-                            .then(error => { setCheckupload(temp); if (error.error) alert(error.error.message); else alert(error.message) })
+                        await updateScore.updateScore({ student_id: score[i].student_id, midterm: score[i].midterm, final: score[i].final, exercise: score[i].exercise, lab: score[i].lab }, { class_id: props.class_id }, myToken)
+                            .then(error => { if (error.error) alert(error.error.message); else alert(error.message) })
+
+
                     }
                     loadScore()
+                    setCheckupload(checkUpload => checkUpload + 1)
                 }
             } else {
                 setScorechange(1)
@@ -199,7 +202,7 @@ const Score = forwardRef((props: { class_id: string, course_id: string }, ref) =
                 <div className="relative flex flex-col lg:flex-row gap-2">
 
                     {/* TABLE FOR SCORE INFO*/}
-                    {scorechange == 0 && <div className="flex-1 lg:w-2/5 mt-4 h-80 flex flex-col">
+                    {scorechange == 0 && !loadingInfo && <div className="flex-1 lg:w-2/5 mt-4 h-80 flex flex-col">
                         <div className=" overflow-auto border-[1px] border-gray-500 rounded-lg">
                             <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                                 <thead className="text-xs text-gray-700 uppercase border-b-[1px] border-gray-500">
