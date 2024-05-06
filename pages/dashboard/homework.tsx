@@ -131,9 +131,14 @@ const ListOfSubmittedSubject = () => {
 		window?.localStorage.setItem("currentRole", "student");
 		window?.localStorage.setItem("currentCourseID", subject.course_id);
 		window?.localStorage.setItem("currentTeacher", subject.teacher);
-		window?.localStorage.setItem("currentScore", String(listScore[index].exercise))
+		if (listScore[index].exercise) {
+			window?.localStorage.setItem("currentScore", String(listScore[index].exercise))
+		}
+		else {
+			window?.localStorage.setItem("currentScore", "Chưa có điểm");
+		}
 		console.log(window?.localStorage.getItem("currentScore"));
-		console.log("currentScore: ", listScore[index].exercise);
+		// console.log("currentScore: ", listScore[index].exercise);
 		console.log("currentIndex: ", index);
 		console.log("listOfScore: ", listScore);
 		}
