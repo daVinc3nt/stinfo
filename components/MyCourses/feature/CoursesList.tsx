@@ -26,14 +26,6 @@ export interface CustomLink {
   teacher_name: string;
 }
 
-export interface Course {
-  course_id?: string;
-  course_name?: string;
-  class_link?: CustomLink;
-  faculty?: string;
-  course_type?: string;
-
-}
 
 
 
@@ -64,7 +56,6 @@ const CoursesList = () => {
 
 
   const [displayMode, setDisplayMode] = useState<'card' | 'list'>('card');
-  const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filterType, setFilterType] = useState<string>('');
 
@@ -83,7 +74,7 @@ const CoursesList = () => {
 
 
 // CALL API //
-const [courseInfo, setCourseInfo] = useState<Course[]>([]);
+const [courseInfo, setCourseInfo] = useState<any[]>([]);
 // const [classID, setClassID] = useState<any>([]);
 // const fetchCourseList = async () => {  
 //   try {
