@@ -37,7 +37,9 @@ const WeekCalendar = () => {
 
 	return (
 		<>
-			<button onClick={() => { router.push("/dashboard/courseLec") }} className="ring-2 ring-blue-800 rounded-xl p-1 m-2"><KeyboardReturnIcon /> Quay về</button>
+			<button onClick={() => {
+				role === "student" ? router.push("/dashboard/") : router.push("/dashboard/courseLec") 
+				}} className="ring-2 ring-blue-800 rounded-xl p-1 m-2"><KeyboardReturnIcon /> Quay về</button>
 			<div className={`w-full h-auto grid grid-cols-[60px_auto] grid-rows-[140px_auto]
 		[@media(max-width:600px)]:grid-cols-[40px_auto]
 		[@media(max-width:600px)]:grid-rows-[140px_auto]
