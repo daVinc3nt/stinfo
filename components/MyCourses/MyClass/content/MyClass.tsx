@@ -9,7 +9,7 @@ const Course_ID : CourseID =  {
     course_id: "CN2690"
 }
 const Token: token = {
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0ODcyMzY3LCJleHAiOjE3MTQ5MDgzNjd9.o50Hf3kubpLcfes8dUpYpnFekKIBJP2B7ks1G8vJXNg"
+    token:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTY2MDIwLCJleHAiOjE3MTUwMDIwMjB9.sX-xyPVY4JT-QFA2ePVGTuCciKMHzHDtd80vCF2tBrU"
 }
 const CourseInfo: FindingStudentInfoByAdmin = {}
 // KHAI BAO TAM THOI   
@@ -67,24 +67,21 @@ const MyClass: React.FC<MyClassProps> = ({ClassID}) => {
 //     setSortedstudent_array(sorted);
 // }, []);
 
-// const handleSort = (type: 'name' | 'ID') => {
-//     setSortType(type);
-// };
-
+const handleSort = (type: 'name' | 'ID') => {
+    setSortType(type);
+};
 
 
 
 
     
 
-    const [studentID, setStudentID] = useState<any[]>(null);
+    const [studentID, setStudentID] = useState<any[]>([]);
 
     const fetchStudentID = async () => {
         try {
             const getStudentListID = new ClassOperation();
             const responseID = await getStudentListID.getClassInfo({class_id: String(ClassID)}, Token); // truyền vào tham số mã số lớp học
-            // const getStudentListID = new CourseOperation();
-            // const responseID = await getStudentListID.findClasses(Course_ID, Token); // truyền vào tham số mã số lớp học
             console.log(responseID.data.students)
             setStudentID(responseID.data.students);
         }
@@ -95,8 +92,9 @@ const MyClass: React.FC<MyClassProps> = ({ClassID}) => {
     useEffect(() => {
         fetchStudentID();  
     }, []);
-    
-
+    useEffect(() => {
+        console.log(studentID);  
+    }, []);
     return (
       
 
@@ -115,10 +113,10 @@ const MyClass: React.FC<MyClassProps> = ({ClassID}) => {
         <div className="p-3 md:p-6">
             <div className="flex items-center justify-center space-x-4 mb-4">
                 <span>Sort by:</span>
-                    {/* <select value={sortType} onChange={(e) => handleSort(e.target.value as 'name' | 'ID')}>
+                    <select value={sortType} onChange={(e) => handleSort(e.target.value as 'name' | 'ID')}>
                         <option value="name">Name</option>
                         <option value="ID">ID</option>
-                    </select> */}
+                    </select>
             </div>
         </div>
         <div className=" rounded-md rounded-gray-100 border shadow-sm shadow-gray-100 w-full ">

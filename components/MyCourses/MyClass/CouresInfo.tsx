@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import MainCourses from './content/MainCourses';
 import MyPoint from './content/MyPoint';
 import MyClass from './content/MyClass';
-import MyCompetencies from './content/MyCompetencies';
 
 
 
@@ -61,8 +60,7 @@ export default function CouresInfo({ class_id }: { class_id: string }) {
     }}>
           <Tab label="Khóa học" {...a11yProps(0)} />
           <Tab label="Điểm số" {...a11yProps(1)} />
-          <Tab label="Năng lực" {...a11yProps(2)} />
-          <Tab label="Lớp học" {...a11yProps(3)} />
+          <Tab label="Lớp học" {...a11yProps(2)} />
         </Tabs>
       </Box>
       
@@ -73,9 +71,6 @@ export default function CouresInfo({ class_id }: { class_id: string }) {
             <MyPoint/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-            <MyCompetencies/>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={3}>
             <MyClass ClassID={class_id}/>
       </CustomTabPanel>
     </Box>

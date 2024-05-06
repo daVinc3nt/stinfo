@@ -11,7 +11,7 @@ import { cookies } from 'next/headers';
 
 // KHAI BAO TAM THOi
   const Token: token = {
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTEzMjkxLCJleHAiOjE3MTQ5NDkyOTF9.fHNHeARPQRTaWQxROodLgxuVVn03KuyjmY1wETEpnVk" 
+    token:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTY2MDIwLCJleHAiOjE3MTUwMDIwMjB9.sX-xyPVY4JT-QFA2ePVGTuCciKMHzHDtd80vCF2tBrU"
   };
   const CouseInfo: UpdatingCourseInfo = {}
   
@@ -83,41 +83,58 @@ const handleFilter = (filterKey: string, value: string) => {
 
 // CALL API //
 const [courseInfo, setCourseInfo] = useState<Course[]>([]);
-const [classID, setClassID] = useState<any>([]);
+// const [classID, setClassID] = useState<any>([]);
+// const fetchCourseList = async () => {  
+//   try {
+//       const getCourseListAPI = new CourseOperation();
+//       const response = await getCourseListAPI.findAllCourses({}, Token);
+//       console.log("Course data :", response.data); // Log the specific data part
+//       setCourseInfo(response.data);
+      
+//       // Fetch class ID for the first course
+//       for (const course of response.data) {
+//         const courseID = course.course_id;
+//         fetchClassID(courseID);
+//     }
+//   } catch (error) {
+//       console.error("Error fetching course data:", error);
+//   }
+// };
+
+// const fetchClassID = async (courseID: string) => {  
+//   try {
+//       const getClassIDAPI = new CourseOperation();
+//       const response12 = await getClassIDAPI.findClasses({ course_id: courseID }, Token);
+//       console.log(response12.data)
+//       setClassID(response12.data[0].class_id);
+//   } catch (error) {
+//       console.error("Error fetching class data:", error);
+//   }
+// };
+// useEffect(() => {
+//   fetchCourseList();  
+// }, []);
 const fetchCourseList = async () => {  
   try {
-      const getCourseListAPI = new CourseOperation();
-      const response = await getCourseListAPI.findAllCourses({}, Token);
+      const getCourseListAPI = new StudentOperation();
+      const response = await getCourseListAPI.findStudentRegisteredClass(Token);
       console.log("Course data :", response.data); // Log the specific data part
       setCourseInfo(response.data);
       
       // Fetch class ID for the first course
-      if (response.data.length > 0) {
-          const firstCourseID = response.data[0].course_id;
-          fetchClassID(firstCourseID);
-      }
+      // if (response.data.length > 0) {
+      //     const firstCourseID = response.data[0].course_id;
+      //     console.log(firstCourseID)
+      //     fetchClassID(firstCourseID);
+      // }
   } catch (error) {
       console.error("Error fetching course data:", error);
   }
 };
-
-const fetchClassID = async (courseID: string) => {  
-  try {
-      const getClassIDAPI = new CourseOperation();
-      const response12 = await getClassIDAPI.findClasses({ course_id: courseID }, Token);
-      console.log(response12.data);
-      setClassID(response12.data[0].class_id);
-  } catch (error) {
-      console.error("Error fetching class data:", error);
-  }
-};
-
 useEffect(() => {
   fetchCourseList();  
 }, []);
-useEffect(() => {
-  console.log(classID);  
-}, []);
+
   return(
     <div>
     <div className='flex justify-center items-center pb-8'>
@@ -130,26 +147,18 @@ useEffect(() => {
       </div>
       
     <div className={displayMode === 'card' ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-10" : "py-20 px-40 space-y-8 min-h-full"}>
-  {courseInfo && courseInfo.map(course => (
-    <div key={course.course_id}>
+  {courseInfo && courseInfo.map(course => (  ( <div  key={course.course_id}>
       {displayMode === 'card' ? (
         <CardMode
           CourseID={course.course_id}
-          CourseName={course.course_name}
-          Faculty={course.faculty}
-          CourseType={course.course_type}
-          ClassID={classID}
         />
       ) : (
         <ListMode
           CourseID={course.course_id}
-          CourseName={course.course_name}
-          Faculty={course.faculty}
-          CourseType={course.course_type}
-          ClassID={classID}
         />
       )}
-    </div>
+    </div>)
+   
   ))}
 </div>
 

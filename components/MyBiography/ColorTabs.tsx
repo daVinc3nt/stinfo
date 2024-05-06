@@ -4,7 +4,6 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import MainInfo from './content/MainInfo';
 import ContactInfo from './content/ContactInfo';
-import MedicalInfo from './content/MedicalInfo';
 import FamilyInfo from './content/FamilyInfo';
 
 export interface Page {
