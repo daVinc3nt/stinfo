@@ -46,12 +46,12 @@ export  const ContactInfo = () => {
                          border shadow-gray-200 shadow-sm rounded-lg">
                 <div className="md:flex justify-center items-center">
                     <img 
-                    src={student.frontIdentification}
+                    src={"https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"}
                     alt="front_CCCD" 
                     className="h-[82%] w-[78%] md:h-[62%] md:w-[42%] rounded-xl shadow-xl shadow-gray-100  mx-auto"
                     />
                     <img 
-                    src={student.backIdentification}
+                    src={"https://cdn.pixabay.com/photo/2021/09/02/16/48/cat-6593947_960_720.jpg"}
                     alt="back_CCCD" 
                     className="h-[82%] w-[78%] md:h-[62%] md:w-[42%] rounded-xl shadow-xl shadow-gray-100  mx-auto"
                     />
@@ -64,15 +64,15 @@ export  const ContactInfo = () => {
                             <div className="space-y-3 text-lg">
                                 <div className="sm:flex justify-start border-solid">
                                     <div className="font-bold  items-start">CCCD/CMND:</div>
-                                    <div className="items-center sm:mx-auto sm:px-4 px-10">{student.Identification}</div>
+                                    <div className="items-center sm:mx-auto sm:px-4 px-10">{}</div>
                                 </div>
                                 <div className="md:flex justify-start border-solid">
                                     <div className="font-bold  items-start">Nơi sinh:</div>
-                                    <div className="items-center sm:mx-auto sm:px-4 px-10">{student.Birthplace}</div>
+                                    <div className="items-center sm:mx-auto sm:px-4 px-10">{}</div>
                                 </div>
                                 <div className="md:flex justify-start border-solid">
                                     <div className="font-bold  items-start">Hộ khẩu thường trú:</div>
-                                    <div className="items-center sm:mx-auto sm:px-4 px-10">{student.PermanentResidence}</div>
+                                    <div className="items-center sm:mx-auto sm:px-4 px-10">{}</div>
                                 </div>
                             </div>
                     </div>

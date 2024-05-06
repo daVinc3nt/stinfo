@@ -43,7 +43,7 @@ const MainInfo = () => {
     
     const [studentData, setStudentData] = useState<any>(null);
     const tokenData: token = {
-        token:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0NzI2MzExLCJleHAiOjE3MTQ3NjIzMTF9.5nGKMOfyjpnFMC4_Flg8iv-amYosm6hpdovR9P5Wwak"
+        token:  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdHVkZW50X2lkIjoiMjQyNDMwMDQiLCJyb2xlIjoiU2luaCB2acOqbiIsImFjdGl2ZSI6MSwiaWF0IjoxNzE0OTY2MDIwLCJleHAiOjE3MTUwMDIwMjB9.sX-xyPVY4JT-QFA2ePVGTuCciKMHzHDtd80vCF2tBrU"
     };
 
     const fetchStudentData = async () => {
@@ -125,10 +125,10 @@ const MainInfo = () => {
                             <div className="font-bold  items-start">Khoa quản lý:</div>
                             <div className="items-center md:mx-px sm:px-4 px-10">{studentData.faculty}</div>
                         </div>
-                        {/* <div className="flex justify-start">
+                        <div className="flex justify-start">
                             <div className="font-bold  items-start">Tình trạng:</div>
-                            <div className="items-center md:mx-px sm:px-4 px-10">{student.study.Condition}</div>
-                        </div> */}
+                            <div className="items-center md:mx-px sm:px-4 px-10">{studentData.active ==1 ? "Đang học" : "Tạm dừng"}</div>
+                        </div>
                     </div>
 
             
@@ -164,6 +164,32 @@ const MainInfo = () => {
         </div>
 
     </div>
+
+    <div className="md:flex justify-center items-center pt-6">
+    <div className="flex items-center justify-center w-full h-[42px]
+                             text-white text-2xl font-bold bg-sky-500 rounded-xl">Thông tin liên lạc</div>             
+    </div>
+
+                <div className="justify-center items-center
+                                w-full py-6  space-y-6">
+                    <div className="w-[98%] h-[42%] px-2 py-6 sm:p-10 
+                                    border rounded-lg shadow-sm shadow-teal-200">
+                            <div className="space-y-3 text-lg">
+                                <div className="sm:flex justify-start border-solid">
+                                    <div className="font-bold  items-start">CCCD/CMND:</div>
+                                    <div className="items-center sm:mx-auto sm:px-4 px-10">{studentData.credential_id}</div>
+                                </div>
+                                {/* <div className="md:flex justify-start border-solid">
+                                    <div className="font-bold  items-start">Nơi sinh:</div>
+                                    <div className="items-center sm:mx-auto sm:px-4 px-10">{}</div>
+                                </div> */}
+                                <div className="flex justify-start border-solid">
+                                    <div className="font-bold  items-start">Hộ khẩu thường trú:</div>
+                                    <div className="items-center sm:mx-auto sm:px-4 px-10">{studentData.address}</div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
 </div>
             )}
         </div>

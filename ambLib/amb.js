@@ -951,11 +951,11 @@ var ClassOperation = /** @class */ (function () {
                     case 0:
                         _c.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, axios_1.default.post("".concat(this.baseUrl, "/update_score?class_id=").concat(condition.class_id), info, {
-                            withCredentials: true,
-                            headers: {
-                                Authorization: token.token
-                            }
-                        })];
+                                withCredentials: true,
+                                headers: {
+                                    Authorization: token.token
+                                }
+                            })];
                     case 1:
                         response = _c.sent();
                         data = response.data;
