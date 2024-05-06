@@ -150,7 +150,7 @@ export default function CalendarGrid(props: { offset: number, showWeek: number, 
         let student = new StudentOperation();
 
         useEffect(() => {
-            student.login("quang.tran24174728", "082204000057")
+            student.login("long.nguyen24243004", "Student@24243004")
                 .then(data => {
                     console.log("Data: ", data);
                     const newToken = { token: data.token };
@@ -167,9 +167,11 @@ export default function CalendarGrid(props: { offset: number, showWeek: number, 
             if (userToken) {
                 student.findStudentRegisteredClass({ token: userToken.token })
                     .then(data => {
+                        console.log("data: ", data);
                         const getData: SubjectProps[] = data.data;
                         if (getData) {
                             let newData: SubjectProps[] = fillMissingData(getData);
+                            // console.log(getData);
                             setListEvent(newData);
                             let getWeekEventsData: Array<Array<EventProps>> = generateWeekCalendar(newData, props.showWeek);
                             if (getWeekEventsData) {

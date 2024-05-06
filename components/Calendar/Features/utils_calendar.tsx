@@ -8,15 +8,15 @@ export class DateUtils {
 		const currentDate = new Date();
 		const today = currentDate.getDay(); // 0 for Sunday, 1 for Monday, ..., 6 for Saturda
 		const diff = today === 0 ? 6 : today - 1; // Adjust if today is Sunday
-	
+
 		currentDate.setDate(currentDate.getDate() - diff + (offset * 7)); // Adjust for offset
-	
+
 		// Generate dates for the week starting from Monday
 		for (let i = 0; i < 7; i++) {
 			result.push(new Date(currentDate));
 			currentDate.setDate(currentDate.getDate() + 1);
 		}
-	
+
 		return result;
 	}
 
@@ -130,10 +130,10 @@ export class DateUtils {
 	static convertDayToNumber(day: string): number {
 		// Remove any leading or trailing whitespace
 		day = day.trim();
-	
+
 		// Extract the numeric part of the string
 		const numericPart = day.match(/\d+/);
-	
+
 		if (numericPart) {
 			// Convert the numeric part to a number and subtract 2 to get the index (0 for "Thứ 2", 1 for "Thứ 3", and so on)
 			const numericValue = parseInt(numericPart[0]);
@@ -161,7 +161,7 @@ export class WeekUtils {
 		const week = WeekUtils.getWeekNumber(d)[1];
 		return week === 1 ? 52 : week;
 	}
-
+	
 	// static generateCurrentWeekEvent(): EventProps[][] {
 	// }
 }
@@ -170,32 +170,26 @@ export class HourUtils {
 	static convetPeriodToHourBlock(period: number[]): string[] {
 		let startTime = "", endTime = "";
 
-		if (period[0] >= 1 && period[0] <= 6 )
-		{
+		if (period[0] >= 1 && period[0] <= 6) {
 			const hoursToAdd = period[0] + 5; // Since the startTime starts from 1
 			startTime = `${hoursToAdd < 10 ? '0' : ''}${hoursToAdd}:00AM`;
 		}
-		else if (period[0] == 7)
-		{
+		else if (period[0] == 7) {
 			startTime = '12:00PM';
 		}
-		else if (period[0] >= 8 && period[0] <= 14)
-		{
+		else if (period[0] >= 8 && period[0] <= 14) {
 			const hoursToAdd = period[0] - 7;
 			startTime = `${hoursToAdd < 10 ? '0' : ''}${hoursToAdd}:00PM`;
 		}
 
-		if (period[1] >= 2 && period[1] <= 6)
-		{
+		if (period[1] >= 2 && period[1] <= 6) {
 			const hoursToAdd = period[1] + 4; // Since the endTime starts from 2
 			endTime = `${hoursToAdd < 10 ? '0' : ''}${hoursToAdd}:50AM`
 		}
-		else if (period[1] == 7)
-		{
+		else if (period[1] == 7) {
 			endTime = '00:50PM';
 		}
-		else if (period[1] >= 8 && period[1] <= 14)
-		{
+		else if (period[1] >= 8 && period[1] <= 14) {
 			const hoursToAdd = period[1] - 7;
 			endTime = `${hoursToAdd < 10 ? '0' : ''}${hoursToAdd}:50PM`;
 		}
@@ -218,5 +212,33 @@ export class VisualEffect {
 		let newColor = color.slice(0, -3) + newColorCode;
 		console.log("newColor: ", newColor)
 		return newColor;
+	}
+
+	static chooseColor(num: number): string {
+		switch (num % 10) {
+			case 0:
+				return "bg-blue-200";
+			case 1:
+				return "bg-green-200";
+			case 2:
+				return "bg-red-200";
+			case 3:
+				return "bg-yellow-300";
+			case 4:
+				return "bg-pink-200";
+			case 5:
+				return "bg-indigo-200";
+			case 6:
+				return "bg-purple-200";
+			case 7:
+				return "bg-blue-300";
+			case 8:
+				return "bg-green-300";
+			case 9:
+				return "bg-red-300";
+			default:
+				return "bg-blue-200";
+
+		}
 	}
 }

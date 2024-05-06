@@ -3,7 +3,8 @@ import { Deadline, HomeworkType, SubmissionProps, MultipleChoiceScoreAttempt} fr
 import { MultipleChoiceQuestion } from './Utilities/interfaceProps';
 import { token, ClassID, SubmitFile } from '@/ambLib/amb';
 
-// Only store in local
+
+// Most of this class is useless
 
 class HomeWork {
     whichHomeworkType: HomeworkType;

@@ -34,3 +34,17 @@ export interface MultipleChoiceQuestion {
     answers: string[];
     correctAnswer: number;
 }
+
+export interface Subject {
+    class_id: string,
+    course_id: string,
+    course_name: string,
+    teacher: string,
+}
+
+export interface Score {
+    course_id: string,
+    course_name: string,
+    exercise: number,
+    lab: number,
+}
