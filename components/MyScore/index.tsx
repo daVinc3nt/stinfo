@@ -128,33 +128,36 @@ export default function MyScore() {
                 };
                 await stuOp.getScore(myToken)
                     .then(data => {
-                        DATA = data.data.allScores
-                        for (let i = 0; i < DATA.length; i++) {
-                            if (!semesName.includes(DATA[i].semester)) {
-                                semesName.push(DATA[i].semester); semester.push([])
-                                avgSemester.push({ semester: DATA[i].semester, score: 0, credits: 0 })
+                        if (data.error) alert("Đã có lỗi xảy ra vui lòng thử lại!")
+                        else {
+                            DATA = data.data.allScores
+                            for (let i = 0; i < DATA.length; i++) {
+                                if (!semesName.includes(DATA[i].semester)) {
+                                    semesName.push(DATA[i].semester); semester.push([])
+                                    avgSemester.push({ semester: DATA[i].semester, score: 0, credits: 0 })
+                                }
                             }
-                        }
-                        setScore(avgSemester)
-                        semesName.sort((a, b) => {
-                            const numA = parseInt(a.substring(2));
-                            const numB = parseInt(b.substring(2));
-                            if (numA < numB) {
-                                return -1;
-                            } else if (numA > numB) {
-                                return 1;
-                            } else {
-                                return a.localeCompare(b);
+                            setScore(avgSemester)
+                            semesName.sort((a, b) => {
+                                const numA = parseInt(a.substring(2));
+                                const numB = parseInt(b.substring(2));
+                                if (numA < numB) {
+                                    return -1;
+                                } else if (numA > numB) {
+                                    return 1;
+                                } else {
+                                    return a.localeCompare(b);
+                                }
+                            });
+                            for (let i = 0, j = 0, ss = ""; i < DATA.length; i++) {
+                                ss = DATA[i].semester
+                                j = semesName.indexOf(ss)
+                                DATA[i].semester = "Học kỳ " + ss[4] + " Năm học 20" + ss[2] + ss[3] + " - "
+                                    + "20" + (ss[3] == '9' ? (parseInt(ss[2], 10) + 1).toString() + '0' : ss[2] + (parseInt(ss[3], 10) + 1).toString())
+                                semester[j].push(DATA[i])
                             }
-                        });
-                        for (let i = 0, j = 0, ss = ""; i < DATA.length; i++) {
-                            ss = DATA[i].semester
-                            j = semesName.indexOf(ss)
-                            DATA[i].semester = "Học kỳ " + ss[4] + " Năm học 20" + ss[2] + ss[3] + " - "
-                                + "20" + (ss[3] == '9' ? (parseInt(ss[2], 10) + 1).toString() + '0' : ss[2] + (parseInt(ss[3], 10) + 1).toString())
-                            semester[j].push(DATA[i])
+                            setSemes(semester)
                         }
-                        setSemes(semester)
 
                     })
                     .catch(error => alert(error))
@@ -198,7 +201,10 @@ export default function MyScore() {
             const myToken: token = {
                 token: cookie.get("token"),
             };
-            await info.findByStudent(myToken).then(data => setStudent({ name: data.data.fullname, ID: data.data.student_id }))
+            await info.findByStudent(myToken).then(data => {
+                if (data.error) alert("Đã có lỗi xảy ra vui lòng thử lại!")
+                else { setStudent({ name: data.data.fullname, ID: data.data.student_id }) }
+            })
         }
         fetchInfo()
     }, [])
@@ -271,7 +277,7 @@ export default function MyScore() {
                                     })
                                 }
                             </select>}
-                            {semes.length == 0 && <div className="inline bg-gray-200 text-gray-200 animate-pulse animate-infinite animate-duration-1000 animate-ease-in  rounded-xl hover:bg-gray-300 p-[3px] ">Học kỳ 2 Năm học 2023 - 2024</div>}
+                            {semes.length == 0 && <div className="inline bg-gray-200 text-gray-200 animate-pulse animate-infinite animate-duration-1000 animate-ease-in  rounded-xl  p-[3px] ">Học kỳ 2 Năm học 2023 - 2024</div>}
                         </label>
 
                         {!(semes.length == 0) && <div className="overflow-auto mt-10 flex flex-col ">

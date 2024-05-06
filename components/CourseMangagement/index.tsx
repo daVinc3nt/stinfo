@@ -130,33 +130,36 @@ export default function Course() {
             };
             await teacher.findTeacherRegisteredClass(myToken)
                 .then(data => {
-                    DATA = data.data
-                    let temp: TeacherInfo
-                    let othertemp: Course
-                    let len = course.length
-                    for (let i = 0; i < DATA.length; i++) {
-                        temp = DATA[i]
-                        numLessons += temp.period.length
-                        if (DATA[i].day == WEEKDAY[wDay]) {
-                            Today.time.push({ per: temp.period, name: temp.course_name, room: temp.room })
-                        }
-                        if (course.length == 0) course.push({ name: temp.course_name, classes: [], course_id: temp.course_id })
+                    if (data.error) alert("Đã có lỗi xảy ra vui lòng thử lại")
+                    else {
+                        DATA = data.data
+                        let temp: TeacherInfo
+                        let othertemp: Course
                         let len = course.length
-                        for (let j = 0; j < len; j++) {
-                            othertemp = course[j]
-                            if (temp.course_name != othertemp.name && j == len - 1) {
-                                course.push({ name: temp.course_name, classes: [{ class_name: temp.class_id, per: temp.period, room: temp.room }], course_id: temp.course_id })
+                        for (let i = 0; i < DATA.length; i++) {
+                            temp = DATA[i]
+                            numLessons += temp.period.length
+                            if (DATA[i].day == WEEKDAY[wDay]) {
+                                Today.time.push({ per: temp.period, name: temp.course_name, room: temp.room })
                             }
-                            else if (temp.course_name == othertemp.name) {
-                                course[j].classes.push({ class_name: temp.class_id, per: temp.period, room: temp.room })
-                                break
-                            }
+                            if (course.length == 0) course.push({ name: temp.course_name, classes: [], course_id: temp.course_id })
+                            let len = course.length
+                            for (let j = 0; j < len; j++) {
+                                othertemp = course[j]
+                                if (temp.course_name != othertemp.name && j == len - 1) {
+                                    course.push({ name: temp.course_name, classes: [{ class_name: temp.class_id, per: temp.period, room: temp.room }], course_id: temp.course_id })
+                                }
+                                else if (temp.course_name == othertemp.name) {
+                                    course[j].classes.push({ class_name: temp.class_id, per: temp.period, room: temp.room })
+                                    break
+                                }
 
+                            }
                         }
+                        Setcourse(course)
+                        setNumlessons(numLessons)
+                        setToday(Today)
                     }
-                    Setcourse(course)
-                    setNumlessons(numLessons)
-                    setToday(Today)
                 })
                 .catch(error => console.log(error))
         }
@@ -165,18 +168,15 @@ export default function Course() {
                 token: cookie.get("token"),
             };
             await teacher.findByTeacher(myToken)
-                .then(data => setTeacherInfo({ name: data.data.fullname, gender: data.data.gender }))
-                .catch(error => console.log(error))
+                .then(data => {
+                    if (data.error) alert("Đã có lỗi xảy ra vui lòng thử lại")
+                    else setTeacherInfo({ name: data.data.fullname, gender: data.data.gender })
+                })
+
         }
-        const fetchData3 = async () => {
-            const myToken: token = {
-                token: cookie.get("token"),
-            };
-            await Class.findClasses({ course_id: "CS1716" }, myToken)
-        }
+
         fetchData1()
         fetchData2()
-        fetchData3()
     }, [])
 
 
@@ -316,7 +316,7 @@ export default function Course() {
                                                             <div className="flex flex-col text-sm">
                                                                 <div className="mb-1">Lớp: {item.class_name}</div>
                                                                 <div className="mb-1">Phòng: {item.room}</div>
-                                                                <div className="mb-1">Lịch dạy: Tiết {" " + item.per[0] + " - " + item.per[item.per.length - 1]}</div>
+                                                                <div className="mb-1">Lịch dạy: Tiết {" " + item.per[0] == undefined ? "..." : item.per[0] + " - " + item.per[item.per.length - 1] == undefined ? "..." : item.per[item.per.length - 1]}</div>
                                                             </div>
                                                         </div>
                                                     </div>
